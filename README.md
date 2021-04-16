@@ -35,7 +35,7 @@ Used as a cloud development image until M1 Mac has more libraries for their appl
     PRE_SIGNED_DOWNLOAD_URL="$(gsutil signurl -d 1m $GCP_KEY_FILE gs://${GCS_BUCKET}/${GCS_OBJECT} | grep -o "https://.*")"
     
     # BUILD DOCKER IMAGE AND COPY
-    docker build -t cloud_dev/ubuntu --build-arg PRE_SIGNED_DOWNLOAD_URL=$PRE_SIGNED_DOWNLOAD_URL --build-arg REPO_URL="git@github.com:gregnrobinson/      dockerfile-cloud-development-amd64.git" .
+    docker build -t cloud_dev/ubuntu --build-arg PRE_SIGNED_DOWNLOAD_URL=$PRE_SIGNED_DOWNLOAD_URL --build-arg REPO_URL="git@github.com:gregnrobinson/   dockerfile-cloud-development-amd64.git" .
     
     # CLEANUP
     gsutil rm gs://${GCS_BUCKET}/${GCS_OBJECT}
