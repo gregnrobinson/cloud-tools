@@ -7,6 +7,7 @@
 FROM amd64/ubuntu:18.04
 
 ARG REPO_URL
+ARG SSH_KEY_PATH
 #ARG GCP_SA_CRED
 
 # PREREQUISITES
@@ -33,25 +34,19 @@ RUN \
   apt-get update -y && apt-get install google-cloud-sdk -y
   #gcloud auth activate-service-account ACCOUNT --key-file=$GCP_SA_CRED
 
-
-# Add files.
-# ADD root/.bashrc /root/.bashrc
-# ADD root/.gitconfig /root/.gitconfig
-# ADD root/.scripts /root/.scripts
-
 # Set environment variables.
 ENV HOME /root
 
 # IMPORT SSH KEY FOR GIT
 RUN mkdir -p ~/.ssh
-COPY ~/.ssh/id_rsa ~/.ssh/id_rsa
+COPY ${SSH_KEY_PATH} ~/.ssh/id_rsa
 RUN echo "Host remotehost\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 
 # Define working directory.
 WORKDIR /root
 
 # IMPORT SSH KEY FOR GIT
-RUN git clone $REPO_URL
+RUN git clone ${REPO_URL}
 
 #ADD ~/arctiq/p-google-cicd-pipeline-work /root
 
