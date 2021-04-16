@@ -19,6 +19,7 @@ Used as a cloud development image until M1 Mac has more libraries for their appl
 ### build.sh
 
     # ENV VARIABLES
+    TF_VERSION="0.14.10"
     GCS_BUCKET="cloud-dev-greg-arctiq"
     GCS_OBJECT="id_rsa"
     SSH_KEY_PATH="/Users/gregrobinson/.ssh/id_rsa"
@@ -35,7 +36,7 @@ Used as a cloud development image until M1 Mac has more libraries for their appl
     PRE_SIGNED_DOWNLOAD_URL="$(gsutil signurl -d 5m $GCP_KEY_FILE gs://${GCS_BUCKET}/${GCS_OBJECT} | grep -o "https://.*")"
     
     # BUILD DOCKER IMAGE AND COPY
-    docker build -t cloud_dev/ubuntu --build-arg PRE_SIGNED_DOWNLOAD_URL=$PRE_SIGNED_DOWNLOAD_URL .
+    docker build -t cloud_dev/ubuntu --build-arg TF_VERSION=$TF_VERSION --build-arg PRE_SIGNED_DOWNLOAD_URL=$PRE_SIGNED_DOWNLOAD_URL .
     
     # CLEANUP
     gsutil rm gs://${GCS_BUCKET}/${GCS_OBJECT}

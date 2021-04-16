@@ -6,8 +6,8 @@
 # PULL BASE IMAGE
 FROM amd64/ubuntu:18.04
 
-ARG REPO_URL
 ARG PRE_SIGNED_DOWNLOAD_URL
+ARG TF_VERSION
 
 WORKDIR /root
 
@@ -35,10 +35,11 @@ RUN apt-get update && \
       unzip
 
 # INSTALL TERRAFORM
-RUN curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add - && \
-    apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main" && \
-    apt-get update && apt-get install terraform
-    
+RUN wget https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_amd64.zip && \
+    unzip terraform_${TF_VERSION}_linux_amd64.zip && \
+    mv terraform /usr/local/bin && \
+    rm terraform_${TF_VERSION}_linux_amd64.zip
+
 # INSTALL GCP CLI
 RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && \
     curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key --keyring /usr/share/keyrings/cloud.google.gpg  add - && \

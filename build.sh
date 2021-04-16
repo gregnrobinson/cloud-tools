@@ -1,6 +1,7 @@
 set -x
 
 # ENV VARIABLES
+TF_VERSION="0.14.10"
 GCS_BUCKET="cloud-dev-greg-arctiq"
 GCS_OBJECT="id_rsa"
 SSH_KEY_PATH="/Users/gregrobinson/.ssh/id_rsa"
@@ -17,7 +18,7 @@ curl -X PUT -H 'Content-Type: application/octet-stream' --upload-file $SSH_KEY_P
 PRE_SIGNED_DOWNLOAD_URL="$(gsutil signurl -d 5m $GCP_KEY_FILE gs://${GCS_BUCKET}/${GCS_OBJECT} | grep -o "https://.*")"
 
 # BUILD DOCKER IMAGE AND COPY
-docker build -t cloud_dev/ubuntu --build-arg PRE_SIGNED_DOWNLOAD_URL=$PRE_SIGNED_DOWNLOAD_URL .
+docker build -t cloud_dev/ubuntu --build-arg TF_VERSION=$TF_VERSION --build-arg PRE_SIGNED_DOWNLOAD_URL=$PRE_SIGNED_DOWNLOAD_URL .
 
 # CLEANUP
 gsutil rm gs://${GCS_BUCKET}/${GCS_OBJECT}
