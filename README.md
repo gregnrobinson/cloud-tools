@@ -1,4 +1,4 @@
-## Ubuntu Dockerfile
+## Ubuntu AMD64 Dockerfile
 Used for cloud development on an M1 Mac due to package limitations for arm64
 
 
