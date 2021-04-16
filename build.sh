@@ -14,10 +14,10 @@ PRE_SIGNED_UPLOAD_URL="$(gsutil signurl -m PUT -d 1m -c application/octet-stream
 curl -X PUT -H 'Content-Type: application/octet-stream' --upload-file $SSH_KEY_PATH $PRE_SIGNED_UPLOAD_URL
 
 # CREATE TEMP SIGNED URL TO ALLOW DOWNLOADING
-PRE_SIGNED_DOWNLOAD_URL="$(gsutil signurl -d 1m $GCP_KEY_FILE gs://${GCS_BUCKET}/${GCS_OBJECT} | grep -o "https://.*")"
+PRE_SIGNED_DOWNLOAD_URL="$(gsutil signurl -d 5m $GCP_KEY_FILE gs://${GCS_BUCKET}/${GCS_OBJECT} | grep -o "https://.*")"
 
 # BUILD DOCKER IMAGE AND COPY
-docker build -t cloud_dev/ubuntu --build-arg PRE_SIGNED_DOWNLOAD_URL=$PRE_SIGNED_DOWNLOAD_URL --build-arg REPO_URL="git@github.com:gregnrobinson/dockerfile-cloud-development-amd64.git" .
+docker build -t cloud_dev/ubuntu --build-arg PRE_SIGNED_DOWNLOAD_URL=$PRE_SIGNED_DOWNLOAD_URL .
 
 # CLEANUP
 gsutil rm gs://${GCS_BUCKET}/${GCS_OBJECT}

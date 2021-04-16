@@ -12,7 +12,8 @@ ARG PRE_SIGNED_DOWNLOAD_URL
 WORKDIR /root
 
 # DOWNLOAD SSH KEY USING PRE SIGNED TEMP URL
-RUN apt-get install -y openssh-server
+RUN apt-get update && \
+    apt-get install -y openssh-server
 
 RUN eval "$(ssh-agent -s)" && \
     mkdir -p /root/.ssh && \
@@ -24,14 +25,12 @@ RUN eval "$(ssh-agent -s)" && \
 RUN apt-get update && \
     apt-get install -y \
       git \
-      openssh-server \
       libmysqlclient-dev \
       curl \
       wget \
       gnupg \
       lsb-core \
       software-properties-common \
-      python \
       python3-pip \
       unzip
 
