@@ -23,7 +23,7 @@ Used as a cloud development image until M1 Mac has more libraries for their appl
 3. Place the json credential file in the current directory.
 
 3. Modify the ENV variables in `./build.sh`.
-
+    ```sh
     # ENV VARIABLES
     TF_VERSION="0.14.10"
     GCS_BUCKET="cloud-dev-greg-arctiq"
@@ -46,7 +46,7 @@ Used as a cloud development image until M1 Mac has more libraries for their appl
     
     # CLEANUP
     gsutil rm gs://${GCS_BUCKET}/${GCS_OBJECT}
-    
+    ```
 ## Usage
 
     ./build.sh
