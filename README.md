@@ -1,7 +1,7 @@
 ## Ubuntu AMD64 Dockerfile
 Used as a cloud development image until M1 Mac has more libraries for their apple silicon chip.
 
-- ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `WARNING: If you plan on using the Dockerfile to build and push to the container registry ensure that you remove the section that copies an SSH key to the container.`
+`WARNING: If you plan on using the Dockerfile to build and push to the container registry ensure that you remove the section that copies an SSH key to the container.`
 
 ### Base Docker Image
 
