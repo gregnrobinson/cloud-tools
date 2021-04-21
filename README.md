@@ -22,7 +22,7 @@ Used as a cloud development image until M1 Mac has more libraries for their appl
 
 3. Place the json credential file in the current directory.
 
-### build.sh
+3. Modify the ENV variables in `./build.sh`.
 
     # ENV VARIABLES
     TF_VERSION="0.14.10"
