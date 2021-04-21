@@ -23,7 +23,7 @@ Used as a cloud development image until M1 Mac has more libraries for their appl
     GCS_BUCKET="cloud-dev-greg-arctiq"
     GCS_OBJECT="id_rsa"
     SSH_KEY_PATH="/Users/gregrobinson/.ssh/id_rsa"
-    GCP_SA_CRED="./*.json"
+    GCP_KEY_FILE="./*.json"
     
     # AUTHENTICATE WTH A SERVICE ACCOUNT
     gcloud auth activate-service-account --key-file $GCP_KEY_FILE
