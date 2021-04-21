@@ -1,7 +1,7 @@
 ## Overview
 Used as a cloud development image until M1 Mac has more libraries for their apple silicon chip.
 
-`WARNING: If you plan on using the Dockerfile to build and push to the container registry ensure that you remove the section that copies an SSH key to the container.`
+***`WARNING: If you plan on using the Dockerfile to build and push to the container registry ensure that you remove the section that copies an SSH key to the container.`***
 
 ### Base Docker Image
 
