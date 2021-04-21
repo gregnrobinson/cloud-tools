@@ -7,6 +7,12 @@ Used as a cloud development image until M1 Mac has more libraries for their appl
 
 * [amd64/ubuntu:18.04](https://hub.docker.com/r/amd64/ubuntu/)
 
+### Included Packages
+
+* Terraform
+* AWS CLI
+* Azure CLI
+* Google Cloud SDK
 
 ### Prerequisites
 
