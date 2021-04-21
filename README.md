@@ -1,4 +1,4 @@
-## Ubuntu AMD64 Dockerfile
+## Overview
 Used as a cloud development image until M1 Mac has more libraries for their apple silicon chip.
 
 `WARNING: If you plan on using the Dockerfile to build and push to the container registry ensure that you remove the section that copies an SSH key to the container.`
@@ -14,7 +14,7 @@ Used as a cloud development image until M1 Mac has more libraries for their appl
 * Azure CLI
 * Google Cloud SDK
 
-### Prerequisites
+## Prerequisites
 
 1. Install [Docker](https://www.docker.com/).
 
@@ -47,6 +47,6 @@ Used as a cloud development image until M1 Mac has more libraries for their appl
     # CLEANUP
     gsutil rm gs://${GCS_BUCKET}/${GCS_OBJECT}
     
-### Usage
+## Usage
 
     ./build.sh
