@@ -25,7 +25,7 @@ Used as a cloud development image until M1 Mac has more libraries for their appl
     SSH_KEY_PATH="/Users/gregrobinson/.ssh/id_rsa"
     GCP_SA_CRED="./*.json"
     
-    # AUTHENTICATE WTH A SERVIC ACCOUNT
+    # AUTHENTICATE WTH A SERVICE ACCOUNT
     gcloud auth activate-service-account --key-file $GCP_KEY_FILE
     
     # CREATE TEMP SIGNED URL AND UPLOAD KEY
