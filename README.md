@@ -3,7 +3,7 @@ This project hosts all my custom docker files seperated by folder with a `Docker
 
 ## Prerequisites
 
-Start by enabling the required API's so the default service account for CloudBuild is generated.
+Start by enabling the required API's so we can build and push images using CloudBuild.
 
 ```sh
 gcloud services enable cloudbuild.googleapis.com --project ${PROJECT_ID}
