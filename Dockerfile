@@ -11,16 +11,6 @@ ARG TF_VERSION
 
 WORKDIR /root
 
-# DOWNLOAD SSH KEY USING PRE SIGNED TEMP URL
-RUN apt-get update && \
-    apt-get install -y openssh-server
-
-RUN eval "$(ssh-agent -s)" && \
-    mkdir -p /root/.ssh && \
-    wget -i "$PRE_SIGNED_DOWNLOAD_URL" -q -O - > /root/.ssh/id_rsa && \
-    chmod 600 /root/.ssh/id_rsa && \
-    ssh-add /root/.ssh/id_rsa
-
 # DEPENDENCIES
 RUN apt-get update && \
     apt-get install -y \
