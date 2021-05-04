@@ -22,7 +22,7 @@ substitutions:
     _IMG_DEST: gcr.io/arctiqteam-images/ubuntu-cloud-dev
 ```
 
-## Link a repository containing the `./cloudbuild.yaml` file.
+## Link a git repository.
 
 Either fork this repostiroy of create your own with the `./cloudbuild.yaml` file in it.
 
