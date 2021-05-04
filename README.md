@@ -33,3 +33,14 @@ Go to the GCP ***console > Cloud Build > Triggers*** to connect your repository 
 ## Run the pipeline.
 
 Trigger the pipeline by updating the `Dockerfile` or `cloudbuild.yaml` in the source repository linked the trigger.
+
+## Build Locally
+
+Within the root of the directory run the following to build the image.
+
+```sh
+SHORT_SHA=$(git rev-parse --short HEAD)
+
+gcloud components install cloud-build-local
+cloud-build-local --config=./ubuntu-cloud-dev/cloudbuild-local.yaml --substitutions _SHORT_SHA=$SHORT_SHA --dryrun=false --push .
+```
