@@ -25,3 +25,7 @@ steps:
 images:
 - '${_IMG_DEST}:latest'
 - '${_IMG_DEST}:$SHORT_SHA'
+
+substitutions:
+    _IMG: ubuntu-cloud-dev
+    _IMG_DEST: gcr.io/arctiqteam-images/ubuntu-cloud-dev
