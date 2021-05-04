@@ -30,4 +30,4 @@ Go to the GCP ***console > Cloud Build > Triggers*** to connect your repository 
 
 ## Run the pipeline.
 
-Trigger the pipeline by updating the `Dockerfile` or `cloudbuild.yaml`.
+Trigger the pipeline by updating the `Dockerfile` or `cloudbuild.yaml` in the source repository linked the trigger.
