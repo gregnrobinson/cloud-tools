@@ -1,25 +1,15 @@
 
-# ----------------------------------
-# Cloud Development Container Build
-# ----------------------------------
+# ----------------------------------------
+# AMD64 Cloud Development Container Build
+# ----------------------------------------
 
 # PULL BASE IMAGE
 FROM amd64/ubuntu:18.04
 
-ARG PRE_SIGNED_DOWNLOAD_URL
-ARG TF_VERSION
+ENV TF_VERSION=0.14.10
+ENV VAULT_VERSION=1.7.1
 
 WORKDIR /root
-
-# DOWNLOAD SSH KEY USING PRE SIGNED TEMP URL
-RUN apt-get update && \
-    apt-get install -y openssh-server
-
-RUN eval "$(ssh-agent -s)" && \
-    mkdir -p /root/.ssh && \
-    wget -i "$PRE_SIGNED_DOWNLOAD_URL" -q -O - > /root/.ssh/id_rsa && \
-    chmod 600 /root/.ssh/id_rsa && \
-    ssh-add /root/.ssh/id_rsa
 
 # DEPENDENCIES
 RUN apt-get update && \
@@ -34,17 +24,17 @@ RUN apt-get update && \
       python3-pip \
       unzip
 
+# INSTALL VAULT
+RUN wget https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_linux_amd64.zip && \
+    unzip vault_${VAULT_VERSION}_linux_amd64.zip && \
+    mv vault /usr/local/bin && \
+    rm vault_${VAULT_VERSION}_linux_amd64.zip
+
 # INSTALL TERRAFORM
 RUN wget https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_amd64.zip && \
     unzip terraform_${TF_VERSION}_linux_amd64.zip && \
     mv terraform /usr/local/bin && \
     rm terraform_${TF_VERSION}_linux_amd64.zip
-
-# INSTALL VAULT
-RUN wget https://releases.hashicorp.com/vault/1.7.1/vault_1.7.1_linux_amd64.zip && \
-    unzip vault_1.7.1_linux_amd64.zip && \
-    mv vault /usr/local/bin && \
-    rm vault_1.7.1_linux_amd64.zip
 
 # INSTALL GCP CLI
 RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && \

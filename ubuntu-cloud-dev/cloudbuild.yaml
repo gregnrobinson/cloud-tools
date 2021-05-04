@@ -1,0 +1,53 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args:
+    - 'build'
+    - '-t'
+    - '${_IMG_DEST}:$SHORT_SHA'
+    - '-f'
+    - './${_IMG}/Dockerfile'
+    - './${_IMG}'
+  id: build
+
+- name: 'gcr.io/cloud-builders/docker'
+  args:
+    - 'push'
+    - '${_IMG_DEST}:$SHORT_SHA'
+  id: push
+
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: /bin/bash
+  args:
+    - -c
+    - |
+        docker image inspect ${_IMG_DEST}:$SHORT_SHA --format '{{index .RepoDigests 0}}' > image-digest.txt &&
+        cat image-digest.txt
+  id: inspect
+
+- name: gcr.io/cloud-builders/gcloud
+  entrypoint: "bash"
+  args:
+    - -c
+    - |
+        itoken=$(curl -X POST -H "content-type: application/json" \
+        -H "Authorization: Bearer $(gcloud auth print-access-token)" \
+        -d '{"audience": "${_SERVICE_URL}"}' \
+        https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/${_SERVICE_ACCOUNT}:generateIdToken) && \
+        curl -X POST \
+        -H "Authorization: Bearer $(echo $itoken | awk -F'\"' '{print $4}')" \
+        -H "Content-Type: application/json" \
+        -d "{\"image_url\": \"$(cat image-digest.txt)\"}" \
+        ${_SERVICE_URL}/all
+  waitFor: ["inspect"]
+  id: vulnsign
+
+- name: 'gcr.io/cloud-builders/docker'
+  args:
+    - 'tag'
+    - '${_IMG_DEST}:$SHORT_SHA'
+    - '${_IMG_DEST}:latest'
+  waitFor: ["build"]
+
+images:
+- '${_IMG_DEST}:latest'
+- '${_IMG_DEST}:$SHORT_SHA'
