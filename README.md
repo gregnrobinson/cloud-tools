@@ -7,6 +7,8 @@ Start by enabling the clodubuild API so the default service account for CloudBui
 
 ```sh
 gcloud services enable cloudbuild.googleapis.com --project ${PROJECT_ID}
+gcloud services enable containerregistry.googleapis.com --project ${PROJECT_ID}
+gcloud services enable storage.googleapis.com --project ${PROJECT_ID}
 ```
 
 Assign the following permissions to the default service account for CloudBuild. The service account will be in the format `<PROJECT_NUMBER>@cloudbuild.gserviceaccount.com`.
