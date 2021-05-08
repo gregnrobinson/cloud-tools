@@ -18,7 +18,8 @@ cloud-tools is an all in one cloud development container to save time installing
 - wget : latest
 - curl : latest
 - vim : latest
-# Building Locally
+- 
+# Build Locally
 
 If you want to build the image locally run the following command at the root of the project directory. You can provide the `--build-arg` tag to change the version on any of the following packages.
 |Package|Variable Name|Default|
