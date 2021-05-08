@@ -1,7 +1,24 @@
 # Overview
-cloud-tools is an all in one cloud development container to save time installing packaged on new machines. There is also a cloudbuild.yaml file supplied if that's up your alley. Packages with static version numbers are default values and can be modified when building locally.
-
 ![Cloud Build](https://storage.googleapis.com/phronesis-310405-badges/builds/cloud-tools/branches/main.svg)
+
+cloud-tools is an all in one cloud development container to save time installing packaged on new machines. There is also a cloudbuild.yaml file supplied if that's up your alley. Packages with static version numbers are default values and can be modified when building locally. 
+
+If you use vscode and want to run the image directly within your terminal, install the [Remote Containers Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) and create a folder called `.devcontainer` within your home directory, or wherever the root of your workspace is.
+```
+~/.devcontainer/
+└── devcontainer.json
+```
+Crete a file called .devcontainer.json and paste the following to the file.
+```
+{
+  "image": "gregnrobinson/cloud-tools:latest"
+}
+```
+Now
+
+[Remote - Containers - VSCode Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
+
+
 
 ## Installed Packages
 

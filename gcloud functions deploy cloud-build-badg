@@ -1,0 +1,7 @@
+gcloud functions deploy cloud-build-badge \
+    --source . \
+    --runtime python37 \
+    --entry-point build_badge \
+    --service-account cloud-build-badge@${PROJECT_ID}.iam.gserviceaccount.com \
+    --trigger-topic=cloud-builds \
+    --set-env-vars BADGES_BUCKET=${PROJECT_ID}-badges,TEMPLATE_PATH='builds/cloud-tools/branches/main.svg'
