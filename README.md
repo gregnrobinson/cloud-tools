@@ -45,7 +45,6 @@ If you want to build the image locally run the following command at the root of 
 |Consul|_CONSUL_VERSION|1.9.5|
 |Browsh|_BROWSH_VERSION|1.6.4|
 |Yq|_YQ_VERSION|4.2.0|
-||||
 
 ```sh
 docker build --tag cloud-tools --build-arg "_TF_VERSION=0.15.3" .
