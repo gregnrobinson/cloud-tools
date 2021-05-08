@@ -19,13 +19,13 @@ steps:
   entrypoint: 'bash'
   args: ['-c', 'docker login --username=$$USERNAME --password=$$PASSWORD']
   secretEnv: ['USERNAME', 'PASSWORD']
-  id: login
+  id: push login
 
 - name: 'gcr.io/cloud-builders/docker'
   args:
     - 'push'
     - '${_IMG_DEST}:$SHORT_SHA'
-  id: push login
+  id: push
 
 - name: 'gcr.io/cloud-builders/docker'
   args:
