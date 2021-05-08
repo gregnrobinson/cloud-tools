@@ -28,6 +28,8 @@ RUN apt-get update && \
       python3-pip \
       unzip \
       vim \
+      nodejs \
+      moreutils \
       jq
 
 RUN pip3 install virtualenv

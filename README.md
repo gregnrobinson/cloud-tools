@@ -21,14 +21,19 @@ cloud-tools is an all in one cloud development container. Aimed at saving time w
 
 # Build Locally
 
-If you want to build the image locally run the following command at the root of the project directory. You can provide the `--build-arg` tag to change the version on any of the following packages.
+If you want to build the image locally, run the following command at the root of the project directory. You can provide the `--build-arg` tag to change the version on any of the following packages. I will look at adding more like this, but it's mostly the HashiCorp products you want control over. The difference between 0.14 and 0.15 is catastrophic. 
+
 |Package|Variable Name|Default|
 |---|---|-----|
 |Terraform|_TERRAFORM_VERSION|0.14.10|
 |Vault|_VAULT_VERSION|1.7.1|
 |Packer|_PACKER_VERSION|1.9.5|
 |Consul|_CONSUL_VERSION|1.9.5|
+<<<<<<< Updated upstream
 ||||
+=======
+|Yq|_YQ_VERSION|4.2.0|
+>>>>>>> Stashed changes
 
 ```sh
 docker build --tag cloud-tools --build-arg "_TF_VERSION=0.15.3" .
