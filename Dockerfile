@@ -20,6 +20,7 @@ WORKDIR /root
 RUN apt-get update && \
     apt-get install -y \
       git \
+      libssl-dev \
       libmysqlclient-dev \
       curl \
       wget \
