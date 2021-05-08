@@ -1,7 +1,15 @@
 ## Overview
 This project hosts all my custom docker files seperated by folder with a `Dockerfile`and `cloudbuild.yaml` file in each image folder so you can easily create your own image pipeline that versions your images and pushes them to a container registy. All inforamtion regarding the setuop of the pipeline is below.
 
-## Prerequisites
+## Installed Packages
+
+- AWS SDK
+- Azure SDK
+- GCP SDK
+- Terraform
+- Vault
+- Git
+- Python3
 
 Start by enabling the required API's so we can build and push images using CloudBuild.
 
