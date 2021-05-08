@@ -11,6 +11,8 @@ ARG _TF_VERSION=0.14.10
 ARG _VAULT_VERSION=1.7.1
 ARG _CONSUL_VERSION=1.9.5
 ARG _PACKER_VERSION=1.7.2
+ARG _BROWSH_VERSION=1.6.4
+ARG _YQ_VERSION=4.2.0
 
 WORKDIR /root
 
@@ -18,6 +20,7 @@ WORKDIR /root
 RUN apt-get update && \
     apt-get install -y \
       git \
+      libssl-dev \
       libmysqlclient-dev \
       curl \
       wget \
@@ -26,6 +29,8 @@ RUN apt-get update && \
       software-properties-common \
       python3-dev \
       python3-pip \
+      python \
+      python-pip \
       unzip \
       vim \
       nodejs \
@@ -33,6 +38,9 @@ RUN apt-get update && \
       jq
 
 RUN pip3 install virtualenv
+
+RUN wget https://github.com/mikefarah/yq/releases/download/v${_YQ_VERSION}/yq_linux_amd64 -O /usr/bin/yq &&\
+    chmod +x /usr/bin/yq
 
 # INSTALL VAULT
 RUN wget https://releases.hashicorp.com/vault/${_VAULT_VERSION}/vault_${_VAULT_VERSION}_linux_amd64.zip && \
