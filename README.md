@@ -1,24 +1,7 @@
 # Overview
 ![Cloud Build](https://storage.googleapis.com/phronesis-310405-badges/builds/cloud-tools/branches/main.svg)
 
-cloud-tools is an all in one cloud development container to save time installing packaged on new machines. There is also a cloudbuild.yaml file supplied if that's up your alley. Packages with static version numbers are default values and can be modified when building locally. 
-
-If you use vscode and want to run the image directly within your terminal, install the [Remote Containers Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) and create a folder called `.devcontainer` within your home directory, or wherever the root of your workspace is.
-```
-~/.devcontainer/
-└── devcontainer.json
-```
-Crete a file called .devcontainer.json and paste the following to the file.
-```
-{
-  "image": "gregnrobinson/cloud-tools:latest"
-}
-```
-Now
-
-[Remote - Containers - VSCode Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
-
-
+cloud-tools is an all in one cloud development container that aims to eliminate package installation whenever you might get a new job or new computer. Also, for the past few months, Apples new M1 chip is still lacking many of the neccesary libraries for tools used by developers and engineers. So at the moment I am going to be Using this container as my daily driver. 
 
 ## Installed Packages
 
@@ -35,6 +18,21 @@ Now
 - wget : latest
 - curl : latest
 - vim : latest
+- browsh : 1.6.4
+
+# Integrated Setup - VSCode
+If you use vscode and want to run the image directly within your terminal, install the [Remote Containers Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension and create a folder called `.devcontainer` within your home directory, or wherever the root folder of your workspace is.
+```
+~/.devcontainer/
+└── devcontainer.json
+```
+Then, Create a file called `.devcontainer.json` and paste the following to the file.
+```
+{
+  "image": "gregnrobinson/cloud-tools:latest"
+}
+```
+Navigate to the bottom left corner of your screen and select `reopen in container`. Now your running solely on the container in this repository.Your entire workspace structure is mounted automatically.
 # Building Locally
 
 If you want to build the image locally run the following command at the root of the project directory. You can provide the `--build-arg` tag to change the version on any of the following packages.
@@ -44,6 +42,7 @@ If you want to build the image locally run the following command at the root of 
 |Vault|_VAULT_VERSION|1.7.1|
 |Packer|_PACKER_VERSION|1.9.5|
 |Consul|_CONSUL_VERSION|1.9.5|
+|Browsh|_BROWSH_VERSION|1.6.4|
 ||||
 
 ```sh

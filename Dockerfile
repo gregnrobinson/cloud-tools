@@ -11,6 +11,7 @@ ARG _TF_VERSION=0.14.10
 ARG _VAULT_VERSION=1.7.1
 ARG _CONSUL_VERSION=1.9.5
 ARG _PACKER_VERSION=1.7.2
+ARG _BROWSH_VERSION=1.6.4
 
 WORKDIR /root
 
@@ -26,6 +27,8 @@ RUN apt-get update && \
       software-properties-common \
       python3-dev \
       python3-pip \
+      python \
+      python-pip \
       unzip \
       vim \
       jq
