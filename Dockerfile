@@ -6,6 +6,7 @@
 # PULL BASE IMAGE
 FROM amd64/ubuntu:18.04
 
+# PACKAGE VERSIONS
 ARG _TF_VERSION=0.14.10
 ARG _VAULT_VERSION=1.7.1
 ARG _CONSUL_VERSION=1.9.5
@@ -39,7 +40,7 @@ RUN wget https://releases.hashicorp.com/vault/${_VAULT_VERSION}/vault_${_VAULT_V
 
 # INSTALL TERRAFORM
 RUN wget https://releases.hashicorp.com/terraform/${_TF_VERSION}/terraform_${_TF_VERSION}_linux_amd64.zip && \
-    unzip terraform_${TF_VERSION}_linux_amd64.zip && \
+    unzip terraform_${_TF_VERSION}_linux_amd64.zip && \
     mv terraform /usr/local/bin && \
     rm terraform_${_TF_VERSION}_linux_amd64.zip
 
