@@ -24,7 +24,7 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args:
     - 'push'
-    - '${_IMG_DEST}:latest
+    - '${_IMG_DEST}:latest'
   id: push
 
 - name: 'gcr.io/cloud-builders/docker'
