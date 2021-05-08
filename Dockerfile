@@ -68,7 +68,7 @@ RUN wget https://releases.hashicorp.com/packer/${_PACKER_VERSION}/packer_${_PACK
 
 # INSTALL GOLANG
 RUN wget https://golang.org/dl/go${_GO_VERSION}.linux-amd64.tar.gz && \
-    unzip go${_GO_VERSION}.linux-amd64.tar.gz && \
+    tar -xvzf go${_GO_VERSION}.linux-amd64.tar.gz && \
     mv go /usr/local/bin && \
     rm go${_GO_VERSION}.linux-amd64.tar.gz
 
