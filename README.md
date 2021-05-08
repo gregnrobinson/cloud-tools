@@ -11,7 +11,7 @@ This project hosts all my custom docker files seperated by folder with a `Docker
 - Git : latest
 - Python3 : latest
 - jq : latest
-- 
+- wget : latest
 
 Start by enabling the required API's so we can build and push images using CloudBuild.
 
