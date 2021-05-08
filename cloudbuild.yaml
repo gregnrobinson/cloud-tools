@@ -28,4 +28,4 @@ images:
 
 substitutions:
     _IMG: ubuntu-cloud-dev
-    _IMG_DEST: gregnrobinson/cloud-tools:latest
+    _IMG_DEST: gregnrobinson/cloud-tools
