@@ -1,5 +1,5 @@
 # Overview
-This project hosts all my custom docker files seperated by folder with a `Dockerfile`and `cloudbuild.yaml` file in each image folder so you can easily create your own image pipeline that versions your images and pushes them to a container registy. All inforamtion regarding the setuop of the pipeline is below.
+cloud-tools is an all in one cloud development container to save time installing packaged on new machines. There is also a cloudbuild.yaml file supplied if that's up your alley. Packages with static version numbers are default values and can be modified when building locally.
 
 ![Cloud Build](https://storage.googleapis.com/phronesis-310405-badges/builds/cloud-tools/branches/main.svg)
 
@@ -18,7 +18,7 @@ This project hosts all my custom docker files seperated by folder with a `Docker
 - wget : latest
 - curl : latest
 - vim : latest
-# Build Locally
+# Building Locally
 
 If you want to build the image locally run the following command at the root of the project directory. You can provide the `--build-arg` tag to change the version on any of the following packages.
 |Package|Variable Name|Default|
@@ -39,24 +39,15 @@ docker run -v $(pwd):/root -i -t cloud-tools bash
 If automating this process is more what you want, first fork this repository and follow the steps below.
 ```sh
 gcloud services enable cloudbuild.googleapis.com --project ${PROJECT_ID}
-gcloud services enable containerregistry.googleapis.com --project ${PROJECT_ID}
 gcloud services enable storage.googleapis.com --project ${PROJECT_ID}
 ```
 
-Assign the following permissions to the default service account for CloudBuild. The service account will be in the format `<PROJECT_NUMBER>@cloudbuild.gserviceaccount.com`.
-
-  - Cloud Build Service Account
-  - Storage Admin
-
 Modify the substitutions in the `./cloudbuild.yaml` file to match your requirements.
-
 ```sh
 substitutions:
-    _IMG: <IMAGE_NAME>
     _IMG_DEST: gcr.io/<REPO_NAME>/<IMAGE_NAME>
 ```
-
-## Link a git repository.
+## Link your git repository.
 
 Either fork this repostiroy of create your own with the `./cloudbuild.yaml` file in it.
 
@@ -64,7 +55,7 @@ Go to the GCP ***console > Cloud Build > Triggers*** to connect your repository 
 
 ## Run the pipeline.
 
-Trigger the pipeline by updating the `Dockerfile` or `cloudbuild.yaml` in the source repository linked the trigger.
+Trigger the pipeline by updating the `Dockerfile` in the source repository linked the trigger.
 
 ## Cloud Buid Local Builder
 
