@@ -5,7 +5,7 @@ cloud-tools is an all in one cloud development container. Aimed at saving time w
 
 ![Cloud Build](https://storage.googleapis.com/phronesis-310405-badges/builds/cloud-tools/branches/main.svg)
 
-cloud-tools is an all in one cloud development container that aims to eliminate package installation whenever you might get a new job or new computer. Also, for the past few months, Apples new M1 chip is still lacking many of the neccesary libraries for tools used by developers and engineers. I will be maintaining this repository whenever neccesary for the near future.
+cloud-tools is an all in one cloud development container that aims to eliminate package installation whenever you might get a new job or new computer. Also, for the past few months, Apples new M1 chip is still lacking many of the neccesary libraries used by developers and engineers. I will be maintaining this repository whenever neccesary for the near future atleast until Apple fixes all the problems.
 
 ## Installed Packages
 
