@@ -1,4 +1,8 @@
 # Overview
+
+cloud-tools is an all in one cloud development container. Aimed at saving time when it comes to installing the large breadth of cloud SDKs and other tools. There is also a cloudbuild.yaml file supplied if that's up your alley. Packages with static version numbers are default values and can be modified when building locally.
+
+
 ![Cloud Build](https://storage.googleapis.com/phronesis-310405-badges/builds/cloud-tools/branches/main.svg)
 
 cloud-tools is an all in one cloud development container that aims to eliminate package installation whenever you might get a new job or new computer. Also, for the past few months, Apples new M1 chip is still lacking many of the neccesary libraries for tools used by developers and engineers. I will be maintaining this repository whenever neccesary for the near future.
@@ -25,6 +29,7 @@ cloud-tools is an all in one cloud development container that aims to eliminate 
 - vim : latest
 
 
+
 # Integrated Setup - VSCode
 If you use vscode and want to run the image directly within your terminal, install the [Remote Containers Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension and create a folder called `.devcontainer` within your home directory, or wherever the root folder of your workspace is.
 ```
@@ -41,14 +46,17 @@ Navigate to the bottom left corner of your screen and select `reopen in containe
 
 # Building Locally
 
-If you want to build the image locally run the following command at the root of the project directory. You can provide the `--build-arg` tag to change the version on any of the following packages.
+
+# Build Locally
+
+If you want to build the image locally, run the following command at the root of the project directory. You can provide the `--build-arg` tag to change the version on any of the following packages. I will look at adding more like this, but it's mostly the HashiCorp products you want control over. The difference between 0.14 and 0.15 is catastrophic. 
+
 |Package|Variable Name|Default|
 |---|---|-----|
 |Terraform|_TERRAFORM_VERSION|0.14.10|
 |Vault|_VAULT_VERSION|1.7.1|
 |Packer|_PACKER_VERSION|1.9.5|
 |Consul|_CONSUL_VERSION|1.9.5|
-|Browsh|_BROWSH_VERSION|1.6.4|
 |Yq|_YQ_VERSION|4.2.0|
 
 ```sh

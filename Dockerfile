@@ -11,7 +11,7 @@ ARG _TF_VERSION=0.14.10
 ARG _VAULT_VERSION=1.7.1
 ARG _CONSUL_VERSION=1.9.5
 ARG _PACKER_VERSION=1.7.2
-ARG _BROWSH_VERSION=1.6.4
+ARG _GO_VERSION=1.16.4
 ARG _YQ_VERSION=4.2.0
 
 WORKDIR /root
@@ -34,6 +34,7 @@ RUN apt-get update && \
       unzip \
       vim \
       nodejs \
+      moreutils \
       jq
 
 RUN pip3 install virtualenv
@@ -64,6 +65,12 @@ RUN wget https://releases.hashicorp.com/packer/${_PACKER_VERSION}/packer_${_PACK
     unzip packer_${_PACKER_VERSION}_linux_amd64.zip && \
     mv packer /usr/local/bin && \
     rm packer_${_PACKER_VERSION}_linux_amd64.zip
+
+# INSTALL GOLANG
+RUN wget https://golang.org/dl/go${_GO_VERSION}.linux-amd64.tar.gz && \
+    unzip go${_GO_VERSION}.linux-amd64.tar.gz && \
+    mv go /usr/local/bin && \
+    rm go${_GO_VERSION}.linux-amd64.tar.gz
 
 # INSTALL GCP CLI
 RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && \
