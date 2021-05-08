@@ -21,10 +21,13 @@ RUN apt-get update && \
       gnupg \
       lsb-core \
       software-properties-common \
+      python3-dev \
       python3-pip \
       unzip \
       vim \
       jq
+      
+
 
 # INSTALL VAULT
 RUN wget https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_linux_amd64.zip && \
