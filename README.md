@@ -29,7 +29,7 @@ If you want to build the image locally run the following command at the root of 
 
 ```sh
 docker build --tag cloud-tools --build-arg "_TF_VERSION=0.15.3" .
-docker run cloud-tools .
+docker run -v $(pwd):/root -i -t cloud-tools bash
 ```
 
 # Build using CloudBuild
