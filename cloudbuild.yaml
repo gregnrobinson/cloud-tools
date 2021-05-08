@@ -24,7 +24,7 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args:
     - 'push'
-    - '${_IMG_DEST}:$SHORT_SHA'
+    - '${_IMG_DEST}:latest
   id: push
 
 - name: 'gcr.io/cloud-builders/docker'
@@ -33,10 +33,6 @@ steps:
     - '${_IMG_DEST}:$SHORT_SHA'
     - '${_IMG_DEST}:latest'
   waitFor: ["build"]
-
-images:
-- '${_IMG_DEST}:latest'
-- '${_IMG_DEST}:$SHORT_SHA'
 
 substitutions:
     _IMG: cloud-tools
