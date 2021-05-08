@@ -5,7 +5,8 @@ steps:
     - '-t'
     - '${_IMG_DEST}:$SHORT_SHA'
     - '-f'
-    - './Dockerfile'
+    - 'Dockerfile'
+    - '.'
   id: build
 
 - name: 'gcr.io/cloud-builders/docker'
