@@ -15,11 +15,15 @@ cloud-tools is an all in one cloud development container that aims to eliminate 
 - Git : latest
 - Python : latest
 - Python3 : latest
+- pip : latest
+- pip3 : latest
 - jq : latest
+- yq : 4.2.0
+- nodejs : latest
 - wget : latest
 - curl : latest
 - vim : latest
-- yq : 4.2.0
+
 
 # Integrated Setup - VSCode
 If you use vscode and want to run the image directly within your terminal, install the [Remote Containers Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension and create a folder called `.devcontainer` within your home directory, or wherever the root folder of your workspace is.
@@ -33,7 +37,8 @@ Then, Create a file called `.devcontainer.json` and paste the following to the f
   "image": "gregnrobinson/cloud-tools:latest"
 }
 ```
-Navigate to the bottom left corner of your screen and select `reopen in container`. Now your running solely on the container in this repository.Your entire workspace structure is mounted automatically.
+Navigate to the bottom left corner of your screen and select `reopen in container`. Now your running a Docker as the integrated terminal for the entire workspace. Your workspace is mounted to the container file system.
+
 # Building Locally
 
 If you want to build the image locally run the following command at the root of the project directory. You can provide the `--build-arg` tag to change the version on any of the following packages.
