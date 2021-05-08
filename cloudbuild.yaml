@@ -40,7 +40,7 @@ substitutions:
     
 availableSecrets:
   secretManager:
-   - versionName: projects/PROJECT_ID/secrets/${_DOCKER_PASSWORD_SECRET}/versions/${_DOCKER_PASSWORD_SECRET_VERSION}
+   - versionName: projects/${_PROJECT_ID}/secrets/${_DOCKER_PASSWORD_SECRET}/versions/${_DOCKER_PASSWORD_SECRET_VERSION}
      env: 'DOCKER_PASSWORD'
-   - versionName: projects/PROJECT_ID/secrets/${_DOCKER_ID_SECRET}/versions/${_DOCKER_ID_SECRET_VERSION}
+   - versionName: projects/${_PROJECT_ID}/secrets/${_DOCKER_ID_SECRET}/versions/${_DOCKER_ID_SECRET_VERSION}
      env: 'DOCKER_USERNAME'
