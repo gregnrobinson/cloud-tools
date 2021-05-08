@@ -1,8 +1,5 @@
 # Overview
 
-cloud-tools is an all in one cloud development container. Aimed at saving time when it comes to installing the large breadth of cloud SDKs and other tools. There is also a cloudbuild.yaml file supplied if that's up your alley. Packages with static version numbers are default values and can be modified when building locally.
-
-
 ![Cloud Build](https://storage.googleapis.com/phronesis-310405-badges/builds/cloud-tools/branches/main.svg)
 
 cloud-tools is an all in one cloud development container that aims to eliminate package installation whenever you might get a new job or new computer. Also, for the past few months, Apples new M1 chip is still lacking many of the neccesary libraries used by developers and engineers. I will be maintaining this repository whenever neccesary for the near future atleast until Apple fixes all the problems.
