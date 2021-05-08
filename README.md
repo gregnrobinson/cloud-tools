@@ -9,7 +9,9 @@ This project hosts all my custom docker files seperated by folder with a `Docker
 - Azure SDK : latest
 - GCP SDK : latest
 - Terraform : 0.14.10
-- Vault : latest
+- Vault : 1.7.1
+- Packer : 1.9.5
+- Consul : 1.9.5
 - Git : latest
 - Python3 : latest
 - jq : latest
