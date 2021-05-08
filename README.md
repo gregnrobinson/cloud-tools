@@ -20,11 +20,11 @@ This project hosts all my custom docker files seperated by folder with a `Docker
 
 If you want to build the image locally run the following command at the root of the project directory.
 ```sh
-docker build .
-docker run -e "TF_VERSION=0.14.10" -e VAUlT_VERSION=0.14.10  cloud-tools .
+docker build --tag cloud-tools --arg "_TF_VERSION=0.14.10" .
+docker run cloud-tools .
 ```
 
-## Build using CloudBuild
+# Build using CloudBuild
 
 If automating this process is more what you want, first fork this repository and follow the steps below.
 ```sh
@@ -42,8 +42,8 @@ Modify the substitutions in the `./cloudbuild.yaml` file to match your requireme
 
 ```sh
 substitutions:
-    _IMG: ubuntu-cloud-dev
-    _IMG_DEST: gcr.io/arctiqteam-images/ubuntu-cloud-dev
+    _IMG: <IMAGE_NAME>
+    _IMG_DEST: gcr.io/<REPO_NAME>/<IMAGE_NAME>
 ```
 
 ## Link a git repository.
