@@ -23,7 +23,8 @@ RUN apt-get update && \
       software-properties-common \
       python3-pip \
       unzip \
-      vim
+      vim \
+      jq
 
 # INSTALL VAULT
 RUN wget https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_linux_amd64.zip && \
