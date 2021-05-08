@@ -3,13 +3,15 @@ This project hosts all my custom docker files seperated by folder with a `Docker
 
 ## Installed Packages
 
-- AWS SDK
-- Azure SDK
-- GCP SDK
-- Terraform
-- Vault
-- Git
-- Python3
+- AWS SDK : latest
+- Azure SDK : latest
+- GCP SDK : latest
+- Terraform : 0.14.10
+- Vault : latest
+- Git : latest
+- Python3 : latest
+- jq : latest
+- 
 
 Start by enabling the required API's so we can build and push images using CloudBuild.
 
