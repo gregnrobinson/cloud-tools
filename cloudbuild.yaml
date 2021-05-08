@@ -9,7 +9,7 @@ steps:
   args:
     - 'build'
     - '-t'
-    - '${_IMG_DEST}:$SHORT_SHA'
+    - '${_IMG_DEST}:latest'
     - '-f'
     - 'Dockerfile'
     - '.'
@@ -18,7 +18,7 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args:
     - 'push'
-    - '${_IMG_DEST}:$SHORT_SHA'
+    - '${_IMG_DEST}:latest'
   id: push
 
 - name: 'gcr.io/cloud-builders/docker'
@@ -31,7 +31,6 @@ steps:
   id: inspect
 
 substitutions:
-    _IMG: cloud-tools
     _IMG_DEST: gregnrobinson/cloud-tools
     
 availableSecrets:
