@@ -1,4 +1,4 @@
-## Overview
+# Overview
 This project hosts all my custom docker files seperated by folder with a `Dockerfile`and `cloudbuild.yaml` file in each image folder so you can easily create your own image pipeline that versions your images and pushes them to a container registy. All inforamtion regarding the setuop of the pipeline is below.
 
 ![Cloud Build](https://storage.googleapis.com/phronesis-310405-badges/builds/cloud-tools/branches/main.svg)
@@ -16,11 +16,19 @@ This project hosts all my custom docker files seperated by folder with a `Docker
 - wget : latest
 - curl : latest
 - vim : latest
-## Build Locally
+# Build Locally
 
-If you want to build the image locally run the following command at the root of the project directory.
+If you want to build the image locally run the following command at the root of the project directory. You can provide the `--build-arg` tag to change the version on any of the following packages.
+|Package|Variable Name|Default|
+|---|---|-----|
+|Terraform|_TERRAFORM_VERSION|0.14.10|
+|Vault|_VAULT_VERSION|1.7.1|
+|Packer|_PACKER_VERSION|1.9.5|
+|Consul|_CONSUL_VERSION|1.9.5|
+||||
+
 ```sh
-docker build --tag cloud-tools --arg "_TF_VERSION=0.14.10" .
+docker build --tag cloud-tools --build-arg "_TF_VERSION=0.15.3" .
 docker run cloud-tools .
 ```
 
@@ -56,7 +64,7 @@ Go to the GCP ***console > Cloud Build > Triggers*** to connect your repository 
 
 Trigger the pipeline by updating the `Dockerfile` or `cloudbuild.yaml` in the source repository linked the trigger.
 
-## Build Locally
+## Cloud Buid Local Builder
 
 Within the root of the directory run the following to build the image.
 
