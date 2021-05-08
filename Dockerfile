@@ -51,7 +51,7 @@ RUN wget https://releases.hashicorp.com/consul/${_CONSUL_VERSION}/consul_${_CONS
     rm consul_${_CONSUL_VERSION}_linux_amd64.zip
 
 # INSTALL PACKER
-RUN wget https://releases.hashicorp.com/packer/${_PACKER_VERSION}/terraform_${_PACKER_VERSION}_linux_amd64.zip && \
+RUN wget https://releases.hashicorp.com/packer/${_PACKER_VERSION}/packer_${_PACKER_VERSION}_linux_amd64.zip && \
     unzip packer_${_PACKER_VERSION}_linux_amd64.zip && \
     mv packer /usr/local/bin && \
     rm packer_${_PACKER_VERSION}_linux_amd64.zip
