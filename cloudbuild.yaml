@@ -25,7 +25,7 @@ steps:
   args:
     - 'push'
     - '${_IMG_DEST}:$SHORT_SHA'
-  id: push
+  id: push login
 
 - name: 'gcr.io/cloud-builders/docker'
   args:
