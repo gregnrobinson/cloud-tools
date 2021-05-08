@@ -32,6 +32,7 @@ RUN apt-get update && \
       python-pip \
       unzip \
       vim \
+      npm \
       jq
 
 RUN pip3 install virtualenv
