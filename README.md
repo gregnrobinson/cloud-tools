@@ -18,6 +18,7 @@ cloud-tools is an all in one cloud development container that aims to eliminate 
 - wget : latest
 - curl : latest
 - vim : latest
+- yq : 4.2.0
 
 # Integrated Setup - VSCode
 If you use vscode and want to run the image directly within your terminal, install the [Remote Containers Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension and create a folder called `.devcontainer` within your home directory, or wherever the root folder of your workspace is.
@@ -42,6 +43,7 @@ If you want to build the image locally run the following command at the root of 
 |Packer|_PACKER_VERSION|1.9.5|
 |Consul|_CONSUL_VERSION|1.9.5|
 |Browsh|_BROWSH_VERSION|1.6.4|
+|Yq|_YQ_VERSION|4.2.0|
 ||||
 
 ```sh
