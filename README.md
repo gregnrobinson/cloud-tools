@@ -13,6 +13,7 @@ cloud-tools is an all in one cloud development container that aims to eliminate 
 - Packer : 1.9.5
 - Consul : 1.9.5
 - Git : latest
+- Python : latest
 - Python3 : latest
 - jq : latest
 - wget : latest
