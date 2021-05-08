@@ -8,6 +8,7 @@ FROM amd64/ubuntu:18.04
 
 ENV TF_VERSION=0.14.10
 ENV VAULT_VERSION=1.7.1
+ENV CONSUL_VERSION=1.9.5
 
 WORKDIR /root
 
@@ -26,8 +27,8 @@ RUN apt-get update && \
       unzip \
       vim \
       jq
-      
 
+RUN pip3 install virtualenv
 
 # INSTALL VAULT
 RUN wget https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_linux_amd64.zip && \
@@ -40,6 +41,18 @@ RUN wget https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_V
     unzip terraform_${TF_VERSION}_linux_amd64.zip && \
     mv terraform /usr/local/bin && \
     rm terraform_${TF_VERSION}_linux_amd64.zip
+
+# INSTALL CONSUL
+RUN wget https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip && \
+    unzip consul_${CONSUL_VERSION}_linux_amd64.zip && \
+    mv consul /usr/local/bin && \
+    rm consul_${CONSUL_VERSION}_linux_amd64.zip
+
+# INSTALL PACKER
+RUN wget https://releases.hashicorp.com/packer/${PACKER_VERSION}/terraform_${PACKER_VERSION}_linux_amd64.zip && \
+    unzip packer_${PACKER_VERSION}_linux_amd64.zip && \
+    mv packer /usr/local/bin && \
+    rm packer_${PACKER_VERSION}_linux_amd64.zip
 
 # INSTALL GCP CLI
 RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && \

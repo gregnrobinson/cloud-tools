@@ -14,14 +14,17 @@ This project hosts all my custom docker files seperated by folder with a `Docker
 - wget : latest
 - curl : latest
 - vim : latest
+## Build Locally
 
-If you want to build the image locally run the following command
+If you want to build the image locally run the following command at the root of the project directory.
 ```sh
-docker build -t cloud-tools:latest Dockerfile .
+docker build .
 docker run -e "TF_VERSION=0.14.10" -e VAUlT_VERSION=0.14.10  cloud-tools .
-``
+```
 
+## Build using CloudBuild
 
+If automating this process is more what you want, first fork this repository and follow the steps below.
 ```sh
 gcloud services enable cloudbuild.googleapis.com --project ${PROJECT_ID}
 gcloud services enable containerregistry.googleapis.com --project ${PROJECT_ID}
