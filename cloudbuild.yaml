@@ -21,15 +21,6 @@ steps:
     - '${_IMG_DEST}:latest'
   id: push
 
-- name: 'gcr.io/cloud-builders/docker'
-  entrypoint: /bin/bash
-  args:
-    - -c
-    - |
-        docker image inspect ${_IMG_DEST}:$SHORT_SHA --format '{{index .RepoDigests 0}}' > image-digest.txt &&
-        cat image-digest.txt
-  id: inspect
-
 substitutions:
     _IMG_DEST: gregnrobinson/cloud-tools
     
