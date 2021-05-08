@@ -32,7 +32,7 @@ RUN pip3 install virtualenv
 
 # INSTALL VAULT
 RUN wget https://releases.hashicorp.com/vault/${_VAULT_VERSION}/vault_${_VAULT_VERSION}_linux_amd64.zip && \
-    unzip vault_${VAULT_VERSION}_linux_amd64.zip && \
+    unzip vault_${_VAULT_VERSION}_linux_amd64.zip && \
     mv vault /usr/local/bin && \
     rm vault_${_VAULT_VERSION}_linux_amd64.zip
 
