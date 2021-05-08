@@ -27,5 +27,5 @@ images:
 - '${_IMG_DEST}:$SHORT_SHA'
 
 substitutions:
-    _IMG: ubuntu-cloud-dev
+    _IMG: cloud-tools
     _IMG_DEST: gregnrobinson/cloud-tools
