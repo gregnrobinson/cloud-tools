@@ -3,8 +3,7 @@ steps:
   args:
     - '-c'
     - 'docker login'
-    - '--username=$$DOCKER_USERNAME'
-    - '--password=$$DOCKER_PASSWORD'
+    - '--username=$$DOCKER_USERNAME --password=$$DOCKER_PASSWORD'
    secretEnv: ['DOCKER_USERNAME', 'DOCKER_PASSWORD']
    id: login
    
