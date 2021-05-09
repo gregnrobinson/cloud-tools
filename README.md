@@ -93,8 +93,6 @@ Within the root of the directory run the following to build the image.
 ```sh
 gcloud components install cloud-build-local
 
-SHORT_SHA=$(git rev-parse --short HEAD)
-
 TF_VERSION="0.14.10"
 VAULT_VERSION="1.7.1"
 
