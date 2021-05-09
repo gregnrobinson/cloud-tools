@@ -30,3 +30,5 @@ availableSecrets:
      env: 'PASSWORD'
    - versionName: projects/${_PROJECT_ID}/secrets/${_DOCKER_ID_SECRET}/versions/${_DOCKER_ID_SECRET_VERSION}
      env: 'USERNAME'
+     
+timeout: 1200s
