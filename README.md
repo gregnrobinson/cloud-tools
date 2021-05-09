@@ -99,5 +99,5 @@ VAULT_VERSION="1.7.1"
 cloud-build-local --config=./ubuntu-cloud-dev/cloudbuild-local.yaml \
   --substitutions _TF_VERSION=$TF_VERSION \
   --substitutions _VAULT_VERSION=$VAULT_VERSION \
-  --dryrun=false --push .
+  --dryrun=true --push .
 ```
