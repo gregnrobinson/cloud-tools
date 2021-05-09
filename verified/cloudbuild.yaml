@@ -31,7 +31,3 @@ availableSecrets:
      env: 'PASSWORD'
    - versionName: projects/${_PROJECT_ID}/secrets/${_DOCKER_ID_SECRET}/versions/${_DOCKER_ID_SECRET_VERSION}
      env: 'USERNAME'
-    
-images:
-- '${_VERIFIED_IMG}:latest'
-- '${_VERIFIED_IMG}:$SHORT_SHA'
