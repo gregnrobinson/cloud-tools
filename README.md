@@ -94,5 +94,5 @@ Within the root of the directory run the following to build the image.
 gcloud components install cloud-build-local
 
 cloud-build-local --config=./cloudbuild_local.yaml \
-  --dryrun=true --push .
+  --dryrun=false --push .
 ```
