@@ -72,6 +72,8 @@ cloud-build-local \
   --dryrun=false --push .
 ```
 
+## Build using GitOps.
+
 If automating this process is more what you want, first fork this repository and follow the steps below.
 ```sh
 gcloud services enable cloudbuild.googleapis.com --project ${PROJECT_ID}
