@@ -40,7 +40,7 @@ Then, Create a file called `.devcontainer.json` and paste the following to the f
 ```
 Navigate to the bottom left corner of your screen and select `reopen in container`. Now your running a Docker as the integrated terminal for the entire workspace. Your workspace is mounted to the container file system.
 
-## Build locally using Docker.
+## Build locally using Docker
 
 If you want to build the image locally, Run the following command at the root of the project directory. You can provide the `--build-arg` tag to change the version on any of the following packages. I will look at adding more like this, but it's mostly the HashiCorp products you want control over. The difference between 0.14 and 0.15 is catastrophic. 
 
@@ -58,30 +58,7 @@ docker build --tag cloud-tools --build-arg "_TF_VERSION=0.15.3" .
 docker run -v $(pwd):/root -i -t cloud-tools bash
 ```
 
-# Build using CloudBuild
-
-If automating this process is more what you want, first fork this repository and follow the steps below.
-```sh
-gcloud services enable cloudbuild.googleapis.com --project ${PROJECT_ID}
-gcloud services enable storage.googleapis.com --project ${PROJECT_ID}
-```
-
-Modify the substitutions in the `./cloudbuild.yaml` file to match your requirements.
-```sh
-substitutions:
-    _IMG_DEST: gcr.io/<REPO_NAME>/<IMAGE_NAME>
-```
-## Link your git repository.
-
-Either fork this repostiroy of create your own with the `./cloudbuild.yaml` file in it.
-
-Go to the GCP ***console > Cloud Build > Triggers*** to connect your repository and add the trigger details matching expression. The default configuration is a push or merge to the main branch will trigger the pipeline.
-
-## Run the pipeline.
-
-Trigger the pipeline by updating the `Dockerfile` in the source repository linked the trigger.
-
-## Build Using Local Builder
+## Build locally using CloudBuild
 
 Use the provided `cloudbuild_local.yaml` to perform a build task on the image the same way the pipeline would. This is useful for testing new changes before pushing a new version of the image.
 
@@ -94,3 +71,24 @@ cloud-build-local \
   --config=./cloudbuild_local.yaml \
   --dryrun=false --push .
 ```
+
+If automating this process is more what you want, first fork this repository and follow the steps below.
+```sh
+gcloud services enable cloudbuild.googleapis.com --project ${PROJECT_ID}
+gcloud services enable storage.googleapis.com --project ${PROJECT_ID}
+```
+
+Modify the substitutions in the `./cloudbuild.yaml` file to match your requirements.
+```sh
+substitutions:
+    _IMG_DEST: gcr.io/<REPO_NAME>/<IMAGE_NAME>
+```
+### Link a git repository.
+
+Either fork this repostiroy of create your own with the `./cloudbuild.yaml` file in it.
+
+Go to the GCP ***console > Cloud Build > Triggers*** to connect your repository and add the trigger details matching expression. The default configuration is a push or merge to the main branch will trigger the pipeline.
+
+### Run the pipeline.
+
+Trigger the pipeline by updating the `Dockerfile` in the source repository linked the trigger.
