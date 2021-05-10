@@ -26,8 +26,6 @@ cloud-tools is an all in one cloud development container. Aimed at saving time w
 - curl : latest
 - vim : latest
 
-
-
 # Integrated Setup - VSCode
 If you use vscode and want to run the image directly within your terminal, install the [Remote Containers Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension and create a folder called `.devcontainer` within your home directory, or wherever the root folder of your workspace is.
 ```
@@ -42,10 +40,7 @@ Then, Create a file called `.devcontainer.json` and paste the following to the f
 ```
 Navigate to the bottom left corner of your screen and select `reopen in container`. Now your running a Docker as the integrated terminal for the entire workspace. Your workspace is mounted to the container file system.
 
-# Building Locally
-
-
-# Build Locally
+## Build Locally
 
 If you want to build the image locally, run the following command at the root of the project directory. You can provide the `--build-arg` tag to change the version on any of the following packages. I will look at adding more like this, but it's mostly the HashiCorp products you want control over. The difference between 0.14 and 0.15 is catastrophic. 
 
