@@ -87,8 +87,9 @@ Go to the GCP ***console > Cloud Build > Triggers*** to connect your repository 
 Trigger the pipeline by updating the `Dockerfile` in the source repository linked the trigger.
 
 ## Cloud Buid Local Builder
+*NOTE: Must have docker installed.*
 
-Within the root of the directory run the following to build the image.
+Within the root of the directory run the following to build the image locally.
 
 ```sh
 gcloud components install cloud-build-local
