@@ -40,9 +40,9 @@ Then, Create a file called `.devcontainer.json` and paste the following to the f
 ```
 Navigate to the bottom left corner of your screen and select `reopen in container`. Now your running a Docker as the integrated terminal for the entire workspace. Your workspace is mounted to the container file system.
 
-## Build Locally
+## Build locally using Docker.
 
-If you want to build the image locally, run the following command at the root of the project directory. You can provide the `--build-arg` tag to change the version on any of the following packages. I will look at adding more like this, but it's mostly the HashiCorp products you want control over. The difference between 0.14 and 0.15 is catastrophic. 
+If you want to build the image locally, Run the following command at the root of the project directory. You can provide the `--build-arg` tag to change the version on any of the following packages. I will look at adding more like this, but it's mostly the HashiCorp products you want control over. The difference between 0.14 and 0.15 is catastrophic. 
 
 |Package|Variable Name|Default|
 |---|---|-----|
@@ -81,10 +81,11 @@ Go to the GCP ***console > Cloud Build > Triggers*** to connect your repository 
 
 Trigger the pipeline by updating the `Dockerfile` in the source repository linked the trigger.
 
-## Cloud Buid Local Builder
-*NOTE: Must have docker installed.*
+## Build Using Local Builder
 
-Within the root of the directory run the following to build the image locally.
+Use the provided `cloudbuild_local.yaml` to perform a build task on the image the same way the pipeline would. This is useful for testing new changes before pushing a new version of the image.
+
+*NOTE: Must have docker installed.*
 
 ```sh
 gcloud components install cloud-build-local
