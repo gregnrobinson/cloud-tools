@@ -74,17 +74,29 @@ cloud-build-local \
 
 ## Build using GitOps.
 
-If automating this process is more what you want, first fork this repository and follow the steps below.
+If automating the build process is more what you want, first fork this repository and follow the steps below.
 ```sh
 gcloud services enable cloudbuild.googleapis.com --project ${PROJECT_ID}
 gcloud services enable storage.googleapis.com --project ${PROJECT_ID}
 ```
 
-Modify the substitutions in the `./cloudbuild.yaml` file to match your requirements.
+Modify the substitutions in the `./cloudbuild.yaml` file with your your container image location.
 ```sh
 substitutions:
     _IMG_DEST: gcr.io/<REPO_NAME>/<IMAGE_NAME>
 ```
+
+If your image is in GCR, the pipeline will hev access to push without any further steps. If you are using Dockerhub, you can reference the following block of code and configure secrets manager in GCP.
+
+```
+availableSecrets:
+  secretManager:
+   - versionName: projects/${_PROJECT_ID}/secrets/${_DOCKER_PASSWORD_SECRET}/versions/${_DOCKER_PASSWORD_SECRET_VERSION}
+     env: 'PASSWORD'
+   - versionName: projects/${_PROJECT_ID}/secrets/${_DOCKER_ID_SECRET}/versions/${_DOCKER_ID_SECRET_VERSION}
+     env: 'USERNAME'
+```
+
 ### Link a git repository.
 
 Either fork this repostiroy of create your own with the `./cloudbuild.yaml` file in it.
