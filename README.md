@@ -86,7 +86,7 @@ substitutions:
     _IMG_DEST: gcr.io/<REPO_NAME>/<IMAGE_NAME>
 ```
 
-If your image is in GCR, the pipeline will hev access to push without any further steps. If you are using Dockerhub, you can reference the following block of code and configure secrets manager in GCP.
+If your image is in GCR, the pipeline service account will have access to push images without any further steps. If you are using Dockerhub, you can reference the following block of code and configure secrets managerti store your username and password.
 
 ```
 availableSecrets:
