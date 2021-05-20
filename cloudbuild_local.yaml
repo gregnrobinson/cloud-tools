@@ -3,29 +3,13 @@ steps:
   args:
     - 'build'
     - '-t'
-    - '${_IMG_DEST}:${_SHORT_SHA}'
+    - '${_IMG_DEST}:latest'
     - '-f'
-    - './${_IMG}/Dockerfile'
-    - './${_IMG}'
+    - 'Dockerfile'
+    - '.'
   id: build
 
-- name: 'gcr.io/cloud-builders/docker'
-  args:
-    - 'push'
-    - '${_IMG_DEST}:${_SHORT_SHA}'
-  id: push
-
-- name: 'gcr.io/cloud-builders/docker'
-  args:
-    - 'tag'
-    - '${_IMG_DEST}:${_SHORT_SHA}'
-    - '${_IMG_DEST}:latest'
-  waitFor: ["build"]
-
-images:
-- '${_IMG_DEST}:latest'
-- '${_IMG_DEST}:${_SHORT_SHA}'
-
 substitutions:
-    _IMG: ubuntu-cloud-dev
-    _IMG_DEST: gcr.io/arctiqteam-images/ubuntu-cloud-dev
+    _IMG_DEST: gregnrobinson/cloud-tools
+     
+timeout: 1200s
