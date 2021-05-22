@@ -42,7 +42,7 @@ Navigate to the bottom left corner of your screen and select `reopen in containe
 
 ## Build locally using Docker
 
-If you want to build the image locally, Run the following command at the root of the project directory. You can provide the `--build-arg` tag to change the version on any of the following packages. I will look at adding more like this, but it's mostly the HashiCorp products you want control over. The difference between 0.14 and 0.15 is catastrophic. 
+If you want to build the image locally, Run the following command at the root of the project directory. You can provide the `--build-arg` tag to change the version on any of the following packages. I will look at adding more like this, but it's mostly the HashiCorp products you want control over. The difference between 0.14 and 0.15 can be catastrophic. 
 
 |Package|Variable Name|Default|
 |---|---|-----|
