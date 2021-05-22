@@ -101,7 +101,7 @@ availableSecrets:
 
 Either fork this repostiroy of create your own with the `./cloudbuild.yaml` file in it.
 
-Go to the GCP ***console > Cloud Build > Triggers*** to connect your repository and add the trigger details matching expression. The default configuration is a push or merge to the main branch will trigger the pipeline.
+Go to the GCP ***console > Cloud Build > Triggers*** to connect your repository and add the trigger details matching expression. The default configuration is a push or merge to the main branch that will trigger the pipeline.
 
 ### Run the pipeline.
 
