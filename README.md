@@ -53,6 +53,8 @@ If you want to build the image locally, Run the following command at the root of
 |Yq|_YQ_VERSION|4.2.0|
 |Go|_GO_VERSION|1.64.4|
 
+From the root of the repository run the following commands:
+
 ```sh
 docker build --tag cloud-tools --build-arg "_TF_VERSION=0.15.3" .
 docker run -v $(pwd):/root -i -t cloud-tools bash
@@ -63,6 +65,8 @@ docker run -v $(pwd):/root -i -t cloud-tools bash
 Use the provided `cloudbuild_local.yaml` to perform a build task on the image the same way the pipeline would. This is useful for testing new changes before pushing a new version of the image.
 
 *NOTE: Must have docker installed.*
+
+From the root of the repository run the following commands:
 
 ```sh
 gcloud components install cloud-build-local
