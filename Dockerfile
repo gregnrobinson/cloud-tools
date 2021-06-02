@@ -91,4 +91,4 @@ RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash && \
     apt-get install -y azure-cli
 
 # Define default command.
-CMD ["/bin/bash"]
+ENTRYPOINT ["/bin/bash"]
