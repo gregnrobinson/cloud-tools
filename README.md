@@ -5,6 +5,7 @@ cloud-tools is an all in one cloud development container. Aimed at saving time w
 ![Cloud Build](https://storage.googleapis.com/phronesis-310405-badges/builds/cloud-tools/branches/main.svg) ![Docker Pulls](https://img.shields.io/docker/pulls/gregnrobinson/cloud-tools)
 
 To pull image: `docker pull gregnrobinson/cloud-tools`
+To run image: `docker run -v $(pwd):/root -i -t gregnrobinson/cloud-tools`
 
 ## Installed Packages
 
@@ -59,7 +60,7 @@ From the root of the repository run the following commands:
 
 ```sh
 docker build --tag cloud-tools --build-arg "_TF_VERSION=0.15.3" .
-docker run -v $(pwd):/root -i -t cloud-tools bash
+docker run -v $(pwd):/root -i -t cloud-tools
 ```
 
 ## Build locally using CloudBuild
