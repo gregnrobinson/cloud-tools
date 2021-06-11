@@ -11,8 +11,6 @@ cloud-tools is an all in one cloud development container. Aimed at saving time w
 
 - AWS SDK : latest
 - Azure SDK : latest
-- GCP SDK : latest
-- Terraform : 0.14.10
 - Vault : 1.7.1
 - Packer : 1.9.5
 - Consul : 1.9.5
@@ -28,6 +26,7 @@ cloud-tools is an all in one cloud development container. Aimed at saving time w
 - wget : latest
 - curl : latest
 - vim : latest
+- [tfswitch](https://tfswitch.warrensbox.com/Quick-Start/)
 
 ## Integrated Setup - VSCode
 If you use vscode and want to run the image directly within your terminal, install the [Remote Containers Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension and create a folder called `.devcontainer` within your home directory, or wherever the root folder of your workspace is.
