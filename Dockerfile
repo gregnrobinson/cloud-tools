@@ -29,8 +29,6 @@ RUN apt-get update && \
       software-properties-common \
       python3-dev \
       python3-pip \
-      python \
-      python-pip \
       unzip \
       vim \
       nodejs \
