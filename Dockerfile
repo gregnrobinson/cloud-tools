@@ -48,11 +48,8 @@ RUN wget https://releases.hashicorp.com/vault/${_VAULT_VERSION}/vault_${_VAULT_V
     mv vault /usr/local/bin && \
     rm vault_${_VAULT_VERSION}_linux_amd64.zip
 
-# INSTALL TERRAFORM
-RUN wget https://releases.hashicorp.com/terraform/${_TF_VERSION}/terraform_${_TF_VERSION}_linux_amd64.zip && \
-    unzip terraform_${_TF_VERSION}_linux_amd64.zip && \
-    mv terraform /usr/local/bin && \
-    rm terraform_${_TF_VERSION}_linux_amd64.zip
+# INSTALL TFSWITCH
+RUN curl -L https://raw.githubusercontent.com/warrensbox/terraform-switcher/release/install.sh | bash
 
 # INSTALL CONSUL
 RUN wget https://releases.hashicorp.com/consul/${_CONSUL_VERSION}/consul_${_CONSUL_VERSION}_linux_amd64.zip && \
