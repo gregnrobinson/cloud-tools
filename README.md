@@ -41,7 +41,7 @@ Then, Create a file called `.devcontainer.json` and paste the following to the f
   "image": "gregnrobinson/cloud-tools:latest"
 }
 ```
-Navigate to the bottom left corner of your screen and select `reopen in container`. Now your running the container as the integrated terminal for the entire workspace. Your workspace is mounted to the container file system.
+Navigate to the bottom left corner of your screen, click the green section and select `reopen in container`. Now your running the container as the integrated terminal for the entire workspace. Your workspace is mounted to the container file system.
 
 ## Build locally using Docker
 
