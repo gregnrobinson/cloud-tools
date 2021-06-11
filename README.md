@@ -4,6 +4,8 @@ cloud-tools is an all in one cloud development container. Aimed at saving time w
 
 ![Cloud Build](https://storage.googleapis.com/phronesis-310405-badges/builds/cloud-tools/branches/main.svg) ![Docker Pulls](https://img.shields.io/docker/pulls/gregnrobinson/cloud-tools)
 
+To pull image: `docker pull gregnrobinson/cloud-tools`
+
 ## Installed Packages
 
 - AWS SDK : latest
@@ -25,8 +27,6 @@ cloud-tools is an all in one cloud development container. Aimed at saving time w
 - wget : latest
 - curl : latest
 - vim : latest
-
-To pull image: `docker pull gregnrobinson/cloud-tools`
 
 ## Integrated Setup - VSCode
 If you use vscode and want to run the image directly within your terminal, install the [Remote Containers Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension and create a folder called `.devcontainer` within your home directory, or wherever the root folder of your workspace is.
