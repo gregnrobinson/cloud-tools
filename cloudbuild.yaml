@@ -9,7 +9,7 @@ steps:
   args:
     - 'build'
     - '-t'
-    - '${_IMG_DEST}:latest'
+    - '${_IMG_DEST}:${_TAG}'
     - '-f'
     - 'Dockerfile'
     - '.'
@@ -18,7 +18,7 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args:
     - 'push'
-    - '${_IMG_DEST}:latest'
+    - '${_IMG_DEST}:${_TAG}'
   id: push
 
 substitutions:
