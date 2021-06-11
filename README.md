@@ -48,7 +48,6 @@ If you want to build the image locally, Run the following command at the root of
 
 |Package|Variable Name|Default|
 |---|---|-----|
-|Terraform|_TERRAFORM_VERSION|0.14.10|
 |Vault|_VAULT_VERSION|1.7.1|
 |Packer|_PACKER_VERSION|1.9.5|
 |Consul|_CONSUL_VERSION|1.9.5|
@@ -58,7 +57,7 @@ If you want to build the image locally, Run the following command at the root of
 From the root of the repository run the following commands:
 
 ```sh
-docker build --tag cloud-tools --build-arg "_TF_VERSION=0.15.3" .
+docker build --tag cloud-tools --build-arg "_VAULT_VERSION=1.7.0" .
 docker run -v $(pwd):/root -i -t cloud-tools
 ```
 
