@@ -2,7 +2,10 @@
 
 cloud-tools is an all in one cloud development container. Aimed at saving time when it comes to installing the large breadth of cloud SDKs and other tools. There are also CloudBuild files in the source repo for building this image automatically in GCP or locally if you want to manage the image yourself. Packages with static version numbers are default values and can be replaced during the build using `--build-arg`.
 
-![Cloud Build](https://storage.googleapis.com/phronesis-310405-badges/builds/cloud-tools/branches/main.svg) ![Docker Pulls](https://img.shields.io/docker/pulls/gregnrobinson/cloud-tools)
+![Cloud Build](https://storage.googleapis.com/phronesis-310405-badges/builds/cloud-tools/branches/main.svg) ![Docker Pulls]
+(https://img.shields.io/docker/pulls/gregnrobinson/cloud-tools)
+
+To pull image: `docker pull gregnrobinson/cloudtools`
 
 ## Installed Packages
 
