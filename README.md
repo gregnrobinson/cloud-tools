@@ -5,7 +5,7 @@ cloud-tools is an all in one cloud development container. Aimed at saving time w
 ![Cloud Build](https://storage.googleapis.com/phronesis-310405-badges/builds/cloud-tools/branches/main.svg) ![Docker Pulls]
 (https://img.shields.io/docker/pulls/gregnrobinson/cloud-tools)
 
-To pull image: `docker pull gregnrobinson/cloudtools`
+To pull image: `docker pull gregnrobinson/cloud-tools`
 
 ## Installed Packages
 
