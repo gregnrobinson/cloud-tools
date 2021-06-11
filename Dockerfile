@@ -4,7 +4,7 @@
 # ----------------------------------------
 
 # PULL BASE IMAGE
-FROM amd64/ubuntu:20.04:latest
+FROM amd64/ubuntu:20.04
 
 # PACKAGE VERSIONS
 ARG _TF_VERSION=0.14.10
