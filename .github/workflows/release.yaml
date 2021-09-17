@@ -19,7 +19,6 @@ on:
 
 jobs:
   ci:
-    if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
     outputs:
       tag: ${{ steps.step1.outputs.test }}   
@@ -54,6 +53,7 @@ jobs:
           tags: gregnrobinson/cloud-tools:${{ env.GITHUB_SHA_SHORT }}
 
   cd:
+    if: ${{ github.ref == 'refs/heads/main' }}
     needs: ci
     runs-on: ubuntu-latest
     steps:
@@ -81,14 +81,14 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: gregnrobinson/cloud-tools:${{ steps.tag_version.outputs.new_tag }}
+          tags: gregnrobinson/cloud-tools:${{ steps.tag_version.outputs.new_tag }},gregnrobinson/cloud-tools:latest
 
       - name: Create a GitHub release
         uses: ncipollo/release-action@v1
         with:
-          omitBody: true
+          #omitBody: true
           omitName: true
-          omitBodyDuringUpdate: false
+          #omitBodyDuringUpdate: false
           omitNameDuringUpdate: true
           tag: ${{ steps.tag_version.outputs.new_tag}}
           name: ${{ steps.tag_version.outputs.new_tag }}
