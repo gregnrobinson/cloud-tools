@@ -1,14 +1,12 @@
 version: "3.8"
 services:
   cloud-tools:
-    args:
-      TAG: latest
     hostname: cloud-tools
     privileged: true
     build:
       context: ./
       dockerfile: Dockerfile
-    image: gregnrobinson/cloud-tools
+    image: gregnrobinson/cloud-tools:${TAG}
     volumes:
       - "./config/profile/bashrc:/root/.bashrc"
       - "./config/kubeconfigs:/root/.kube/"
