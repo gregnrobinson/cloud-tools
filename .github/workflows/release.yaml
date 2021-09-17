@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  release:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Inject slug/short variables
@@ -54,7 +54,7 @@ jobs:
 #          body: ${{ steps.tag_version.outputs.changelog }}
 
   release:
-    needs: release
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: release-drafter/release-drafter@v5
