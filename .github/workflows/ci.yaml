@@ -34,16 +34,18 @@ jobs:
           push: true
           tags: gregnrobinson/cloud-tools:${{ env.GITHUB_SHA_SHORT }}
 
+  release:
+    needs: build
+    if: ${{ github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
       - uses: actions/checkout@v2
       - name: Bump Version/Tag
-        if: ${{ github.ref == 'refs/heads/main' }}
         id: tag_version
         uses: mathieudutour/github-tag-action@v5.6
         with:
           github_token: ${{ secrets.GH_TOKEN }}
 
       - name: Build / Push Latest
-        if: ${{ github.ref == 'refs/heads/main' }}
         id: build_latest
         uses: docker/build-push-action@v2
         with:
@@ -54,7 +56,6 @@ jobs:
             gregnrobinson/cloud-tools:${{ env.GITHUB_SHA_SHORT }}
 
       - name: Create GitHub Release
-        if: ${{ github.ref == 'refs/heads/main' }}
         uses: ncipollo/release-action@v1
         with:
           omitBody: false
@@ -65,8 +66,8 @@ jobs:
           name: ${{ steps.tag_version.outputs.new_tag }}
           body: ${{ steps.tag_version.outputs.changelog }}
 
-  update_release_draft:
-    needs: build
+  update_release:
+    needs: release
     runs-on: ubuntu-latest
     steps:
       # (Optional) GitHub Enterprise requires GHE_HOST variable set
@@ -81,8 +82,8 @@ jobs:
         #   config-name: my-config.yml
         #   disable-autolabeler: true
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+
 #  release:
 #    if: ${{ github.ref == 'refs/heads/main' }}
 #    needs: build
