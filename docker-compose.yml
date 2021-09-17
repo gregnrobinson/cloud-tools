@@ -15,5 +15,9 @@ services:
       options:
         max-size: "400k"
         max-file: "20"
+    environment:
+      GIT_EMAIL: "gregnrobinson@gmail.com"
+      GIT_USER: "gregnrobinson"
+      WG_SUDO: "1"
     entrypoint: /bin/bash
     command: -c "./bootstrap.sh"
