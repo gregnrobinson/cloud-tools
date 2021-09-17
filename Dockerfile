@@ -34,8 +34,19 @@ RUN apt-get update && \
       vim \
       nodejs \
       moreutils \
-      jq
-
+      jq \     
+      wireguard-tools \
+      iproute2 \
+      iptables \
+      tcpdump \
+      openresolv \
+      openssh-server \
+      sshfs \
+      iputils-ping && \
+    apt-get autoremove -y && \
+    apt-get clean && \
+    rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/*
+    
 RUN pip3 install virtualenv
 
 RUN wget https://github.com/mikefarah/yq/releases/download/v${_YQ_VERSION}/yq_linux_amd64 -O /usr/bin/yq &&\
