@@ -2,8 +2,9 @@ name: Build
 
 on:
   push:
-    branches-ignore:
-      - 'main'
+    branches:
+      - 'feature/**'
+      - 'fix/**'
   pull_request:
   workflow_dispatch:
 
