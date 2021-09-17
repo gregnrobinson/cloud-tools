@@ -66,6 +66,7 @@ jobs:
           body: ${{ steps.tag_version.outputs.changelog }}
 
   update_release_draft:
+    needs: release
     runs-on: ubuntu-latest
     steps:
       # (Optional) GitHub Enterprise requires GHE_HOST variable set
