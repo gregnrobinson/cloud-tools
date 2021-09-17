@@ -58,34 +58,34 @@ RUN pip3 install virtualenv
 RUN wget https://github.com/mikefarah/yq/releases/download/v${_YQ_VERSION}/yq_linux_amd64 -O /usr/bin/yq &&\
     chmod +x /usr/bin/yq
 
-# INSTALL VAULT
+# VAULT
 RUN wget https://releases.hashicorp.com/vault/${_VAULT_VERSION}/vault_${_VAULT_VERSION}_linux_amd64.zip && \
     unzip vault_${_VAULT_VERSION}_linux_amd64.zip && \
     mv vault /usr/local/bin && \
     rm vault_${_VAULT_VERSION}_linux_amd64.zip
 
-# INSTALL TFSWITCH
+# TF_SWITCH
 RUN curl -L https://raw.githubusercontent.com/warrensbox/terraform-switcher/release/install.sh | bash
 
-# INSTALL CONSUL
+# CONSUL
 RUN wget https://releases.hashicorp.com/consul/${_CONSUL_VERSION}/consul_${_CONSUL_VERSION}_linux_amd64.zip && \
     unzip consul_${_CONSUL_VERSION}_linux_amd64.zip && \
     mv consul /usr/local/bin && \
     rm consul_${_CONSUL_VERSION}_linux_amd64.zip
 
-# INSTALL PACKER
+# PACKER
 RUN wget https://releases.hashicorp.com/packer/${_PACKER_VERSION}/packer_${_PACKER_VERSION}_linux_amd64.zip && \
     unzip packer_${_PACKER_VERSION}_linux_amd64.zip && \
     mv packer /usr/local/bin && \
     rm packer_${_PACKER_VERSION}_linux_amd64.zip
 
-# INSTALL GOLANG
+# GOLANG
 RUN wget https://golang.org/dl/go${_GO_VERSION}.linux-amd64.tar.gz && \
     tar -xvzf go${_GO_VERSION}.linux-amd64.tar.gz && \
     mv go /usr/local/bin && \
     rm go${_GO_VERSION}.linux-amd64.tar.gz
 
-# INSTALL GCP CLI
+# GCP CLI
 RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && \
     curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key --keyring /usr/share/keyrings/cloud.google.gpg  add - && \
     apt-get update -y && \
