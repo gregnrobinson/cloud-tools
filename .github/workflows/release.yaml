@@ -16,12 +16,12 @@ on:
 #  workflow_dispatch:
 
 jobs:
-  ci:
+  build:
     runs-on: ubuntu-latest
     outputs:
       tag: ${{ steps.step1.outputs.test }}   
     steps:
-      - name: Inject slug/short variables
+      - name: Inject Slug/Short Variables
         uses: rlespinasse/github-slug-action@v3.x
 
       - name: Set up QEMU
@@ -43,11 +43,14 @@ jobs:
           push: true
           tags: gregnrobinson/cloud-tools:${{ env.GITHUB_SHA_SHORT }}
         
-  cd:
+  release:
     if: ${{ github.ref == 'refs/heads/main' }}
     needs: ci
     runs-on: ubuntu-latest
     steps:
+      - name: Inject slug/short variables
+        uses: rlespinasse/github-slug-action@v3.x
+
       - uses: actions/checkout@v2
       - name: Bump Version/Tag
         id: tag_version
@@ -67,14 +70,17 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
         
-      - name: Build and push
+      - name: Build and Push
         id: docker_build
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: gregnrobinson/cloud-tools:${{ steps.tag_version.outputs.new_tag }},gregnrobinson/cloud-tools:latest
+          tags: >-
+            gregnrobinson/cloud-tools:latest,
+            gregnrobinson/cloud-tools:${{ steps.tag_version.outputs.new_tag }},
+            gregnrobinson/cloud-tools:${{ env.GITHUB_SHA_SHORT }}
 
-      - name: Create a GitHub release
+      - name: Create a GitHub Release
         uses: ncipollo/release-action@v1
         with:
           #omitBody: true
