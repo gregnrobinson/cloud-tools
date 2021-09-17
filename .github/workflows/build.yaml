@@ -14,6 +14,16 @@ on:
 
   workflow_dispatch:
 jobs:
+  tag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Tag the deployment
+        uses: daily-co/create-tag-action@v1.0
+        with:
+          app-name: 'cloud-tools'
+          environment: 'prod'
+          github-token: '${{ secrets.GITHUB_TOKEN }}'
   build:
     runs-on: ubuntu-latest
     steps:
@@ -52,7 +62,7 @@ jobs:
       #  with:
       #    push: true
       #    tags: gregnrobinson/cloud-tools:$SHORT_SHA,gregnrobinson/cloud-tools:latest
-      
+
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
