@@ -15,7 +15,7 @@ ARG _PACKER_VERSION=1.7.2
 ARG _GO_VERSION=1.16.4
 ARG _YQ_VERSION=4.2.0
 
-RUN echo $(head -1 /etc/hosts | cut -f1) $HOST_NAME >> /etc/hosts
+RUN bash echo $(head -1 /etc/hosts | cut -f1) $HOST_NAME >> /etc/hosts
 WORKDIR /root
 
 COPY ./config/profile/bashrc /root/.bashrc
