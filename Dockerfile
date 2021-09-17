@@ -7,7 +7,6 @@
 FROM amd64/ubuntu:20.04
 
 # PACKAGE VERSIONS
-ARG HOST_NAME=cloud-tools
 ARG DEBIAN_FRONTEND=noninteractive
 ARG _VAULT_VERSION=1.7.1
 ARG _CONSUL_VERSION=1.9.5
@@ -15,7 +14,6 @@ ARG _PACKER_VERSION=1.7.2
 ARG _GO_VERSION=1.16.4
 ARG _YQ_VERSION=4.2.0
 
-RUN bash echo $(head -1 /etc/hosts | cut -f1) $HOST_NAME >> /etc/hosts
 WORKDIR /root
 
 COPY ./config/profile/bashrc /root/.bashrc
