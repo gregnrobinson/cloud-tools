@@ -24,12 +24,6 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
-
-      - name: Set outputs
-        id: vars
-        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
-      - name: Check outputs
-        run: echo ${{ steps.vars.outputs.sha_short }}
         
       - name: Build and push
         id: docker_build
@@ -37,6 +31,7 @@ jobs:
         with:
           push: true
           tags: gregnrobinson/cloud-tools:latest
+  
   tag:
     runs-on: ubuntu-latest
     steps:
@@ -44,4 +39,4 @@ jobs:
       - name: Bump version and push tag
         uses: hennejg/github-tag-action@v4.1.jh1
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}  
