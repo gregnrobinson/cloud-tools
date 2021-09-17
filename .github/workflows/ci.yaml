@@ -1,4 +1,4 @@
-name: Build / Release Pipeline
+name: CI Pipeline
 
 on:
   push: 
@@ -8,9 +8,10 @@ on:
 
 jobs:
   build:
+    if: ${{ github.ref != 'refs/heads/main' }}
     runs-on: ubuntu-latest
     outputs:
-      tag: ${{ steps.step1.outputs.test }}   
+      tag: ${{ steps.step1.outputs.test }} 
     steps:
       - name: Inject Slug/Short Variables
         uses: rlespinasse/github-slug-action@v3.x
