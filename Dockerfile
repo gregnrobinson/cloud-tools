@@ -46,9 +46,15 @@ RUN apt-get update && \
     apt-get autoremove -y && \
     apt-get clean && \
     rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/*
-    
+
+# KUBECTL
+RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" && \
+    install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+
+# PYTHON VIRTUAL ENVIRONMENT
 RUN pip3 install virtualenv
 
+# YQ
 RUN wget https://github.com/mikefarah/yq/releases/download/v${_YQ_VERSION}/yq_linux_amd64 -O /usr/bin/yq &&\
     chmod +x /usr/bin/yq
 
@@ -85,10 +91,10 @@ RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.c
     apt-get update -y && \
     apt-get install google-cloud-sdk -y
 
-# INSTALL AWS CLI
+# AWS CLI
 RUN pip3 install awscli
 
-# INSTALL AZURE CLI
+# AZURE CLI
 RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash && \
     apt-get install -y ca-certificates curl apt-transport-https lsb-release gnupg && \
     curl -sL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | tee /etc/apt/trusted.gpg.d/microsoft.gpg > /dev/null && \
@@ -97,5 +103,5 @@ RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash && \
     apt-get update -y && \
     apt-get install -y azure-cli
 
-# DEFAULT SHELL
+# BASH
 ENTRYPOINT ["/bin/bash"]
