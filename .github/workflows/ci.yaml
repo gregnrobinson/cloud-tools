@@ -2,10 +2,8 @@ name: CI Pipeline
 
 on:
   push:
-    tags-ignore:
-      - v*.*.*
-  pull_request:
-    branches: [ main ]
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
