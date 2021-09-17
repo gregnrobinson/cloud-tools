@@ -59,16 +59,9 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
         
-      #- name: Build and push
-      #  id: docker_build
-      #  uses: docker/build-push-action@v2
-      #  with:
-      #    push: true
-      #    tags: gregnrobinson/cloud-tools:$SHORT_SHA,gregnrobinson/cloud-tools:latest
-
       - name: Build and push
+        id: docker_build
         uses: docker/build-push-action@v2
         with:
-          push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.tag_version.outputs.new_tag }}
-          labels: ${{ steps.tag_version.outputs.new_tag }}
+          push: true
+          tags: ${{ steps.tag_version.outputs.new_tag }},gregnrobinson/cloud-tools:latest
