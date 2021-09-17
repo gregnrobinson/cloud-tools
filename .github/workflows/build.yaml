@@ -24,7 +24,7 @@ jobs:
         run: docker-compose -f "docker-compose.yml" up -d --build
 
       - name: Push containers
-        run: docker-compose push cloud-tools --build-arg SHORT_SHA=${{ env.GITHUB_SHA_SHORT }}
+        run: docker-compose push cloud-tools --build-arg TAG=${{ env.GITHUB_SHA_SHORT }}
 
       - name: Login to DockerHub
         uses: docker/login-action@v1 
