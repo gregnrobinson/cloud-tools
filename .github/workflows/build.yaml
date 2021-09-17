@@ -1,23 +1,12 @@
-name: ci
+name: Build / Release Pipeline
 
 on:
   push:
   pull_request:
     branches: [ main ]
-  release:
-    types: [published, created, edited]
-
-#on:
-#  schedule:
-#    # SUNDAY MIDNIGHT
-#    - cron: '0 0 * * *'
-#  release:
-#    # Only use the types keyword to narrow down the activity types that will trigger your workflow.
-#    types: [published, created, edited]
-#  workflow_dispatch:
 
 jobs:
-  build:
+  ci:
     if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
     steps:
@@ -46,15 +35,3 @@ jobs:
         with:
           push: true
           tags: gregnrobinson/cloud-tools:${{ steps.tag_version.outputs.new_tag }}
-      
-      - name: Create a GitHub release
-        uses: ncipollo/release-action@v1
-        with:
-          omitBody: true
-          omitName: true
-          omitBodyDuringUpdate: false
-          omitNameDuringUpdate: true
-          tag: ${{ steps.tag_version.outputs.new_tag }}
-          name: ${{ steps.tag_version.outputs.new_tag }}
-          body: ${{ steps.tag_version.outputs.changelog }}
-          
