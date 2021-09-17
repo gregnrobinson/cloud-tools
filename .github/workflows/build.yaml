@@ -6,6 +6,9 @@ on:
       - 'feature/**'
       - 'fix/**'
   pull_request:
+    branches-ignore:
+      - 'feature/**'
+      - 'fix/**'
   workflow_dispatch:
 
 jobs:
