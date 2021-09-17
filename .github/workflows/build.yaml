@@ -4,9 +4,6 @@ on:
   push:
   pull_request:
     branches: [ main ]
-  tags:        
-    - v1             # Push events to v1 tag
-    - v1.* 
     
   workflow_dispatch:
 jobs:
