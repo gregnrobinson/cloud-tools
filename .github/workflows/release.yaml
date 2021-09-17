@@ -75,7 +75,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: >-
+          tags: >
             gregnrobinson/cloud-tools:latest,
             gregnrobinson/cloud-tools:${{ steps.tag_version.outputs.new_tag }},
             gregnrobinson/cloud-tools:${{ env.GITHUB_SHA_SHORT }}
