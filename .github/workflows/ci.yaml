@@ -66,7 +66,7 @@ jobs:
           body: ${{ steps.tag_version.outputs.changelog }}
 
   update_release_draft:
-    needs: release
+    needs: build
     runs-on: ubuntu-latest
     steps:
       # (Optional) GitHub Enterprise requires GHE_HOST variable set
@@ -81,8 +81,8 @@ jobs:
         #   config-name: my-config.yml
         #   disable-autolabeler: true
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
 #  release:
 #    if: ${{ github.ref == 'refs/heads/main' }}
 #    needs: build
