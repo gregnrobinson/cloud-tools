@@ -2,7 +2,7 @@
 
 cloud-tools is an all in one cloud development container. Aimed at saving time when it comes to installing the large breadth of cloud SDKs and other tools. There are also CloudBuild files in the source repo for building this image automatically in GCP or locally if you want to manage the image yourself. Packages with static version numbers are default values and can be replaced during the build using `--build-arg`.
 
-[![ci](https://github.com/gregnrobinson/cloud-tools/actions/workflows/release.yaml/badge.svg?branch=main)](https://github.com/gregnrobinson/cloud-tools/actions/workflows/release.yaml) ![Docker Pulls](https://img.shields.io/docker/pulls/gregnrobinson/cloud-tools)
+[![CI Pipeline](https://github.com/gregnrobinson/cloud-tools/actions/workflows/ci.yaml/badge.svg?branch=main)](https://github.com/gregnrobinson/cloud-tools/actions/workflows/ci.yaml) ![Docker Pulls](https://img.shields.io/docker/pulls/gregnrobinson/cloud-tools)
 
 - Pull image: `docker pull gregnrobinson/cloud-tools`
 - Run image: `docker run -v $(pwd):/root -i -t gregnrobinson/cloud-tools`
