@@ -1,11 +1,11 @@
 name: Build
 
 on:
-  #push:
-  #  branches:
-  #    - 'feature/**'
-  #    - 'fix/**'
-  #pull_request:
+  push:
+    branches:
+      - 'feature/**'
+      - 'fix/**'
+  pull_request:
   workflow_dispatch:
 
 jobs:
