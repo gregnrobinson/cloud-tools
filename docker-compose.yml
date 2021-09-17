@@ -6,7 +6,7 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile
-      image: gregnrobinson/cloud-tools
+    image: gregnrobinson/cloud-tools
     volumes:
       - "./config/profile/bashrc:/root/.bashrc"
       - "./config/kubeconfigs:/root/.kube/"
