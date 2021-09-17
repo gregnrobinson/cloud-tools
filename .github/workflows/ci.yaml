@@ -1,19 +1,10 @@
-name: ci
+name: Build / Release Pipeline
 
 on:
   push: 
   pull_request:
     branches: [ main ]
   workflow_dispatch:
-
-#on:
-#  schedule:
-#    # SUNDAY MIDNIGHT
-#    - cron: '0 0 * * *'
-#  release:
-#    # Only use the types keyword to narrow down the activity types that will trigger your workflow.
-#    types: [published, created, edited]
-#  workflow_dispatch:
 
 jobs:
   build:
@@ -84,9 +75,9 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           #omitBody: true
-          omitName: true
+          omitName: false
           #omitBodyDuringUpdate: false
-          omitNameDuringUpdate: true
+          omitNameDuringUpdate: false
           tag: ${{ steps.tag_version.outputs.new_tag}}
           name: ${{ steps.tag_version.outputs.new_tag }}
           body: ${{ steps.tag_version.outputs.changelog }}
