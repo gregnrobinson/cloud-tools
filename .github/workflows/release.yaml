@@ -60,7 +60,7 @@ jobs:
           github_token: ${{ secrets.GH_TOKEN }}
 
       - name: Push
-        id: docker_build
+        id: docker_push
         uses: docker/build-push-action@v2
         with:
           push: true
