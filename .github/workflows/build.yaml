@@ -2,9 +2,6 @@ name: Build
 
 on:
   push:
-    branches:
-      - 'fix/**'
-      - 'feature/**'
     branches-ignore:
       - 'main'
   pull_request:
