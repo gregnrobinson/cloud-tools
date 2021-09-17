@@ -34,7 +34,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: gregnrobinson/cloud-tools:${TRIMMED_SHA}
-
+          tags: gregnrobinson/cloud-tools:${{ github.sha }},gregnrobinson/cloud-tools:latest
+          
 
 
