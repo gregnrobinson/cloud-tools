@@ -5,10 +5,6 @@ on:
     # SUNDAY MIDNIGHT
     - cron: '0 0 * * *'
   push:
-    branches:
-      - '**'
-    tags:
-      - 'v*.*.*'
   pull_request:
     branches: [ main ]
 
@@ -27,11 +23,12 @@ jobs:
       - name: Create a GitHub release
         uses: ncipollo/release-action@v1
         with:
+          omitBody: true
+          omitName: true
           tag: ${{ steps.tag_version.outputs.new_tag }}
           name: ${{ steps.tag_version.outputs.new_tag }}
           body: ${{ steps.tag_version.outputs.changelog }}
-          omitBody: true
-          omitName: true
+ 
 
       - name: Docker meta
         id: meta
