@@ -35,7 +35,6 @@ jobs:
           tags: gregnrobinson/cloud-tools:${{ env.GITHUB_SHA_SHORT }}
 
   release:
-    if: ${{ github.ref == 'refs/heads/main' }}
     needs: build
     runs-on: ubuntu-latest
     steps:
