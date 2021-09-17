@@ -42,18 +42,18 @@ jobs:
             gregnrobinson/cloud-tools:${{ steps.tag_version.outputs.new_tag }},
             gregnrobinson/cloud-tools:${{ env.GITHUB_SHA_SHORT }}
 
-      - name: Create a GitHub Release
-        uses: ncipollo/release-action@v1
-        with:
-          omitBody: false
-          omitName: false
-          omitBodyDuringUpdate: false
-          omitNameDuringUpdate: false
-          tag: ${{ steps.tag_version.outputs.new_tag}}
-          name: ${{ steps.tag_version.outputs.new_tag }}
-          body: ${{ steps.tag_version.outputs.changelog }}
+#      - name: Create a GitHub Release
+#        uses: ncipollo/release-action@v1
+#        with:
+#          omitBody: false
+#          omitName: false
+#          omitBodyDuringUpdate: false
+#          omitNameDuringUpdate: false
+#          tag: ${{ steps.tag_version.outputs.new_tag}}
+#          name: ${{ steps.tag_version.outputs.new_tag }}
+#          body: ${{ steps.tag_version.outputs.changelog }}
 
-  update_release:
+  release:
     needs: release
     runs-on: ubuntu-latest
     steps:
