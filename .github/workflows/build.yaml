@@ -2,7 +2,8 @@ name: Deploy
 
 on:
   schedule:
-    - '0 0 * * *'
+    # SUNDAY MIDNIGHT
+    - cron: '0 0 * * *'
   push:
   pull_request:
     branches: [ main ]
