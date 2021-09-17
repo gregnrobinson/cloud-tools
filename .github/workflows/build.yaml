@@ -2,6 +2,7 @@ name: ci
 
 on:
   push:
+  - staging
   pull_request:
     branches: [ main ]
   release:
@@ -54,7 +55,7 @@ jobs:
           omitName: true
           omitBodyDuringUpdate: false
           omitNameDuringUpdate: true
-          tag: ${{ steps.tag_version.outputs.new_tag != 'pull'}}
+          tag: ${{ steps.tag_version.outputs.new_tag }}
           name: ${{ steps.tag_version.outputs.new_tag }}
           body: ${{ steps.tag_version.outputs.changelog }}
           

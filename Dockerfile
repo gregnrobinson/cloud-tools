@@ -8,7 +8,6 @@ FROM amd64/ubuntu:20.04
 
 # PACKAGE VERSIONS
 ARG DEBIAN_FRONTEND=noninteractive
-ARG _TF_VERSION=0.14.10
 ARG _VAULT_VERSION=1.7.1
 ARG _CONSUL_VERSION=1.9.5
 ARG _PACKER_VERSION=1.7.2
@@ -34,50 +33,67 @@ RUN apt-get update && \
       vim \
       nodejs \
       moreutils \
-      jq
+      jq \     
+      wireguard-tools \
+      iproute2 \
+      iptables \
+      tcpdump \
+      openresolv \
+      openssh-server \
+      sshfs \
+      iputils-ping && \
+    apt-get autoremove -y && \
+    apt-get clean && \
+    rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/*
 
+# KUBECTL
+RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" && \
+    install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+
+# PYTHON VIRTUAL ENVIRONMENT
 RUN pip3 install virtualenv
 
+# YQ
 RUN wget https://github.com/mikefarah/yq/releases/download/v${_YQ_VERSION}/yq_linux_amd64 -O /usr/bin/yq &&\
     chmod +x /usr/bin/yq
 
-# INSTALL VAULT
+# VAULT
 RUN wget https://releases.hashicorp.com/vault/${_VAULT_VERSION}/vault_${_VAULT_VERSION}_linux_amd64.zip && \
     unzip vault_${_VAULT_VERSION}_linux_amd64.zip && \
     mv vault /usr/local/bin && \
     rm vault_${_VAULT_VERSION}_linux_amd64.zip
 
-# INSTALL TFSWITCH
+# TF_SWITCH
 RUN curl -L https://raw.githubusercontent.com/warrensbox/terraform-switcher/release/install.sh | bash
 
-# INSTALL CONSUL
+# CONSUL
 RUN wget https://releases.hashicorp.com/consul/${_CONSUL_VERSION}/consul_${_CONSUL_VERSION}_linux_amd64.zip && \
     unzip consul_${_CONSUL_VERSION}_linux_amd64.zip && \
     mv consul /usr/local/bin && \
     rm consul_${_CONSUL_VERSION}_linux_amd64.zip
 
-# INSTALL PACKER
+# PACKER
 RUN wget https://releases.hashicorp.com/packer/${_PACKER_VERSION}/packer_${_PACKER_VERSION}_linux_amd64.zip && \
     unzip packer_${_PACKER_VERSION}_linux_amd64.zip && \
     mv packer /usr/local/bin && \
     rm packer_${_PACKER_VERSION}_linux_amd64.zip
 
-# INSTALL GOLANG
+# GOLANG
 RUN wget https://golang.org/dl/go${_GO_VERSION}.linux-amd64.tar.gz && \
     tar -xvzf go${_GO_VERSION}.linux-amd64.tar.gz && \
     mv go /usr/local/bin && \
     rm go${_GO_VERSION}.linux-amd64.tar.gz
 
-# INSTALL GCP CLI
+# GCP CLI
 RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && \
     curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key --keyring /usr/share/keyrings/cloud.google.gpg  add - && \
     apt-get update -y && \
     apt-get install google-cloud-sdk -y
 
-# INSTALL AWS CLI
+# AWS CLI
 RUN pip3 install awscli
 
-# INSTALL AZURE CLI
+# AZURE CLI
 RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash && \
     apt-get install -y ca-certificates curl apt-transport-https lsb-release gnupg && \
     curl -sL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | tee /etc/apt/trusted.gpg.d/microsoft.gpg > /dev/null && \
@@ -86,5 +102,5 @@ RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash && \
     apt-get update -y && \
     apt-get install -y azure-cli
 
-# DEFAULT SHELL
+# BASH
 ENTRYPOINT ["/bin/bash"]
