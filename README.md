@@ -2,14 +2,16 @@
 
 cloud-tools is an all in one cloud development container. Aimed at saving time when it comes to installing the large breadth of cloud SDKs and other tools. There are also CloudBuild files in the source repo for building this image automatically in GCP or locally if you want to manage the image yourself. Packages with static version numbers are default values and can be replaced during the build using `--build-arg`.
 
-![Cloud Build](https://storage.googleapis.com/phronesis-310405-badges/builds/cloud-tools/branches/main.svg) ![Docker Pulls](https://img.shields.io/docker/pulls/gregnrobinson/cloud-tools)
+![Cloud Build](https://storage.googleapis.com/phronesis-310405-badges/builds/cloud-tools/branches/main.svg) ![Docker Pulls](https://img.shields.io/docker/pulls/gregnrobinson/cloud-tools) [![wakatime](https://wakatime.com/badge/github/gregnrobinson/photography-website.svg)](https://wakatime.com/badge/github/gregnrobinson/photography-website)
+
+
+- Pull image: `docker pull gregnrobinson/cloud-tools`
+- Run image: `docker run -v $(pwd):/root -i -t gregnrobinson/cloud-tools`
 
 ## Installed Packages
 
 - AWS SDK : latest
 - Azure SDK : latest
-- GCP SDK : latest
-- Terraform : 0.14.10
 - Vault : 1.7.1
 - Packer : 1.9.5
 - Consul : 1.9.5
@@ -25,6 +27,8 @@ cloud-tools is an all in one cloud development container. Aimed at saving time w
 - wget : latest
 - curl : latest
 - vim : latest
+- [tfswitch](https://tfswitch.warrensbox.com/Quick-Start/)
+  - Run `tfswitch` to select desired Terraform version...
 
 ## Integrated Setup - VSCode
 If you use vscode and want to run the image directly within your terminal, install the [Remote Containers Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension and create a folder called `.devcontainer` within your home directory, or wherever the root folder of your workspace is.
@@ -38,7 +42,7 @@ Then, Create a file called `.devcontainer.json` and paste the following to the f
   "image": "gregnrobinson/cloud-tools:latest"
 }
 ```
-Navigate to the bottom left corner of your screen and select `reopen in container`. Now your running the container as the integrated terminal for the entire workspace. Your workspace is mounted to the container file system.
+Navigate to the bottom left corner of your screen, click the green section and select `reopen in container`. Now your running the container as the integrated terminal for the entire workspace. Your workspace is mounted to the container file system.
 
 ## Build locally using Docker
 
@@ -46,7 +50,6 @@ If you want to build the image locally, Run the following command at the root of
 
 |Package|Variable Name|Default|
 |---|---|-----|
-|Terraform|_TERRAFORM_VERSION|0.14.10|
 |Vault|_VAULT_VERSION|1.7.1|
 |Packer|_PACKER_VERSION|1.9.5|
 |Consul|_CONSUL_VERSION|1.9.5|
@@ -56,8 +59,8 @@ If you want to build the image locally, Run the following command at the root of
 From the root of the repository run the following commands:
 
 ```sh
-docker build --tag cloud-tools --build-arg "_TF_VERSION=0.15.3" .
-docker run -v $(pwd):/root -i -t cloud-tools bash
+docker build --tag cloud-tools --build-arg "_VAULT_VERSION=1.7.0" .
+docker run -v $(pwd):/root -i -t cloud-tools
 ```
 
 ## Build locally using CloudBuild
