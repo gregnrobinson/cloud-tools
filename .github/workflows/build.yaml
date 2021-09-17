@@ -1,10 +1,14 @@
-name: Deploy
+name: ci
 
 on:
   schedule:
     # SUNDAY MIDNIGHT
     - cron: '0 0 * * *'
   push:
+    branches:
+      - '**'
+    tags:
+      - 'v*.*.*'
   pull_request:
     branches: [ main ]
 
@@ -13,8 +17,22 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Add SHORT_SHA env property with commit short sha
-        run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          # list of Docker images to use as base name for tags
+          images: |
+            gregnrobinson/cloud-tools
+          # generate Docker tags based on the following events/attributes
+          tags: |
+            type=schedule
+            type=ref,event=branch
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}}
+            type=sha
       
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -28,12 +46,18 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
         
+      #- name: Build and push
+      #  id: docker_build
+      #  uses: docker/build-push-action@v2
+      #  with:
+      #    push: true
+      #    tags: gregnrobinson/cloud-tools:$SHORT_SHA,gregnrobinson/cloud-tools:latest
+
+
       - name: Build and push
-        id: docker_build
         uses: docker/build-push-action@v2
         with:
-          push: true
-          tags: gregnrobinson/cloud-tools:${{SHORT_SHA}},gregnrobinson/cloud-tools:latest
-
-
-
+          context: .
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
