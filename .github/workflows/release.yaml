@@ -2,7 +2,11 @@ name: ci
 
 on:
   push: 
-  
+  pull_request:
+    branches: [ main ]
+  release:
+    types: [published, created, edited]
+
 #on:
 #  schedule:
 #    # SUNDAY MIDNIGHT
