@@ -21,8 +21,8 @@ jobs:
       - name: Tag the deployment
         uses: daily-co/create-tag-action@v1.0
         with:
-          app-name: 'cloud-tools'
-          environment: 'prod'
+          app-name: '1.0.0'
+          environment: 'amd64'
           github-token: '${{ secrets.GITHUB_TOKEN }}'
   build:
     runs-on: ubuntu-latest
