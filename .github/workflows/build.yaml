@@ -19,17 +19,6 @@ jobs:
         uses: mathieudutour/github-tag-action@v5.6
         with:
           github_token: ${{ secrets.GH_TOKEN }}
-
-      - name: Create a GitHub release
-        uses: ncipollo/release-action@v1
-        with:
-          omitBody: true
-          omitName: true
-          omitBodyDuringUpdate: false
-          omitNameDuringUpdate: true
-          tag: ${{ steps.tag_version.outputs.new_tag }}
-          name: ${{ steps.tag_version.outputs.new_tag }}
-          body: ${{ steps.tag_version.outputs.changelog }}
       
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -49,3 +38,14 @@ jobs:
         with:
           push: true
           tags: gregnrobinson/cloud-tools:${{ steps.tag_version.outputs.new_tag }}
+      
+      - name: Create a GitHub release
+        uses: ncipollo/release-action@v1
+        with:
+          omitBody: true
+          omitName: true
+          omitBodyDuringUpdate: false
+          omitNameDuringUpdate: true
+          tag: ${{ steps.tag_version.outputs.new_tag }}
+          name: ${{ steps.tag_version.outputs.new_tag }}
+          body: ${{ steps.tag_version.outputs.changelog }}
