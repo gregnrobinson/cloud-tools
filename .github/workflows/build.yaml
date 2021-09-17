@@ -1,14 +1,23 @@
 name: ci
 
 on:
-  schedule:
-    # SUNDAY MIDNIGHT
-    - cron: '0 0 * * *'
   push:
+    tags-ignore:
+      - v1.*.*.*
   pull_request:
     branches: [ main ]
+  release:
+    types: [published, created, edited]
 
-  workflow_dispatch:
+#on:
+#  schedule:
+#    # SUNDAY MIDNIGHT
+#    - cron: '0 0 * * *'
+#  release:
+#    # Only use the types keyword to narrow down the activity types that will trigger your workflow.
+#    types: [published, created, edited]
+#  workflow_dispatch:
+
 jobs:
   build:
     runs-on: ubuntu-latest
