@@ -1,9 +1,7 @@
 name: ci
 
 on:
-  push:
-    tags-ignore:
-      - v1.*.*.*
+  push: 
   pull_request:
     branches: [ main ]
   release:
@@ -28,7 +26,7 @@ jobs:
       - name: Set outputs
         id: vars
         run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
-        
+
       - name: Check outputs
         run: echo ${{ steps.vars.outputs.sha_short }}
 
