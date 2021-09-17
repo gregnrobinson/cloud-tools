@@ -4,6 +4,9 @@ on:
   push:
   pull_request:
     branches: [ main ]
+  tags:        
+    - v1             # Push events to v1 tag
+    - v1.* 
     
   workflow_dispatch:
 jobs:
@@ -34,3 +37,11 @@ jobs:
         with:
           push: true
           tags: gregnrobinson/cloud-tools:latest
+  tag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Bump version and push tag
+        uses: hennejg/github-tag-action@v4.1.jh1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
