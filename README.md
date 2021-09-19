@@ -12,6 +12,7 @@ cloud-tools is an all in one cloud development container. Aimed at saving time w
 - AWS SDK : latest
 - Azure SDK : latest
 - GCP SDK : latest
+- kubectl : latest
 - Vault : 1.7.1
 - Packer : 1.9.5
 - Consul : 1.9.5
