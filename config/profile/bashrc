@@ -101,6 +101,7 @@ fi
 # kubectl aliases
 alias k="kubectl"
 alias kgx="kubectl config get-contexts"
+alias kget="kubectl get pods -A -o wide | grep"
 
 # docker aliases
 alias d="docker"
