@@ -31,6 +31,7 @@ cloud-tools is an all in one cloud development container. Aimed at saving time w
   - Run `tfswitch` to select desired Terraform version...
 
 ## Integrated Setup - VSCode
+
 If you use vscode and want to run the image directly within your terminal, install the [Remote Containers Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension and create a folder called `.devcontainer` within your home directory, or wherever the root folder of your workspace is.
 
 ```sh
@@ -39,6 +40,7 @@ If you use vscode and want to run the image directly within your terminal, insta
 ```
 
 Then, Create a file called `.devcontainer.json` and paste the following to the file.
+
 ```json
 {
   "image": "gregnrobinson/cloud-tools:latest"
@@ -49,7 +51,7 @@ Navigate to the bottom left corner of your screen, click the green section and s
 
 ## Build locally using Docker
 
-If you want to build the image locally, Run the following command at the root of the project directory. You can provide the `--build-arg` tag to change the version on any of the following packages. I will look at adding more like this, but it's mostly the HashiCorp products you want control over. The difference between 0.14 and 0.15 can be catastrophic. 
+If you want to build the image locally, Run the following command at the root of the project directory. You can provide the `--build-arg` tag to change the version on any of the following packages. I will look at adding more like this, but it's mostly the HashiCorp products you want control over. The difference between 0.14 and 0.15 can be catastrophic.
 
 |Package|Variable Name|Default|
 |---|---|-----|
