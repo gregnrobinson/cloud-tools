@@ -10,6 +10,7 @@ on:
   push:
     branches:
     - main
+    - feature/docker-compose-build
     paths:
     - ./Dockerfile
   release:
