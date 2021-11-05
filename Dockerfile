@@ -11,6 +11,9 @@ RUN echo "I am running on $BUILDPLATFORM, building for $TARGETPLATFORM" > /log
 
 # PULL BASE 
 FROM ubuntu:latest
+COPY --from=build /log /log
+
+RUN echo "I am running on $BUILDPLATFORM, building for $TARGETPLATFORM"
 
 # PACKAGE VERSIONS
 ARG DEBIAN_FRONTEND=noninteractive
@@ -24,7 +27,6 @@ ARG ARCH="amd64"
 
 WORKDIR /root
 
-RUN echo "I am running on $BUILDPLATFORM, building for $TARGETPLATFORM"
 
 # DEPENDENCIES
 RUN apt-get update && \
