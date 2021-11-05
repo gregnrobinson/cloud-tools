@@ -13,6 +13,7 @@ on:
     - feature/docker-compose-build
     paths:
     - ./Dockerfile
+    - .github/workflows/*
   release:
     types:
     - created
