@@ -14,6 +14,7 @@ on:
     types:
     - created
   workflow_dispatch:
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -35,14 +36,13 @@ jobs:
       run: >
         docker buildx build
         --platform=linux/arm64
-        -t ${{ env.IMAGE }}:latest
-        -t ${{ env.IMAGE }}:${{ env.TAG }}
         -t ${{ env.IMAGE }}:${{ env.GITHUB_SHA_SHORT }}
+        --push
         ${GITHUB_WORKSPACE}/${{ env.WORKDIR }}
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@master
       with:
-        image-ref: ${{ env.IMAGE }}
+        image-ref: ${{ env.IMAGE }}:${{ env.GITHUB_SHA_SHORT }}
         format: table
         exit-code: '1'
         ignore-unfixed: true
@@ -51,10 +51,7 @@ jobs:
     - name: Push
       working-directory: ${{ env.WORKDIR }}
       run: >
-        docker buildx build
-        --platform=linux/arm64
-        -t ${{ env.IMAGE }}:latest
-        -t ${{ env.IMAGE }}:${{ env.TAG }}
-        -t ${{ env.IMAGE }}:${{ env.GITHUB_SHA_SHORT }}
-        ${GITHUB_WORKSPACE}/${{ env.WORKDIR }}
-        --push
+        docker pull ${{ env.IMAGE }}:${{ env.GITHUB_SHA_SHORT }}
+        docker tag \
+          ${{ env.IMAGE }}:latest
+          ${{ env.IMAGE }}:${{ env.TAG }}
