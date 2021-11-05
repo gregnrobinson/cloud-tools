@@ -4,7 +4,7 @@
 # ----------------------------------------
 
 # PULL BASE IMAGE
-FROM amd64/ubuntu:20.04
+FROM ubuntu:latest
 
 # PACKAGE VERSIONS
 ARG DEBIAN_FRONTEND=noninteractive

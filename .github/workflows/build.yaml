@@ -2,15 +2,14 @@ name: ci-cloud-tools
 
 env:
   NAME: cloud-tools
-  IMAGE: gregnrobinson/cloud-toola
+  IMAGE: gregnrobinson/cloud-tools
   TAG: v1.0.0
-  RELEASE: apache-web
   WORKDIR: .
 
 on:
   push:
     paths:
-    - apps/apache-web/**
+    - ./Dockerfile
   release:
     types:
     - created
