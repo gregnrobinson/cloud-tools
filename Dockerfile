@@ -24,6 +24,8 @@ ARG ARCH="amd64"
 
 WORKDIR /root
 
+RUN echo "I am running on $BUILDPLATFORM, building for $TARGETPLATFORM" > /log
+
 # DEPENDENCIES
 RUN apt-get update && \
     apt-get install -y \
@@ -53,8 +55,6 @@ RUN apt-get update && \
     apt-get autoremove -y && \
     apt-get clean && \
     rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/*
-
-RUN echo "I am running on $BUILDPLATFORM, building for $TARGETPLATFORM" > /log
 
 # KUBECTL
 RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/${ARCH}/kubectl" && \
