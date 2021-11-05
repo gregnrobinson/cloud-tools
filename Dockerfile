@@ -24,7 +24,7 @@ ARG ARCH="amd64"
 
 WORKDIR /root
 
-RUN echo "I am running on $BUILDPLATFORM, building for $TARGETPLATFORM" > /log
+RUN echo "I am running on $BUILDPLATFORM, building for $TARGETPLATFORM"
 
 # DEPENDENCIES
 RUN apt-get update && \
