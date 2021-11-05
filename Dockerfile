@@ -7,13 +7,14 @@
 FROM --platform=$BUILDPLATFORM golang:alpine AS build
 ARG TARGETPLATFORM
 ARG BUILDPLATFORM
-RUN echo "I am running on $BUILDPLATFORM, building for $TARGETPLATFORM" > /log
+RUN echo "$TARGETPLATFORM" > /target_arch
 
 # PULL BASE 
 FROM ubuntu:latest
-COPY --from=build /log /log
+COPY --from=build /target_arch /target_arch
 
-RUN echo "I am running on $BUILDPLATFORM, building for $TARGETPLATFORM"
+RUN export ARCH=$(cat /target_arch)
+RUN echo $ARCH
 
 # PACKAGE VERSIONS
 ARG DEBIAN_FRONTEND=noninteractive
@@ -57,7 +58,7 @@ RUN apt-get update && \
     rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/*
 
 # KUBECTL
-RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/${TARGETPLATFORM##*/}/kubectl" && \
+RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/$(cat /target_arch)/kubectl" && \
     install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 
 
