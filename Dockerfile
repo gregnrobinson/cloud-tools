@@ -14,7 +14,7 @@ FROM ubuntu:latest
 COPY --from=build /target_arch /target_arch
 
 RUN export ARCH=$(cat /target_arch)
-RUN echo $ARCH
+RUN cat /target_arch
 
 # PACKAGE VERSIONS
 ARG DEBIAN_FRONTEND=noninteractive
