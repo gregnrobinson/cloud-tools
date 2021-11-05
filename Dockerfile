@@ -16,9 +16,6 @@ ARG _YQ_VERSION=4.2.0
 
 WORKDIR /root
 
-COPY ./config/profile/bashrc /root/.bashrc
-COPY ./config/kubeconfigs /root/.kube/
-
 # DEPENDENCIES
 RUN apt-get update && \
     apt-get install -y \
