@@ -7,7 +7,7 @@
 FROM --platform=$BUILDPLATFORM golang:alpine AS build
 ARG TARGETPLATFORM
 ARG BUILDPLATFORM
-RUN echo "$TARGETPLATFORM" > /target_arch
+RUN echo "${TARGETPLATFORM##*/}" > /target_arch
 
 # PULL BASE 
 FROM ubuntu:latest
