@@ -115,6 +115,9 @@ RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.c
 RUN pip3 install awscli
 
 # AZURE CLI
-RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
+RUN apt update &&\
+    apt install --yes libsodium-dev &&\
+    SODIUM_INSTALL=system pip install pynacl &&\
+    pip install azure-cli
     
 ENTRYPOINT [ "/bin/bash", "-l", "-c" ]
