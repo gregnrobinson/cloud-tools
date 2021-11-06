@@ -32,10 +32,6 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
-    - name: Pull
-      working-directory: ${{ env.WORKDIR }}
-      run: >
-        docker pull ${{ env.IMAGE }}:${{ env.GITHUB_SHA_SHORT }}
     - name: Build
       working-directory: ${{ env.WORKDIR }}
       run: >
