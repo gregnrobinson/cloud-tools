@@ -14,6 +14,8 @@ FROM ubuntu:latest
 COPY --from=build /target_arch /target_arch
 COPY ./config/profile/bashrc /root/.bashrc
 
+RUN echo $(head -1 /etc/hosts | cut -f1) cloud-tools >> /etc/hosts
+
 # PACKAGE VERSIONS
 ARG DEBIAN_FRONTEND=noninteractive
 ARG _VAULT_VERSION=1.8.5
@@ -113,6 +115,9 @@ RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.c
 
 # AWS CLI
 RUN pip3 install awscli
+
+# ANSIBLE CORE
+RUN python -m pip install --user ansible
 
 # AZURE CLI
 RUN apt update &&\
