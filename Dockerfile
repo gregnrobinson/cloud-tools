@@ -49,6 +49,7 @@ RUN apt-get update && \
       tcpdump \
       openresolv \
       openssh-server \
+      figlet \
       sshfs \
       iputils-ping && \
     apt-get autoremove -y && \
