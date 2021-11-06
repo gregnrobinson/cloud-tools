@@ -5,7 +5,7 @@
 ![Build](https://github.com//gregnrobinson/cloud-tools/actions/workflows/build.yaml/badge.svg) ![Docker Pulls](https://img.shields.io/docker/pulls/gregnrobinson/cloud-tools)
 
 - Pull image: `docker pull gregnrobinson/cloud-tools:latest`
-- Run image: `docker run -it gregnrobinson/cloud-tools:latest bash`
+- Run image:  `docker run -it gregnrobinson/cloud-tools:latest bash`
 
 ## Installed Packages
 
