@@ -59,3 +59,19 @@ jobs:
         -t ${{ env.IMAGE }}:latest
         --output=type=image,push=true
         ${GITHUB_WORKSPACE}/${{ env.WORKDIR }}
+    - name:  'Automated Version Bump'
+      uses:  'phips28/gh-action-bump-version@master'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      with:
+        tag-prefix: 'v'
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Inject slug/short variables
+        uses: rlespinasse/github-slug-action@v3.x
+      - uses: actions/checkout@v2
+      - uses: release-drafter/release-drafter@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
