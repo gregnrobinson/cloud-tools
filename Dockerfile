@@ -54,11 +54,15 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/*
 
+
+RUN apt-get -s dist-upgrade | grep "^Inst" | \
+    grep -i securi | awk -F " " {'print $2'} | \ 
+    xargs apt-get install
+
 # KUBECTL
 RUN ARCH=$(cat /target_arch) && \
     curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/${ARCH}/kubectl" && \
     install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
-
 
 # PYTHON VIRTUAL ENVIRONMENT
 RUN pip3 install virtualenv
