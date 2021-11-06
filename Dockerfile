@@ -115,6 +115,6 @@ RUN wget https://releases.hashicorp.com/packer/${_PACKER_VERSION}/packer_${_PACK
 #    apt-get update -y && \
 #    apt-get install -y azure-cli
 #
-## BASH
-#ENTRYPOINT ["/bin/bash"]
+# BASH
+ENTRYPOINT ["/bin/bash"]
 #
