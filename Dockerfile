@@ -117,7 +117,7 @@ RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.c
 RUN pip3 install awscli
 
 # ANSIBLE CORE
-RUN python -m pip install --user ansible
+RUN python3 -m pip install --user ansible
 
 # AZURE CLI
 RUN apt update &&\
