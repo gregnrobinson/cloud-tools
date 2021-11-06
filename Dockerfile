@@ -114,12 +114,6 @@ RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.c
 RUN pip3 install awscli
 
 # AZURE CLI
-RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash && \
-    apt-get install -y ca-certificates curl apt-transport-https lsb-release gnupg && \
-    curl -sL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | tee /etc/apt/trusted.gpg.d/microsoft.gpg > /dev/null && \
-    AZ_REPO=$(lsb_release -cs) && \
-    echo "deb [arch=$(cat /target_arch)] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" | tee /etc/apt/sources.list.d/azure-cli.list && \
-    apt-get update -y && \
-    apt-get install -y azure-cli
+RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
     
 ENTRYPOINT ["/bin/bash"]
