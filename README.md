@@ -1,5 +1,7 @@
 # Overview
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/36a1736d181e48918b5f95f223ed510e)](https://app.codacy.com/gh/gregnrobinson/cloud-tools?utm_source=github.com&utm_medium=referral&utm_content=gregnrobinson/cloud-tools&utm_campaign=Badge_Grade_Settings)
+
 *cloud-tools* is an all in one cloud development container. Aimed at saving time when it comes to installing the large breadth of cloud SDKs and other tools. Packages with static version numbers are default values and can be replaced during the build using `--build-arg`.
 
 ![Build](https://github.com//gregnrobinson/cloud-tools/actions/workflows/build.yaml/badge.svg) ![Docker Pulls](https://img.shields.io/docker/pulls/gregnrobinson/cloud-tools)
