@@ -34,7 +34,7 @@ jobs:
       working-directory: ${{ env.WORKDIR }}
       run: >
         docker buildx build
-        --platform=linux/amd64,linux/arm64
+        --platform=linux/amd64
         -t ${{ env.IMAGE }}:${{ env.GITHUB_SHA_SHORT }}
         --output=type=image,push=true
         ${GITHUB_WORKSPACE}/${{ env.WORKDIR }}
@@ -52,15 +52,19 @@ jobs:
         publish: true
       env:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-    - name: Set Release
-      run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+    - id: keydb
+      uses: pozetroninc/github-action-get-latest-release@master
+      with:
+        owner: gregnrobinson
+        repo: cloud-tools
+        excludes: prerelease, draft
     - name: Tag Push Latest
       working-directory: ${{ env.WORKDIR }}
       run: >
         docker buildx build
-        --platform=linux/amd64,linux/arm64
+        --platform=linux/amd64
         -t ${{ env.IMAGE }}:${{ env.GITHUB_SHA_SHORT }}
-        -t ${{ env.IMAGE }}:${{ env.RELEASE_VERSION }}
+        -t ${{ env.IMAGE }}:${{ steps.keydb.outputs.release }}
         -t ${{ env.IMAGE }}:latest
         --output=type=image,push=true
         ${GITHUB_WORKSPACE}/${{ env.WORKDIR }}
