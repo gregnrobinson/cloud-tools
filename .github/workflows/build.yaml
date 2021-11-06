@@ -53,6 +53,6 @@ jobs:
       working-directory: ${{ env.WORKDIR }}
       run: >
         docker pull ${{ env.IMAGE }}:${{ env.GITHUB_SHA_SHORT }}
-        docker tag \
+        docker tag
           ${{ env.IMAGE }}:latest
           ${{ env.IMAGE }}:${{ env.TAG }}
