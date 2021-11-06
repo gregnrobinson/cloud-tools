@@ -1,18 +1,26 @@
 
 # ----------------------------------------
-# AMD64 Cloud Development Container Build
+#  MultiArch Container Build
 # ----------------------------------------
 
-# PULL BASE IMAGE
-FROM amd64/ubuntu:20.04
+# PULL BUILD IMAGE
+FROM --platform=$BUILDPLATFORM golang:alpine AS build
+ARG TARGETPLATFORM
+ARG BUILDPLATFORM
+RUN echo "${TARGETPLATFORM##*/}" > /target_arch
+
+# PULL BASE 
+FROM ubuntu:latest
+COPY --from=build /target_arch /target_arch
 
 # PACKAGE VERSIONS
 ARG DEBIAN_FRONTEND=noninteractive
-ARG _VAULT_VERSION=1.7.1
-ARG _CONSUL_VERSION=1.9.5
-ARG _PACKER_VERSION=1.7.2
-ARG _GO_VERSION=1.16.4
-ARG _YQ_VERSION=4.2.0
+ARG _VAULT_VERSION=1.8.5
+ARG _CONSUL_VERSION=1.10.3
+ARG _PACKER_VERSION=1.7.8
+ARG _GO_VERSION=1.17.3
+ARG _YQ_VERSION=4.14.1
+ARG _TF_SWITCH_VERSION=0.12.1168
 
 WORKDIR /root
 
@@ -46,43 +54,54 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/*
 
+RUN apt-get -s dist-upgrade | grep "^Inst" | \
+    grep -i securi | awk -F " " {'print $2'} | \ 
+    xargs apt-get install
+
+RUN apt update &&\
+    apt upgrade -y
+
 # KUBECTL
-RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" && \
+RUN ARCH=$(cat /target_arch) && \
+    curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/${ARCH}/kubectl" && \
     install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 
 # PYTHON VIRTUAL ENVIRONMENT
 RUN pip3 install virtualenv
 
 # YQ
-RUN wget https://github.com/mikefarah/yq/releases/download/v${_YQ_VERSION}/yq_linux_amd64 -O /usr/bin/yq &&\
+RUN wget https://github.com/mikefarah/yq/releases/download/v${_YQ_VERSION}/yq_linux_$(cat /target_arch) -O /usr/bin/yq &&\
     chmod +x /usr/bin/yq
 
 # VAULT
-RUN wget https://releases.hashicorp.com/vault/${_VAULT_VERSION}/vault_${_VAULT_VERSION}_linux_amd64.zip && \
-    unzip vault_${_VAULT_VERSION}_linux_amd64.zip && \
+RUN wget https://releases.hashicorp.com/vault/${_VAULT_VERSION}/vault_${_VAULT_VERSION}_linux_$(cat /target_arch).zip && \
+    unzip vault_${_VAULT_VERSION}_linux_$(cat /target_arch).zip && \
     mv vault /usr/local/bin && \
-    rm vault_${_VAULT_VERSION}_linux_amd64.zip
+    rm vault_${_VAULT_VERSION}_linux_$(cat /target_arch).zip
 
 # TF_SWITCH
-RUN curl -L https://raw.githubusercontent.com/warrensbox/terraform-switcher/release/install.sh | bash
+RUN wget https://github.com/warrensbox/terraform-switcher/releases/download/${_TF_SWITCH_VERSION}/terraform-switcher_${_TF_SWITCH_VERSION}_linux_$(cat /target_arch).tar.gz && \
+    tar -xvzf terraform-switcher_${_TF_SWITCH_VERSION}_linux_$(cat /target_arch).tar.gz && \
+    mv tfswitch /usr/local/bin && \
+    rm terraform-switcher_${_TF_SWITCH_VERSION}_linux_$(cat /target_arch).tar.gz
 
 # CONSUL
-RUN wget https://releases.hashicorp.com/consul/${_CONSUL_VERSION}/consul_${_CONSUL_VERSION}_linux_amd64.zip && \
-    unzip consul_${_CONSUL_VERSION}_linux_amd64.zip && \
+RUN wget https://releases.hashicorp.com/consul/${_CONSUL_VERSION}/consul_${_CONSUL_VERSION}_linux_$(cat /target_arch).zip && \
+    unzip consul_${_CONSUL_VERSION}_linux_$(cat /target_arch).zip && \
     mv consul /usr/local/bin && \
-    rm consul_${_CONSUL_VERSION}_linux_amd64.zip
+    rm consul_${_CONSUL_VERSION}_linux_$(cat /target_arch).zip
 
 # PACKER
-RUN wget https://releases.hashicorp.com/packer/${_PACKER_VERSION}/packer_${_PACKER_VERSION}_linux_amd64.zip && \
-    unzip packer_${_PACKER_VERSION}_linux_amd64.zip && \
+RUN wget https://releases.hashicorp.com/packer/${_PACKER_VERSION}/packer_${_PACKER_VERSION}_linux_$(cat /target_arch).zip && \
+    unzip packer_${_PACKER_VERSION}_linux_$(cat /target_arch).zip && \
     mv packer /usr/local/bin && \
-    rm packer_${_PACKER_VERSION}_linux_amd64.zip
+    rm packer_${_PACKER_VERSION}_linux_$(cat /target_arch).zip
 
 # GOLANG
-RUN wget https://golang.org/dl/go${_GO_VERSION}.linux-amd64.tar.gz && \
-    tar -xvzf go${_GO_VERSION}.linux-amd64.tar.gz && \
+RUN wget https://golang.org/dl/go${_GO_VERSION}.linux-$(cat /target_arch).tar.gz && \
+    tar -xvzf go${_GO_VERSION}.linux-$(cat /target_arch).tar.gz && \
     mv go /usr/local/bin && \
-    rm go${_GO_VERSION}.linux-amd64.tar.gz
+    rm go${_GO_VERSION}.linux-$(cat /target_arch).tar.gz
 
 # GCP CLI
 RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && \
@@ -98,9 +117,8 @@ RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash && \
     apt-get install -y ca-certificates curl apt-transport-https lsb-release gnupg && \
     curl -sL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | tee /etc/apt/trusted.gpg.d/microsoft.gpg > /dev/null && \
     AZ_REPO=$(lsb_release -cs) && \
-    echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" | tee /etc/apt/sources.list.d/azure-cli.list && \
+    echo "deb [arch=$(cat /target_arch)] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" | tee /etc/apt/sources.list.d/azure-cli.list && \
     apt-get update -y && \
     apt-get install -y azure-cli
-
-# BASH
+    
 ENTRYPOINT ["/bin/bash"]
