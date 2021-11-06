@@ -17,7 +17,6 @@ on:
   workflow_dispatch:
 
 jobs:
-  timeout-minutes: 30
   build:
     runs-on: ubuntu-latest
     steps:
@@ -50,7 +49,7 @@ jobs:
         ignore-unfixed: true
         vuln-type: os,library
         severity: CRITICAL
-    - name: Push / Tag Latest
+    - name: Push  Tag Latest
       working-directory: ${{ env.WORKDIR }}
       run: >
         docker buildx build
