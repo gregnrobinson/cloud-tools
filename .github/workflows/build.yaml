@@ -51,9 +51,8 @@ jobs:
         severity: CRITICAL
     - name: Push / Tag Latest
       working-directory: ${{ env.WORKDIR }}
-      run: >
-        AMD64=$(docker manifest inspect ${{ env.IMAGE }}:${{ env.TAG }} | jq '.manifests[0].digest')
-        ARM64=$(docker manifest inspect ${{ env.IMAGE }}:${{ env.TAG }} | jq '.manifests[1].digest')
-        
-        docker manifest push docker.io/gregnrobinson/cloud-tools:${{ env.TAG }}@${ARM64}
-        docker manifest push docker.io/gregnrobinson/cloud-tools:${{ env.TAG }}@${AMD64}
+      run: |
+        AMD64=$(docker manifest inspect ${{ env.IMAGE }}:${{ env.TAG }} | jq '.manifests[0].digest') &&\
+        ARM64=$(docker manifest inspect ${{ env.IMAGE }}:${{ env.TAG }} | jq '.manifests[1].digest') &&\
+        docker manifest push docker.io/${{ env.IMAGE }}:${{ env.TAG }}@${AMD64} &&\
+        docker manifest push docker.io/${{ env.IMAGE }}:${{ env.TAG }}@${ARM64}
