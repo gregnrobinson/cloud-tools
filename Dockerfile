@@ -10,7 +10,7 @@ ARG BUILDPLATFORM
 RUN echo "${TARGETPLATFORM##*/}" > /target_arch
 
 # PULL BASE 
-FROM ubuntu:latest
+FROM ubuntu:20.04
 COPY --from=build /target_arch /target_arch
 COPY ./config/profile/bashrc /root/.bashrc
 
