@@ -52,7 +52,7 @@ jobs:
     - name: Push / Tag Latest
       working-directory: ${{ env.WORKDIR }}
       run: |
-        AMD64=$(docker manifest inspect ${{ env.IMAGE }}:${{ env.TAG }} | jq '.manifests[0].digest') &&\
-        ARM64=$(docker manifest inspect ${{ env.IMAGE }}:${{ env.TAG }} | jq '.manifests[1].digest') &&\
+        AMD64=$(docker manifest inspect docker.io/${{ env.IMAGE }}:${{ env.GITHUB_SHA_SHORT }} | jq '.manifests[0].digest') &&\
+        ARM64=$(docker manifest inspect docker.io/${{ env.IMAGE }}:${{ env.GITHUB_SHA_SHORT }} | jq '.manifests[1].digest') &&\
         docker manifest push docker.io/${{ env.IMAGE }}:${{ env.TAG }}@${AMD64} &&\
         docker manifest push docker.io/${{ env.IMAGE }}:${{ env.TAG }}@${ARM64}
