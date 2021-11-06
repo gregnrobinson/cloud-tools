@@ -15,11 +15,11 @@ COPY --from=build /target_arch /target_arch
 
 # PACKAGE VERSIONS
 ARG DEBIAN_FRONTEND=noninteractive
-ARG _VAULT_VERSION=1.7.1
-ARG _CONSUL_VERSION=1.9.5
-ARG _PACKER_VERSION=1.7.2
-ARG _GO_VERSION=1.16.4
-ARG _YQ_VERSION=4.2.0
+ARG _VAULT_VERSION=1.8.5
+ARG _CONSUL_VERSION=1.10.3
+ARG _PACKER_VERSION=1.7.8
+ARG _GO_VERSION=1.17.3
+ARG _YQ_VERSION=4.14.1
 ARG _TF_SWITCH_VERSION=0.12.1168
 
 WORKDIR /root
@@ -53,11 +53,6 @@ RUN apt-get update && \
     apt-get autoremove -y && \
     apt-get clean && \
     rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/*
-
-
-RUN apt-get -s dist-upgrade | grep "^Inst" | \
-    grep -i securi | awk -F " " {'print $2'} | \ 
-    xargs apt-get install
 
 # KUBECTL
 RUN ARCH=$(cat /target_arch) && \
