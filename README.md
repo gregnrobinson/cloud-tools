@@ -1,6 +1,6 @@
 # Overview
 
-cloud-tools is an all in one cloud development container. Aimed at saving time when it comes to installing the large breadth of cloud SDKs and other tools. There are also CloudBuild files in the source repo for building this image automatically in GCP or locally if you want to manage the image yourself. Packages with static version numbers are default values and can be replaced during the build using `--build-arg`.
+cloud-tools is an all in one cloud development container. Aimed at saving time when it comes to installing the large breadth of cloud SDKs and other tools. Packages with static version numbers are default values and can be replaced during the build using `--build-arg`.
 
 ![Build](https://github.com//gregnrobinson/cloud-tools/actions/workflows/build.yaml/badge.svg) ![Docker Pulls](https://img.shields.io/docker/pulls/gregnrobinson/cloud-tools)
 
