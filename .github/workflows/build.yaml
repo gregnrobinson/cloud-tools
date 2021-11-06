@@ -49,9 +49,7 @@ jobs:
         ignore-unfixed: true
         vuln-type: os,library
         severity: CRITICAL,HIGH
-    - name: Push
+    - name: Pull
       working-directory: ${{ env.WORKDIR }}
       run: >
         docker pull ${{ env.IMAGE }}:${{ env.GITHUB_SHA_SHORT }}
-        docker tag ${{ env.IMAGE }}:${{ env.GITHUB_SHA_SHORT }} ${{ env.IMAGE }}:latest
-        docker tag ${{ env.IMAGE }}:${{ env.GITHUB_SHA_SHORT }} ${{ env.IMAGE }}:${{ env.TAG }}
