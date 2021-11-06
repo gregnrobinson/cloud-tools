@@ -3,14 +3,12 @@ name: ci-cloud-tools
 env:
   NAME: cloud-tools
   IMAGE: gregnrobinson/cloud-tools
-  TAG: v1.1.0
   WORKDIR: .
 
 on:
   push:
     branches:
     - main
-    - feature/docker-compose-build
   workflow_dispatch:
 
 jobs:
