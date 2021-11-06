@@ -1,4 +1,4 @@
-name: Release
+name: release-drafter
 
 on:
   push:
@@ -38,6 +38,7 @@ jobs:
         with:
           push: true
           tags: >
+
             gregnrobinson/cloud-tools:latest,
             gregnrobinson/cloud-tools:${{ steps.tag_version.outputs.new_tag }},
             gregnrobinson/cloud-tools:${{ env.GITHUB_SHA_SHORT }}
