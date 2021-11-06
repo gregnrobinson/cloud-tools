@@ -14,8 +14,6 @@ FROM ubuntu:latest
 COPY --from=build /target_arch /target_arch
 COPY ./config/profile/bashrc /root/.bashrc
 
-RUN echo $(head -1 /etc/hosts | cut -f1) cloud-tools >> /etc/hosts
-
 # PACKAGE VERSIONS
 ARG DEBIAN_FRONTEND=noninteractive
 ARG _VAULT_VERSION=1.8.5
