@@ -27,7 +27,7 @@ WORKDIR /root
 
 # DEPENDENCIES
 RUN apt-get update && \
-    apt-get install -y \
+    apt-get install --no-install-recommends -y \
       git \
       libssl-dev \
       libmysqlclient-dev \
@@ -59,9 +59,6 @@ RUN apt-get update && \
 RUN apt-get -s dist-upgrade | grep "^Inst" | \
     grep -i securi | awk -F " " {'print $2'} | \ 
     xargs apt-get install
-
-RUN apt update &&\
-    apt upgrade -y
 
 # KUBECTL / HELM
 RUN ARCH=$(cat /target_arch) && \
