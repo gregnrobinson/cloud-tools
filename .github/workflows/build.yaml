@@ -17,6 +17,7 @@ on:
   workflow_dispatch:
 
 jobs:
+  timeout-minutes: 30
   build:
     runs-on: ubuntu-latest
     steps:
@@ -38,7 +39,7 @@ jobs:
         docker buildx build
         --platform=linux/amd64,linux/arm64
         -t ${{ env.IMAGE }}:${{ env.GITHUB_SHA_SHORT }}
-        --output=type=image,push=true
+        --output=type=docker,push=false
         ${GITHUB_WORKSPACE}/${{ env.WORKDIR }}
     - name: Trivy Vulnerability Scan
       uses: aquasecurity/trivy-action@master
@@ -49,10 +50,12 @@ jobs:
         ignore-unfixed: true
         vuln-type: os,library
         severity: CRITICAL
-    - name: Tag Latest
+    - name: Push / Tag Latest
       working-directory: ${{ env.WORKDIR }}
-      run: |
-        docker pull ${{ env.IMAGE }}:${{ env.GITHUB_SHA_SHORT }} &&\
-        docker image tag ${{ env.IMAGE }}:${{ env.GITHUB_SHA_SHORT }} ${{ env.IMAGE }}:${{ env.TAG }} &&\
-        docker image tag ${{ env.IMAGE }}:${{ env.GITHUB_SHA_SHORT }} ${{ env.IMAGE }}:latest &&\
-        docker image push --all-tags ${{ env.IMAGE }}
+      run: >
+        docker buildx build
+        --platform=linux/amd64,linux/arm64
+        -t ${{ env.IMAGE }}:${{ env.TAG }}
+        -t ${{ env.IMAGE }}:latest
+        --push
+        ${GITHUB_WORKSPACE}/${{ env.WORKDIR }}
