@@ -57,7 +57,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
     - name: Get Latest Tag
-      id: new_tag
+      id: new_tag_2
       run: |
         git describe --tags $(git rev-list --tags --max-count=1) >> $GITHUB_ENV
     - name: Tag Push Latest
