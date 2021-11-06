@@ -38,7 +38,7 @@ jobs:
         docker buildx build
         --platform=linux/amd64,linux/arm64
         -t ${{ env.IMAGE }}:${{ env.GITHUB_SHA_SHORT }}
-        --output=type=image,push=true
+        --output=type=image,push=false
         ${GITHUB_WORKSPACE}/${{ env.WORKDIR }}
     - name: Trivy Vulnerability Scan
       uses: aquasecurity/trivy-action@master
