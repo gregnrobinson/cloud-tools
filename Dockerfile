@@ -70,35 +70,35 @@ RUN ARCH=$(cat /target_arch) && \
 RUN pip3 install virtualenv
 
 # YQ
-RUN wget https://github.com/mikefarah/yq/releases/download/v${_YQ_VERSION}/yq_linux_$(cat /target_arch) -O /usr/bin/yq &&\
+RUN wget "https://github.com/mikefarah/yq/releases/download/v${_YQ_VERSION}/yq_linux_$(cat /target_arch)" -O /usr/bin/yq &&\
     chmod +x /usr/bin/yq
 
 # VAULT
-RUN wget https://releases.hashicorp.com/vault/${_VAULT_VERSION}/vault_${_VAULT_VERSION}_linux_$(cat /target_arch).zip && \
+RUN wget "https://releases.hashicorp.com/vault/${_VAULT_VERSION}/vault_${_VAULT_VERSION}_linux_$(cat /target_arch).zip" && \
     unzip vault_${_VAULT_VERSION}_linux_$(cat /target_arch).zip && \
     mv vault /usr/local/bin && \
     rm vault_${_VAULT_VERSION}_linux_$(cat /target_arch).zip
 
 # TF_SWITCH
-RUN wget https://github.com/warrensbox/terraform-switcher/releases/download/${_TF_SWITCH_VERSION}/terraform-switcher_${_TF_SWITCH_VERSION}_linux_$(cat /target_arch).tar.gz && \
+RUN wget "https://github.com/warrensbox/terraform-switcher/releases/download/${_TF_SWITCH_VERSION}/terraform-switcher_${_TF_SWITCH_VERSION}_linux_$(cat /target_arch).tar.gz" && \
     tar -xvzf terraform-switcher_${_TF_SWITCH_VERSION}_linux_$(cat /target_arch).tar.gz && \
     mv tfswitch /usr/local/bin && \
     rm terraform-switcher_${_TF_SWITCH_VERSION}_linux_$(cat /target_arch).tar.gz
 
 # CONSUL
-RUN wget https://releases.hashicorp.com/consul/${_CONSUL_VERSION}/consul_${_CONSUL_VERSION}_linux_$(cat /target_arch).zip && \
+RUN wget "https://releases.hashicorp.com/consul/${_CONSUL_VERSION}/consul_${_CONSUL_VERSION}_linux_$(cat /target_arch).zip" && \
     unzip consul_${_CONSUL_VERSION}_linux_$(cat /target_arch).zip && \
     mv consul /usr/local/bin && \
     rm consul_${_CONSUL_VERSION}_linux_$(cat /target_arch).zip
 
 # PACKER
-RUN wget https://releases.hashicorp.com/packer/${_PACKER_VERSION}/packer_${_PACKER_VERSION}_linux_$(cat /target_arch).zip && \
+RUN wget "https://releases.hashicorp.com/packer/${_PACKER_VERSION}/packer_${_PACKER_VERSION}_linux_$(cat /target_arch).zip" && \
     unzip packer_${_PACKER_VERSION}_linux_$(cat /target_arch).zip && \
     mv packer /usr/local/bin && \
     rm packer_${_PACKER_VERSION}_linux_$(cat /target_arch).zip
 
 # GOLANG
-RUN wget https://golang.org/dl/go${_GO_VERSION}.linux-$(cat /target_arch).tar.gz && \
+RUN wget "https://golang.org/dl/go${_GO_VERSION}.linux-$(cat /target_arch).tar.gz" && \
     tar -xvzf go${_GO_VERSION}.linux-$(cat /target_arch).tar.gz && \
     mv go /usr/local/bin && \
     rm go${_GO_VERSION}.linux-$(cat /target_arch).tar.gz
