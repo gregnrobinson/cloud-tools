@@ -17,7 +17,6 @@ on:
   workflow_dispatch:
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
     steps:
@@ -37,7 +36,7 @@ jobs:
       working-directory: ${{ env.WORKDIR }}
       run: >
         docker buildx build
-        --platform=linux/amd64,linux/arm64
+        --platform=linux/amd64
         -t ${{ env.IMAGE }}:${{ env.GITHUB_SHA_SHORT }}
         --output=type=image,push=false
         ${GITHUB_WORKSPACE}/${{ env.WORKDIR }}
@@ -54,7 +53,7 @@ jobs:
       working-directory: ${{ env.WORKDIR }}
       run: >
         docker buildx build
-        --platform=linux/amd64,linux/arm64
+        --platform=linux/amd64
         -t ${{ env.IMAGE }}:${{ env.GITHUB_SHA_SHORT }}
         -t ${{ env.IMAGE }}:${{ env.TAG }}
         -t ${{ env.IMAGE }}:latest
