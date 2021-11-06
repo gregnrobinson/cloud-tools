@@ -49,12 +49,11 @@ jobs:
         ignore-unfixed: true
         vuln-type: os,library
         severity: CRITICAL,HIGH
-    - name: Pull
-      working-directory: ${{ env.WORKDIR }}
-      run: >
-        docker pull ${{ env.IMAGE }}:${{ env.GITHUB_SHA_SHORT }}
+    #- name: Pull
+    #  working-directory: ${{ env.WORKDIR }}
+    #  run: >
+    #    docker pull ${{ env.IMAGE }}:${{ env.GITHUB_SHA_SHORT }}
     - name: Tag Latest
       working-directory: ${{ env.WORKDIR }}
       run: >
-        docker tag ${{ env.IMAGE }}:${{ env.GITHUB_SHA_SHORT }} ${{ env.IMAGE }}:${{ env.TAG }} &&\
-        docker tag ${{ env.IMAGE }}:${{ env.GITHUB_SHA_SHORT }} ${{ env.IMAGE }}:latest
+        docker tag ${{ env.IMAGE }}:${{ env.GITHUB_SHA_SHORT }} ${{ env.IMAGE }}:${{ env.TAG }}
