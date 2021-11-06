@@ -63,10 +63,11 @@ RUN apt-get -s dist-upgrade | grep "^Inst" | \
 RUN apt update &&\
     apt upgrade -y
 
-# KUBECTL
+# KUBECTL / HELM
 RUN ARCH=$(cat /target_arch) && \
     curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/${ARCH}/kubectl" && \
-    install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+    install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl &&\
+    curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 
 # PYTHON VIRTUAL ENVIRONMENT
 RUN pip3 install virtualenv
@@ -113,11 +114,6 @@ RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.c
 
 # AWS CLI
 RUN pip3 install awscli
-
-# ANSIBLE CORE
-RUN python3 -m pip install --user ansible
-
-RUN curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 
 # AZURE CLI
 RUN apt update &&\
