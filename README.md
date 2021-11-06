@@ -5,13 +5,14 @@ cloud-tools is an all in one cloud development container. Aimed at saving time w
 ![Build](https://github.com//gregnrobinson/cloud-tools/actions/workflows/build.yaml/badge.svg) [![Build / Release](https://github.com/gregnrobinson/cloud-tools/actions/workflows/release.yaml/badge.svg?branch=main)](https://github.com/gregnrobinson/cloud-tools/actions/workflows/release.yaml) ![Docker Pulls](https://img.shields.io/docker/pulls/gregnrobinson/cloud-tools)
 
 - Pull image: `docker pull gregnrobinson/cloud-tools:latest`
-- Run image: `docker run -i -t -h cloud-tools gregnrobinson/cloud-tools:latest`
+- Run image: `docker run -ith cloud-tools gregnrobinson/cloud-tools:latest`
 
 ## Installed Packages
 
 - AWS SDK : latest
 - Azure SDK : latest
 - GCP SDK : latest
+- kubectl : latest
 - Vault : 1.7.1
 - Packer : 1.9.5
 - Consul : 1.9.5
