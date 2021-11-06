@@ -5,7 +5,7 @@ cloud-tools is an all in one cloud development container. Aimed at saving time w
 ![Build](https://github.com//gregnrobinson/cloud-tools/actions/workflows/build.yaml/badge.svg) ![Docker Pulls](https://img.shields.io/docker/pulls/gregnrobinson/cloud-tools)
 
 - Pull image: `docker pull gregnrobinson/cloud-tools:latest`
-- Run image: `docker run -ith cloud-tools gregnrobinson/cloud-tools:latest`
+- Run image: `docker run -it cloud-tools gregnrobinson/cloud-tools:latest bash`
 
 ## Installed Packages
 
