@@ -4,8 +4,8 @@
 
 ![Build](https://github.com//gregnrobinson/cloud-tools/actions/workflows/build.yaml/badge.svg) ![Docker Pulls](https://img.shields.io/docker/pulls/gregnrobinson/cloud-tools) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/825037ee15d748e19a3264317690ecbb)](https://www.codacy.com/gh/gregnrobinson/cloud-tools/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=gregnrobinson/cloud-tools&amp;utm_campaign=Badge_Grade)
 
-- Pull image: `docker pull gregnrobinson/cloud-tools:latest`
-- Run image: `docker run -it gregnrobinson/cloud-tools:latest bash`
+  - Pull image: `docker pull gregnrobinson/cloud-tools:latest`
+  - Run image: `docker run -it gregnrobinson/cloud-tools:latest bash`
 
 ## Installed Packages
 
