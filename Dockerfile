@@ -117,6 +117,8 @@ RUN pip3 install awscli
 # ANSIBLE CORE
 RUN python3 -m pip install --user ansible
 
+RUN curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+
 # AZURE CLI
 RUN apt update &&\
     apt install --yes libsodium-dev &&\
