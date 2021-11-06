@@ -56,10 +56,6 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/*
 
-RUN apt-get -s dist-upgrade | grep "^Inst" | \
-    grep -i securi | awk -F " " {'print $2'} | \ 
-    xargs apt-get install
-
 # KUBECTL / HELM
 RUN ARCH=$(cat /target_arch) && \
     curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/${ARCH}/kubectl" && \
