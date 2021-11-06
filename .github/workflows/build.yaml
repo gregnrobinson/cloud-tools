@@ -36,7 +36,7 @@ jobs:
       working-directory: ${{ env.WORKDIR }}
       run: >
         docker buildx build
-        --platform=linux/amd64
+        --platform=linux/amd64,linux/arm64
         -t ${{ env.IMAGE }}:${{ env.GITHUB_SHA_SHORT }}
         --output=type=image,push=true
         ${GITHUB_WORKSPACE}/${{ env.WORKDIR }}
@@ -53,7 +53,7 @@ jobs:
       working-directory: ${{ env.WORKDIR }}
       run: >
         docker buildx build
-        --platform=linux/amd64
+        --platform=linux/amd64,linux/arm64
         -t ${{ env.IMAGE }}:${{ env.GITHUB_SHA_SHORT }}
         -t ${{ env.IMAGE }}:${{ env.TAG }}
         -t ${{ env.IMAGE }}:latest
