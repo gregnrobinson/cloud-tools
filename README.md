@@ -1,6 +1,6 @@
 # Overview
 
-cloud-tools is an all in one cloud development container. Aimed at saving time when it comes to installing the large breadth of cloud SDKs and other tools. Packages with static version numbers are default values and can be replaced during the build using `--build-arg`.
+*cloud-tools* is an all in one cloud development container. Aimed at saving time when it comes to installing the large breadth of cloud SDKs and other tools. Packages with static version numbers are default values and can be replaced during the build using `--build-arg`.
 
 ![Build](https://github.com//gregnrobinson/cloud-tools/actions/workflows/build.yaml/badge.svg) ![Docker Pulls](https://img.shields.io/docker/pulls/gregnrobinson/cloud-tools)
 
@@ -13,6 +13,8 @@ cloud-tools is an all in one cloud development container. Aimed at saving time w
 - Azure SDK : latest
 - GCP SDK : latest
 - kubectl : latest
+- Helm : latest
+- Ansible : latest
 - Vault : 1.7.1
 - Packer : 1.9.5
 - Consul : 1.9.5
