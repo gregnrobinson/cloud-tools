@@ -116,4 +116,4 @@ RUN pip3 install awscli
 # AZURE CLI
 RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
     
-ENTRYPOINT ["/bin/bash"]
+ENTRYPOINT [ "/bin/bash", "-l", "-c" ]
