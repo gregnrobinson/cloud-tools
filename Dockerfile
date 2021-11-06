@@ -12,6 +12,7 @@ RUN echo "${TARGETPLATFORM##*/}" > /target_arch
 # PULL BASE 
 FROM ubuntu:latest
 COPY --from=build /target_arch /target_arch
+COPY ./config/profile/bashrc /root/.bashrc
 
 # PACKAGE VERSIONS
 ARG DEBIAN_FRONTEND=noninteractive
