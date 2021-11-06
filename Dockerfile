@@ -103,7 +103,9 @@ RUN wget "https://golang.org/dl/go${_GO_VERSION}.linux-$(cat /target_arch).tar.g
 RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && \
     curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key --keyring /usr/share/keyrings/cloud.google.gpg  add - && \
     apt-get update -y && \
-    apt-get install google-cloud-sdk -y --no-install-recommends 
+    apt-get install google-cloud-sdk -y --no-install-recommends &&\  
+    apt-get clean &&\  
+    rm -rf /var/lib/apt/lists/*
 
 # AWS CLI
 RUN pip3 install awscli==1.21.12
@@ -112,6 +114,8 @@ RUN pip3 install awscli==1.21.12
 RUN apt update &&\
     apt install --yes libsodium-dev &&\
     SODIUM_INSTALL=system pip install pynacl==1.4.0 &&\
-    pip install azure-cli==2.30.0
+    pip install azure-cli==2.30.0 &&\
+    apt-get clean &&\  
+    rm -rf /var/lib/apt/lists/*
     
 ENTRYPOINT [ "/bin/bash", "-l", "-c" ]
