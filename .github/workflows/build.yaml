@@ -56,4 +56,5 @@ jobs:
     - name: Tag Latest
       working-directory: ${{ env.WORKDIR }}
       run: >
-        docker tag ${{ env.IMAGE }}:${{ env.GITHUB_SHA_SHORT }} ${{ env.IMAGE }}:${{ env.TAG }}
+        docker image tag ${{ env.IMAGE }}:${{ env.GITHUB_SHA_SHORT }} ${{ env.IMAGE }}:${{ env.TAG }} &&\
+        docker image push ${{ env.IMAGE }}:${{ env.TAG }}
