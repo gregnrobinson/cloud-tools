@@ -118,7 +118,6 @@ RUN pip3 install awscli
 RUN apt update &&\
     apt install --yes libsodium-dev &&\
     SODIUM_INSTALL=system pip install pynacl &&\
-    pip install requests &&\
     pip install azure-cli
     
 ENTRYPOINT [ "/bin/bash", "-l", "-c" ]
