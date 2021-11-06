@@ -48,7 +48,7 @@ jobs:
         exit-code: '1'
         ignore-unfixed: true
         vuln-type: os,library
-        severity: CRITICAL,HIGH
+        severity: CRITICAL
     - name: Tag Latest
       working-directory: ${{ env.WORKDIR }}
       run: |

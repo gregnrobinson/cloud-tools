@@ -54,6 +54,13 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/*
 
+RUN apt-get -s dist-upgrade | grep "^Inst" | \
+    grep -i securi | awk -F " " {'print $2'} | \ 
+    xargs apt-get install
+
+RUN apt update &&\
+    apt upgrade -y
+
 # KUBECTL
 RUN ARCH=$(cat /target_arch) && \
     curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/${ARCH}/kubectl" && \
@@ -90,30 +97,28 @@ RUN wget https://releases.hashicorp.com/packer/${_PACKER_VERSION}/packer_${_PACK
     mv packer /usr/local/bin && \
     rm packer_${_PACKER_VERSION}_linux_$(cat /target_arch).zip
 
-## GOLANG
-#RUN wget https://golang.org/dl/go${_GO_VERSION}.linux-$(cat /target_arch).tar.gz && \
-#    tar -xvzf go${_GO_VERSION}.linux-$(cat /target_arch).tar.gz && \
-#    mv go /usr/local/bin && \
-#    rm go${_GO_VERSION}.linux-$(cat /target_arch).tar.gz
-#
-## GCP CLI
-#RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && \
-#    curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key --keyring /usr/share/keyrings/cloud.google.gpg  add - && \
-#    apt-get update -y && \
-#    apt-get install google-cloud-sdk -y
-#
-## AWS CLI
-#RUN pip3 install awscli
-#
-## AZURE CLI
-#RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash && \
-#    apt-get install -y ca-certificates curl apt-transport-https lsb-release gnupg && \
-#    curl -sL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | tee /etc/apt/trusted.gpg.d/microsoft.gpg > /dev/null && \
-#    AZ_REPO=$(lsb_release -cs) && \
-#    echo "deb [arch=$(cat /target_arch)] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" | tee /etc/apt/sources.list.d/azure-cli.list && \
-#    apt-get update -y && \
-#    apt-get install -y azure-cli
-#
-# BASH
+# GOLANG
+RUN wget https://golang.org/dl/go${_GO_VERSION}.linux-$(cat /target_arch).tar.gz && \
+    tar -xvzf go${_GO_VERSION}.linux-$(cat /target_arch).tar.gz && \
+    mv go /usr/local/bin && \
+    rm go${_GO_VERSION}.linux-$(cat /target_arch).tar.gz
+
+# GCP CLI
+RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && \
+    curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key --keyring /usr/share/keyrings/cloud.google.gpg  add - && \
+    apt-get update -y && \
+    apt-get install google-cloud-sdk -y
+
+# AWS CLI
+RUN pip3 install awscli
+
+# AZURE CLI
+RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash && \
+    apt-get install -y ca-certificates curl apt-transport-https lsb-release gnupg && \
+    curl -sL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | tee /etc/apt/trusted.gpg.d/microsoft.gpg > /dev/null && \
+    AZ_REPO=$(lsb_release -cs) && \
+    echo "deb [arch=$(cat /target_arch)] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" | tee /etc/apt/sources.list.d/azure-cli.list && \
+    apt-get update -y && \
+    apt-get install -y azure-cli
+    
 ENTRYPOINT ["/bin/bash"]
-#
