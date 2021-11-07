@@ -16,6 +16,7 @@ repos:
     - id: detect-private-key
     - id: fix-byte-order-marker
     - id: pretty-format-json
+    - id: detect-aws-credentials
 
 - repo: https://github.com/asottile/setup-cfg-fmt
   rev: v1.19.0
