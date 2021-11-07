@@ -11,6 +11,8 @@ on:
     - main
     paths-ignore:
     - 'README.md'
+    - '.pre-commit-config.yaml'
+    - './github/workflows/pre-commit-checks.yaml'
   workflow_dispatch:
 
 jobs:

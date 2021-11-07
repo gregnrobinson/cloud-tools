@@ -1,0 +1,21 @@
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.0.1
+  hooks:
+    - id: check-docstring-first
+    - id: debug-statements
+    - id: name-tests-test
+    - id: check-executables-have-shebangs
+    - id: trailing-whitespace
+
+- repo: https://github.com/asottile/setup-cfg-fmt
+  rev: v1.19.0
+  hooks:
+    - id: setup-cfg-fmt
+
+# Currently crashing. see https://github.com/psf/black/pull/2562
+#- repo: https://github.com/psf/black
+#  rev: 21.10b0
+#  hooks:
+#    - id: black
+#      language_version: python3.6
