@@ -98,4 +98,4 @@ fi
 #    . /etc/bash_completion
 #fi
 
-figlet 'cloud-tools'
+figlet -f slant 'cloud-tools'
