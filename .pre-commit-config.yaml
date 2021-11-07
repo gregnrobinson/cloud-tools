@@ -7,6 +7,7 @@ repos:
     - id: name-tests-test
     - id: check-executables-have-shebangs
     - id: end-of-file-fixer
+    - id: trailing-whitespace
 
 - repo: https://github.com/asottile/setup-cfg-fmt
   rev: v1.19.0
