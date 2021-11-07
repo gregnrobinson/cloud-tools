@@ -1,6 +1,6 @@
 # Overview
 
-*cloud-tools* is an all in one cloud development container. Aimed at saving time when it comes to installing the large breadth of cloud SDKs and other tools. Packages with static version numbers are default values and can be replaced during the build using `--build-arg`.
+*cloud-tools* is an all in one cloud development container. With Multi arch support, you can freely run this on M1 (arm64) and x86 (amd64) chips without any performance hits. Packages with static version numbers are default values and can be replaced during the build using `--build-arg`.
 
 ![Build](https://github.com//gregnrobinson/cloud-tools/actions/workflows/build.yaml/badge.svg) ![Docker Pulls](https://img.shields.io/docker/pulls/gregnrobinson/cloud-tools) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/825037ee15d748e19a3264317690ecbb)](https://www.codacy.com/gh/gregnrobinson/cloud-tools/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=gregnrobinson/cloud-tools&amp;utm_campaign=Badge_Grade)
 
