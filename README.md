@@ -2,7 +2,7 @@
 
 *cloud-tools* is an all in one cloud development container. With Multi arch support, you can freely run this on M1 (arm64) and x86 (amd64) chips without any performance hits. Packages with static version numbers are default values and can be replaced during the build using `--build-arg`.
 
- ![pre-commit](https://img.shields.io/github/workflow/status/gregnrobinson/cloud-tools/pre-commit/main) ![Build](https://img.shields.io/github/workflow/status/gregnrobinson/cloud-tools/ci-cloud-tools/main) ![Docker Pulls](https://img.shields.io/docker/pulls/gregnrobinson/cloud-tools) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/825037ee15d748e19a3264317690ecbb)](https://www.codacy.com/gh/gregnrobinson/cloud-tools/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=gregnrobinson/cloud-tools&amp;utm_campaign=Badge_Grade) ![Commits](https://img.shields.io/github/commits-since/gregnrobinson/cloud-tools/latest)
+ ![pre-commit](https://img.shields.io/github/workflow/status/gregnrobinson/cloud-tools/pre-commit?label=pre-commit) ![Build](https://img.shields.io/github/workflow/status/gregnrobinson/cloud-tools/ci-cloud-tools/main) ![Docker Pulls](https://img.shields.io/docker/pulls/gregnrobinson/cloud-tools) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/825037ee15d748e19a3264317690ecbb)](https://www.codacy.com/gh/gregnrobinson/cloud-tools/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=gregnrobinson/cloud-tools&amp;utm_campaign=Badge_Grade) ![Commits](https://img.shields.io/github/commits-since/gregnrobinson/cloud-tools/latest)
 
 - Pull image: `docker pull gregnrobinson/cloud-tools:latest`
 - Run image:  `docker run -it gregnrobinson/cloud-tools:latest bash`
