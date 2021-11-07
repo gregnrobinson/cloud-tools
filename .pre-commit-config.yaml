@@ -13,6 +13,9 @@ repos:
     - id: check-symlinks
     - id: check-merge-conflict
     - id: check-ast
+    - id: detect-private-key
+    - id: fix-byte-order-marker
+    - id: pretty-format-json
 
 - repo: https://github.com/asottile/setup-cfg-fmt
   rev: v1.19.0
