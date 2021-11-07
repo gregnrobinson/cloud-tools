@@ -60,6 +60,7 @@ RUN apt-get update && \
 RUN ARCH=$(cat /target_arch) && \
     curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/${ARCH}/kubectl" && \
     install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl &&\
+    rm -rf ./kubectl &&\
     curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 
 # PYTHON VIRTUAL ENVIRONMENT
