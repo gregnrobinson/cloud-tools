@@ -8,7 +8,6 @@ repos:
     - id: check-executables-have-shebangs
     - id: end-of-file-fixer
     - id: trailing-whitespace
-    - id: check-yaml
     - id: check-json
     - id: check-symlinks
     - id: check-merge-conflict
@@ -16,15 +15,15 @@ repos:
     - id: detect-private-key
     - id: fix-byte-order-marker
     - id: pretty-format-json
-
-- repo: https://github.com/asottile/setup-cfg-fmt
-  rev: v1.19.0
-  hooks:
-    - id: setup-cfg-fmt
-
-# Currently crashing. see https://github.com/psf/black/pull/2562
-#- repo: https://github.com/psf/black
-#  rev: 21.10b0
-#  hooks:
-#    - id: black
-#      language_version: python3.6
+    - id: check-added-large-files
+    - id: check-symlinks
+    - id: debug-statements
+-   repo: https://github.com/asottile/setup-cfg-fmt
+    rev: v1.19.0
+    hooks:
+    -   id: setup-cfg-fmt
+-   repo: https://github.com/asottile/add-trailing-comma
+    rev: v2.2.0
+    hooks:
+    -   id: add-trailing-comma
+        args: [--py36-plus]
