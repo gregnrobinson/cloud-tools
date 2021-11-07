@@ -28,7 +28,7 @@ WORKDIR /root
 # DEPENDENCIES
 RUN apt-get update && \
     apt-get install --no-install-recommends -y \
-      git \  
+      git \
       libssl-dev \
       libmysqlclient-dev \
       curl \
@@ -105,7 +105,7 @@ RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.c
     curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key --keyring /usr/share/keyrings/cloud.google.gpg  add - && \
     apt-get update -y && \
     apt-get install google-cloud-sdk -y --no-install-recommends &&\
-    apt-get clean &&\  
+    apt-get clean &&\
     rm -rf /var/lib/apt/lists/*
 
 # AWS CLI
@@ -116,7 +116,7 @@ RUN apt update &&\
     apt install --yes libsodium-dev &&\
     SODIUM_INSTALL=system pip install pynacl==1.4.0 &&\
     pip install azure-cli==2.30.0 &&\
-    apt-get clean &&\  
+    apt-get clean &&\
     rm -rf /var/lib/apt/lists/*
 
 ENTRYPOINT [ "/bin/bash", "-l", "-c" ]
