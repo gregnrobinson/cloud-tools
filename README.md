@@ -17,7 +17,6 @@
 - GCP SDK : latest
 - kubectl : latest
 - Helm : latest
-- Ansible : latest
 - Vault : 1.7.1
 - Packer : 1.9.5
 - Consul : 1.9.5
