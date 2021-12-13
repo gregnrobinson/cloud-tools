@@ -11,4 +11,23 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-python@v2
+    - uses: terraform-linters/setup-tflint@v1
+      with:
+        tflint_version: latest
     - uses: pre-commit/action@v2.0.3
+  slack-workflow-status:
+    if: always()
+    name: Post Workflow Status To Slack
+    needs:
+      - pre-commit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Slack Workflow Notification
+        uses: Gamesight/slack-workflow-status@master
+        with:
+          # Required Input
+          repo_token: ${{secrets.GITHUB_TOKEN}}
+          slack_webhook_url: ${{secrets.SLACK_WEBHOOK_URL}}
+          name: 'Github Workflows'
+          icon_emoji: ':fire:'
+          icon_url: 'https://img.icons8.com/material-outlined/96/000000/github.png'
