@@ -74,13 +74,15 @@ The `./config` folder is mounted bidirectionally to the home directory (/root) o
 
 If you want to build the image locally, Run the following command at the root of the project directory. You can provide the `--build-arg` tag to change the version on any of the following packages. I will look at adding more like this, but it's mostly the HashiCorp products you want control over. The difference between 0.14 and 0.15 can be catastrophic.
 
-|Package|Variable Name|Default|
-|---|---|-----|
-|Vault|_VAULT_VERSION|1.7.1|
-|Packer|_PACKER_VERSION|1.9.5|
-|Consul|_CONSUL_VERSION|1.9.5|
-|Yq|_YQ_VERSION|4.2.0|
-|Go|_GO_VERSION|1.64.4|
+```dockerfile
+# Customizable Package Versions
+ARG _VAULT_VERSION=1.9.2
+ARG _CONSUL_VERSION=1.10.4
+ARG _PACKER_VERSION=1.7.8
+ARG _GO_VERSION=1.17.5
+ARG _YQ_VERSION=4.16.2
+ARG _TF_SWITCH_VERSION=0.13.1201
+```
 
 From the root of the repository run the following commands:
 
