@@ -1,7 +1,7 @@
 {
-  "name": "Cloud Tools",
   "dockerComposeFile": "docker-compose.yml",
+  "name": "Cloud Tools",
   "service": "cloud-tools",
-  "workspaceFolder": "/workspace",
-  "shutdownAction": "stopCompose"
+  "shutdownAction": "stopCompose",
+  "workspaceFolder": "/workspace"
 }

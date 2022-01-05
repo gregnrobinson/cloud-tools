@@ -9,12 +9,8 @@ on:
   push:
     branches:
     - main
-    paths-ignore:
-    - 'README.md'
-    - '.devcontainer'
-    - '.pre-commit-config.yaml'
-    - './github/workflows/pre-commit-checks.yaml'
-    - './github/workflows/build.yaml'
+    paths:
+    - 'Dockerfile'
   workflow_dispatch:
 
 jobs:
