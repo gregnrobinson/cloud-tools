@@ -12,26 +12,26 @@
 
 ## Installed Packages
 
-- AWS SDK : latest
-- Azure SDK : latest
-- GCP SDK : latest
-- kubectl : latest
-- Helm : latest
-- Vault : 1.7.1
-- Packer : 1.9.5
-- Consul : 1.9.5
-- Git : latest
-- Python : latest
-- Python3 : latest
-- pip : latest
-- pip3 : latest
-- jq : latest
-- yq : 4.2.0
-- nodejs : latest
-- golang : 1.16.4
-- wget : latest
-- curl : latest
-- vim : latest
+- AWS SDK
+- Azure SDK
+- GCP SDK
+- kubectl
+- Helm
+- Vault
+- Packer
+- Consul
+- Git
+- Python
+- Python3
+- pip
+- pip3
+- jq
+- yq
+- nodejs
+- golang
+- wget
+- curl
+- vim
 - [tfswitch](https://tfswitch.warrensbox.com/Quick-Start/)
   - Run `tfswitch` to select desired Terraform version...
 
