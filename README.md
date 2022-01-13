@@ -16,6 +16,7 @@
 - Azure SDK
 - GCP SDK
 - kubectl
+- kubectx
 - Helm
 - Vault
 - Packer
