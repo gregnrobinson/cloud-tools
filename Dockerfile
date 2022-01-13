@@ -51,6 +51,7 @@ RUN apt-get update && \
       openssh-server \
       figlet \
       sshfs \
+      kubectx \
       iputils-ping && \
     apt-get autoremove -y && \
     apt-get clean && \
