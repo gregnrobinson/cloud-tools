@@ -17,6 +17,7 @@
 - GCP SDK
 - kubectl
 - kubectx
+- kubens
 - Helm
 - Vault
 - Packer
