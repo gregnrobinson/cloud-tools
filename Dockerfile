@@ -12,7 +12,7 @@ RUN echo "${TARGETPLATFORM##*/}" > /target_arch
 # PULL BASE
 FROM ubuntu:20.04
 COPY --from=build /target_arch /target_arch
-COPY ./config/profile/bashrc /root/.bashrc
+COPY ./.devcontainer/config/.bashrc /root/.bashrc
 
 # PACKAGE VERSIONS
 ARG DEBIAN_FRONTEND=noninteractive
