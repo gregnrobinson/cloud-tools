@@ -43,7 +43,7 @@ jobs:
       with:
         image-ref: ${{ env.IMAGE }}:${{ env.GITHUB_SHA_SHORT }}
         format: table
-        exit-code: '1'
+        exit-code: '0'
         ignore-unfixed: true
         vuln-type: os,library
         severity: CRITICAL
