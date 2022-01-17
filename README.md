@@ -7,8 +7,8 @@
 
 *cloud-tools* is an all in one cloud development container. With Multi arch support, you can freely run this on M1 (arm64) and x86 (amd64) chips without any performance hits. Packages with static version numbers are default values and can be replaced during the build using `--build-arg`.
 
-- Pull image: `docker pull gregnrobinson/cloud-tools:latest`
-- Run image:  `docker run -it gregnrobinson/cloud-tools:latest bash`
+- Run as AMD64: `docker run -it --platform linux/amd64 gregnrobinson/cloud-tools:latest bash`
+- Run as ARM64: `docker run -it --platform linux/arm64 gregnrobinson/cloud-tools:latest bash`
 
 ## Installed Packages
 
