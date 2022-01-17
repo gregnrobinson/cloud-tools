@@ -6,13 +6,11 @@
 
 git config --global user.email 'user@example.com' && git config --global user.name 'Jane Doe'
 
-# CLOUD CREDENTIALS CONFIG
-export AWS_ACCESS_KEY_ID=<YOUR_AWS_KEY_ID>
-export AWS_SECRET_ACCESS_KEY=<YOUR_AWS_KEY>
-export AWS_DEFAULT_REGION=ca-central-1
+export AWS_ACCESS_KEY_ID=""
+export AWS_SECRET_ACCESS_KEY=""
+export AWS_DEFAULT_REGION="ca-central-1"
 export GCP_SA_NAME="sa@<project_id>.iam.gserviceaccount.com"
-# Put the json key file in the ./config directory.
-export GOOGLE_APPLICATION_CREDENTIALS="/root/<key_file_name>"
+export GOOGLE_APPLICATION_CREDENTIALS=""
 
 gcloud auth activate-service-account $GCP_SA_NAME --key-file $GOOGLE_APPLICATION_CREDENTIALS
 
