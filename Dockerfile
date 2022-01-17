@@ -117,7 +117,7 @@ RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.c
 RUN pip3 install awscli==1.21.12
 
 # ASM CLI
-RUN curl https://storage.googleapis.com/csm-artifacts/asm/asmcli_1.12 > /usr/local/bin &&\
+RUN curl https://storage.googleapis.com/csm-artifacts/asm/asmcli_1.12 > /usr/local/bin/asmcli &&\
     chmod +x /usr/local/bin/asmcli
 
 # AZURE CLI
