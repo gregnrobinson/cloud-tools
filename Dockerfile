@@ -116,6 +116,10 @@ RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.c
 # AWS CLI
 RUN pip3 install awscli==1.21.12
 
+# ASM CLI
+RUN curl https://storage.googleapis.com/csm-artifacts/asm/asmcli_1.12 > /usr/local/bin &&\
+    chmod +x /usr/local/bin
+
 # AZURE CLI
 RUN apt update &&\
     apt install --yes libsodium-dev &&\
