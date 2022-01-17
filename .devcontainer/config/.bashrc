@@ -12,7 +12,7 @@ export AWS_DEFAULT_REGION="ca-central-1"
 export GCP_SA_NAME="sa@<project_id>.iam.gserviceaccount.com"
 export GOOGLE_APPLICATION_CREDENTIALS=""
 
-gcloud auth activate-service-account $GCP_SA_NAME --key-file $GOOGLE_APPLICATION_CREDENTIALS
+# gcloud auth activate-service-account $GCP_SA_NAME --key-file $GOOGLE_APPLICATION_CREDENTIALS
 
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
