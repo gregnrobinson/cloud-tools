@@ -118,7 +118,7 @@ RUN pip3 install awscli==1.21.12
 
 # ASM CLI
 RUN curl https://storage.googleapis.com/csm-artifacts/asm/asmcli_1.12 > /usr/local/bin &&\
-    chmod +x /usr/local/bin
+    chmod +x /usr/local/bin/asmcli
 
 # AZURE CLI
 RUN apt update &&\
