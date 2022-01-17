@@ -100,6 +100,9 @@ alias l='ls -CF'
 alias k="kubectl"
 alias kd="kubectl describe"
 
+# terraform aliases
+alias tf="terraform"
+
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
