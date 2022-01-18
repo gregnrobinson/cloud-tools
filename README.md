@@ -38,6 +38,7 @@ All the packages listed are installed for each build based on the target archite
 - netcat
 - asmcli
 - eksctl
+- istioctl
 - wget
 - curl
 - vim
