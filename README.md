@@ -33,6 +33,7 @@
 - golang
 - netcat
 - asmcli
+- eksctl
 - wget
 - curl
 - vim
