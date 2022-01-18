@@ -58,14 +58,26 @@ jobs:
         owner: gregnrobinson
         repo: cloud-tools
         excludes: prerelease, draft
-    - name: Tag Push Latest
+    - name: Build AMD64 Image
       working-directory: ${{ env.WORKDIR }}
       run: >
         docker buildx build
-        --platform=linux/amd64,linux/arm64
+        --platform=linux/amd64
         -t ${{ env.IMAGE }}:${{ env.GITHUB_SHA_SHORT }}
         -t ${{ env.IMAGE }}:${{ steps.keydb.outputs.release }}
         -t ${{ env.IMAGE }}:latest
+        -t ${{ env.IMAGE }}:latest_amd64
+        --output=type=image,push=true
+        ${GITHUB_WORKSPACE}/${{ env.WORKDIR }}
+    - name: Build ARM64 Image
+      working-directory: ${{ env.WORKDIR }}
+      run: >
+        docker buildx build
+        --platform=linux/arm64
+        -t ${{ env.IMAGE }}:${{ env.GITHUB_SHA_SHORT }}
+        -t ${{ env.IMAGE }}:${{ steps.keydb.outputs.release }}
+        -t ${{ env.IMAGE }}:latest
+        -t ${{ env.IMAGE }}:latest_arm64
         --output=type=image,push=true
         ${GITHUB_WORKSPACE}/${{ env.WORKDIR }}
   slack-workflow-status:
