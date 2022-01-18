@@ -104,7 +104,9 @@ RUN wget "https://releases.hashicorp.com/packer/${_PACKER_VERSION}/packer_${_PAC
     mv packer /usr/local/bin && \
     rm packer_${_PACKER_VERSION}_linux_$(cat /target_arch).zip
 
-git@github.com:gregnrobinson/cloud-tools.gitlinux-$(cat /target_arch).tar.gz && \
+# GOLANG
+RUN wget "https://golang.org/dl/go${_GO_VERSION}.linux-$(cat /target_arch).tar.gz" && \
+    tar -xvzf go${_GO_VERSION}.linux-$(cat /target_arch).tar.gz && \
     mv go /usr/local/bin && \
     rm go${_GO_VERSION}.linux-$(cat /target_arch).tar.gz
 
