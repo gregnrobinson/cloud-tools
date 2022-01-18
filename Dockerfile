@@ -123,7 +123,7 @@ RUN curl https://storage.googleapis.com/csm-artifacts/asm/asmcli_1.12 > /usr/loc
 
 # EKSCTL CLI
 RUN curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_$(cat /target_arch).tar.gz" | tar xz -C /tmp &&\
-    sudo mv /tmp/eksctl /usr/local/bin
+    mv /tmp/eksctl /usr/local/bin
 
 # AZURE CLI
 RUN apt update &&\
