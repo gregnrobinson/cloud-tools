@@ -31,6 +31,8 @@
 - yq
 - nodejs
 - golang
+- netcat
+- asmcli
 - wget
 - curl
 - vim
