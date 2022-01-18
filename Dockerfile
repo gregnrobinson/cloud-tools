@@ -56,6 +56,7 @@ RUN apt-get update && \
       figlet \
       sshfs \
       netcat \
+      build-essential \
       iputils-ping && \
     apt-get autoremove -y && \
     apt-get clean && \
@@ -131,6 +132,11 @@ RUN curl --silent --location "https://github.com/weaveworks/eksctl/releases/late
 
 # ISTIOCTL
 RUN curl -L https://istio.io/downloadIstio | sh -
+
+RUN curl https://sh.rustup.rs -sSf | bash -s -- -y
+
+RUN echo 'source $HOME/.cargo/env' >> $HOME/.bashrc
+ENV PATH="/root/.cargo/bin:${PATH}"
 
 # AZURE CLI
 RUN apt update &&\
