@@ -104,9 +104,7 @@ RUN wget "https://releases.hashicorp.com/packer/${_PACKER_VERSION}/packer_${_PAC
     mv packer /usr/local/bin && \
     rm packer_${_PACKER_VERSION}_linux_$(cat /target_arch).zip
 
-# GOLANG
-RUN wget "https://golang.org/dl/go${_GO_VERSION}.linux-$(cat /target_arch).tar.gz" && \
-    tar -xvzf go${_GO_VERSION}.linux-$(cat /target_arch).tar.gz && \
+git@github.com:gregnrobinson/cloud-tools.gitlinux-$(cat /target_arch).tar.gz && \
     mv go /usr/local/bin && \
     rm go${_GO_VERSION}.linux-$(cat /target_arch).tar.gz
 
@@ -128,6 +126,9 @@ RUN curl https://storage.googleapis.com/csm-artifacts/asm/asmcli_1.12 > /usr/loc
 # EKSCTL CLI
 RUN curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_$(cat /target_arch).tar.gz" | tar xz -C /tmp &&\
     mv /tmp/eksctl /usr/local/bin
+
+# ISTIOCTL
+RUN curl -L https://istio.io/downloadIstio | sh -
 
 # AZURE CLI
 RUN apt update &&\
