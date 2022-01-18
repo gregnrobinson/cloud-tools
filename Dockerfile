@@ -47,6 +47,10 @@ RUN apt-get update && \
       iproute2 \
       iptables \
       tcpdump \
+      ctop \
+      nmap \
+      dhcping \
+      iperf \
       openresolv \
       openssh-server \
       figlet \
