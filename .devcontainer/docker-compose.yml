@@ -4,8 +4,7 @@ services:
     # Note that the path of the Dockerfile and context is relative to the *primary*
     # docker-compose.yml file (the first in the devcontainer.json "dockerComposeFile"
     # array). The sample below assumes your primary file is in the root of your project.
-    # https://hub.docker.com/layers/186906826/gregnrobinson/cloud-tools/v1.1.26/images/sha256-3e62efbae1e2a6ab66f33beb3b9059967319fced6e23fc0dc6cdb23bc27a2967?context=repo
-    image: gregnrobinson/cloud-tools@sha256:3e62efbae1e2a6ab66f33beb3b9059967319fced6e23fc0dc6cdb23bc27a2967 # AMD64 Digest
+    image: gregnrobinson/cloud-tools:latest_amd64
     volumes:
       - ..:/workspace:cached
       - ./config:/root:cached
