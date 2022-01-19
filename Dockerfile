@@ -133,6 +133,11 @@ RUN curl --silent --location "https://github.com/weaveworks/eksctl/releases/late
 # ISTIOCTL
 RUN curl -L https://istio.io/downloadIstio | sh -
 
+# KPT
+RUN mkdir -p ~/bin &&\
+    curl -L https://github.com/GoogleContainerTools/kpt/releases/download/v1.0.0-beta.1/kpt_linux_amd64 --output ~/bin/kpt && chmod u+x ~/bin/kpt &&\
+    export PATH=${HOME}/bin:${PATH}
+
 # AZURE CLI
 RUN apt update &&\
     apt install --yes libsodium-dev &&\
