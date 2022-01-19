@@ -15,7 +15,7 @@ export GOOGLE_APPLICATION_CREDENTIALS=""
 # gcloud auth activate-service-account $GCP_SA_NAME --key-file $GOOGLE_APPLICATION_CREDENTIALS
 
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-export PATH="$PATH:$HOME/.istioctl/bin"
+export PATH=$PATH:$HOME./istio-1.12.1/bin
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
