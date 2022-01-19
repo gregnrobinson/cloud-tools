@@ -117,7 +117,8 @@ RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.c
     apt-get update -y && \
     apt-get install google-cloud-sdk -y --no-install-recommends &&\
     apt-get clean &&\
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/* &&\
+    gcloud components install nomos
 
 # AWS CLI
 RUN pip3 install awscli==1.21.12
