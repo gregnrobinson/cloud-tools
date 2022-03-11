@@ -122,4 +122,6 @@ fi
 #    . /etc/bash_completion
 #fi
 
+export LS_COLORS="$LS_COLORS:ow=1;34:tw=1;34:"
+
 figlet -f slant 'cloud-tools'
