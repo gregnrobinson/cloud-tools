@@ -88,6 +88,10 @@ RUN curl -s "https://awscli.amazonaws.com/awscli-exe-linux-${AWS_CLI_ARCH}.zip" 
     unzip -qq awscliv2.zip && \
     ./aws/install
 
+# INSTALL SESSION MANAGER PLUGIN
+RUN curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_${AWS_SESSION_MANAGER_ARCH}/session-manager-plugin.deb" -o session-manager-plugin.deb && \
+    dpkg -i session-manager-plugin.deb
+
 # ASM CLI
 RUN curl https://storage.googleapis.com/csm-artifacts/asm/asmcli_1.12 > /usr/local/bin/asmcli &&\
     chmod +x /usr/local/bin/asmcli

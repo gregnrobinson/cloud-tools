@@ -3,6 +3,9 @@ COPY .devcontainer/config/.bashrc /root/.bashrc
 
 ARG PLATFORM=arm64
 
+# Options include 64bit or arm64
+ARG AWS_SESSION_MANAGER_ARCH="arm64"
+
 # Options include x86_64 for amd64 or aarch64 for arm64
 ARG AWS_CLI_ARCH="aarch64"
 
@@ -87,6 +90,10 @@ RUN echo "deb https://packages.cloud.google.com/apt cloud-sdk main" | tee -a /et
 RUN curl -s "https://awscli.amazonaws.com/awscli-exe-linux-${AWS_CLI_ARCH}.zip" -o "awscliv2.zip" && \
     unzip -qq awscliv2.zip && \
     ./aws/install
+
+# INSTALL SESSION MANAGER PLUGIN
+RUN curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_${AWS_SESSION_MANAGER_ARCH}/session-manager-plugin.deb" -o session-manager-plugin.deb && \
+    dpkg -i session-manager-plugin.deb
 
 # ASM CLI
 RUN curl -s https://storage.googleapis.com/csm-artifacts/asm/asmcli_1.12 > /usr/local/bin/asmcli &&\
