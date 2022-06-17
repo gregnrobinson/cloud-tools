@@ -50,7 +50,7 @@ RUN wget -q "https://github.com/mikefarah/yq/releases/download/v${_YQ_VERSION}/y
     chmod +x /usr/bin/yq
 
 # VAULT
-RUN wget "https://releases.hashicorp.com/vault/${_VAULT_VERSION}/vault_${_VAULT_VERSION}_linux_${PLATFORM}.zip" && \
+RUN wget -q "https://releases.hashicorp.com/vault/${_VAULT_VERSION}/vault_${_VAULT_VERSION}_linux_${PLATFORM}.zip" && \
     unzip -qq vault_${_VAULT_VERSION}_linux_${PLATFORM}.zip && \
     mv vault /usr/local/bin && \
     rm vault_${_VAULT_VERSION}_linux_${PLATFORM}.zip
@@ -81,7 +81,7 @@ RUN wget -q "https://golang.org/dl/go${_GO_VERSION}.linux-${PLATFORM}.tar.gz" &&
 
 # GCP CLI
 RUN echo "deb https://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list &&\
-    curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - &&\
+    curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - &&\
     apt-get update && apt-get install google-cloud-cli
 
 # AWS CLI
@@ -90,7 +90,7 @@ RUN curl -s "https://awscli.amazonaws.com/awscli-exe-linux-${AWS_CLI_ARCH}.zip" 
     ./aws/install
 
 # ASM CLI
-RUN curl https://storage.googleapis.com/csm-artifacts/asm/asmcli_1.12 > /usr/local/bin/asmcli &&\
+RUN curl -s https://storage.googleapis.com/csm-artifacts/asm/asmcli_1.12 > /usr/local/bin/asmcli &&\
     chmod +x /usr/local/bin/asmcli
 
 # EKSCTL CLI
@@ -98,7 +98,7 @@ RUN curl -s --location "https://github.com/weaveworks/eksctl/releases/latest/dow
     mv /tmp/eksctl /usr/local/bin
 
 # ISTIOCTL
-RUN curl -L https://istio.io/downloadIstio | sh -
+RUN curl -sL https://istio.io/downloadIstio | sh -
 
 # KPT
 RUN mkdir -p ~/bin &&\
@@ -106,11 +106,6 @@ RUN mkdir -p ~/bin &&\
     export PATH=${HOME}/bin:${PATH}
 
 # AZURE CLI
-RUN apt update &&\
-    apt install --yes libsodium-dev &&\
-    SODIUM_INSTALL=system pip install pynacl==1.4.0 &&\
-    pip install azure-cli==2.30.0 &&\
-    apt-get clean &&\
-    rm -rf /var/lib/apt/lists/*
+RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
 
 ENTRYPOINT [ "/bin/bash", "-l", "-c" ]
