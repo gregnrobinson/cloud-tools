@@ -1,4 +1,4 @@
-FROM debian:bookworm-slim
+FROM debian:bookworm
 COPY .devcontainer/config/.bashrc /root/.bashrc
 
 ARG PLATFORM=amd64
@@ -19,11 +19,14 @@ ARG _ANSIBLE_VERSION=2.9.27
 WORKDIR /root
 
 # DEPENDENCIES
+#RUN DEBIAN_FRONTEND=noninteractive apt update && \
+#    apt install -y git libssl-dev libffi-dev libhdf5-dev libmysqlclient-dev curl wget gnupg lsb-core software-properties-common python3-dev python3-pip python3-boto3 unzip vim nodejs moreutils jq wireguard-tools iproute2 iptables tcpdump ctop nmap dhcping iperf openresolv openssh-server figlet sshfs netcat &&\
+#    rm -rf /var/lib/apt/lists/* && \
+#    apt-get clean
 RUN DEBIAN_FRONTEND=noninteractive apt update && \
-    apt install -y git libssl-dev libffi-dev libhdf5-dev libmysqlclient-dev curl wget gnupg lsb-core software-properties-common python3-dev python3-pip python3-boto3 unzip vim nodejs moreutils jq wireguard-tools iproute2 iptables tcpdump ctop nmap dhcping iperf openresolv openssh-server figlet sshfs netcat &&\
+    apt install -y curl unzip python3-pip vim python3-boto3 libhdf5-dev libssl-dev libffi-dev && \
     rm -rf /var/lib/apt/lists/* && \
     apt-get clean
-
 # INSTALL ANSIBLE
 RUN pip3 install --upgrade pip cffi && \
     pip install ansible==${_ANSIBLE_VERSION} && \
