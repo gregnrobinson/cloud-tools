@@ -20,18 +20,7 @@ WORKDIR /root
 
 # DEPENDENCIES
 RUN apt update && \
-    apt install -y \
-      git \
-      libssl-dev \
-      libffi-dev \
-      libhdf5-dev \
-      libmysqlclient-dev \
-      curl \
-      wget \
-      gnupg \
-      lsb-core \
-      software-properties-common \
-      python3-dev \
+    apt install -y git libssl-dev libffi-dev libhdf5-dev libmysqlclient-dev curl wget gnupg lsb-core software-properties-common python3-dev \
       python3-pip \
       python3-boto3 \
       unzip \
@@ -51,9 +40,7 @@ RUN apt update && \
       openssh-server \
       figlet \
       sshfs \
-      netcat \
-      build-essential \
-      iputils-ping
+      netcat
 
 # INSTALL ANSIBLE
 RUN pip3 install --upgrade pip cffi && \
