@@ -19,8 +19,8 @@ ARG _ANSIBLE_VERSION=2.9.27
 WORKDIR /root
 
 # DEPENDENCIES
-RUN apt-get update && \
-    apt-get install --no-install-recommends -y \
+RUN apt update && \
+    apt install -y \
       git \
       libssl-dev \
       libffi-dev \
@@ -54,8 +54,7 @@ RUN apt-get update && \
       netcat \
       build-essential \
       iputils-ping && \
-    rm -rf /var/lib/apt/lists/* && \
-    apt-get clean
+    rm -rf /var/lib/apt/lists/*
 
 # INSTALL ANSIBLE
 RUN pip3 install --upgrade pip cffi && \

@@ -19,8 +19,8 @@ ARG _ANSIBLE_VERSION=2.9.27
 WORKDIR /root
 
 # DEPENDENCIES
-RUN apt-get update && \
-    apt-get install --no-install-recommends -y \
+RUN apt update && \
+    apt install -y \
       git \
       libssl-dev \
       libffi-dev \
