@@ -32,7 +32,7 @@ RUN pip3 install --upgrade pip cffi && \
     rm -rf /root/.cache/pip
 
 # KUBECTL / HELM
-RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/${PLATFORM}/kubectl" && \
+RUN curl -sLO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/${PLATFORM}/kubectl" && \
     install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl &&\
     rm -rf ./kubectl &&\
     curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
@@ -46,7 +46,7 @@ RUN git clone https://github.com/ahmetb/kubectx /usr/local/kubectx &&\
 RUN pip3 install virtualenv
 
 # YQ
-RUN wget "https://github.com/mikefarah/yq/releases/download/v${_YQ_VERSION}/yq_linux_${PLATFORM}" -O /usr/bin/yq &&\
+RUN wget -q "https://github.com/mikefarah/yq/releases/download/v${_YQ_VERSION}/yq_linux_${PLATFORM}" -O /usr/bin/yq &&\
     chmod +x /usr/bin/yq
 
 # VAULT
@@ -56,25 +56,25 @@ RUN wget "https://releases.hashicorp.com/vault/${_VAULT_VERSION}/vault_${_VAULT_
     rm vault_${_VAULT_VERSION}_linux_${PLATFORM}.zip
 
 # TF_SWITCH
-RUN wget "https://github.com/warrensbox/terraform-switcher/releases/download/${_TF_SWITCH_VERSION}/terraform-switcher_${_TF_SWITCH_VERSION}_linux_${PLATFORM}.tar.gz" && \
+RUN wget -q "https://github.com/warrensbox/terraform-switcher/releases/download/${_TF_SWITCH_VERSION}/terraform-switcher_${_TF_SWITCH_VERSION}_linux_${PLATFORM}.tar.gz" && \
     tar -xzf terraform-switcher_${_TF_SWITCH_VERSION}_linux_${PLATFORM}.tar.gz && \
     mv tfswitch /usr/local/bin && \
     rm terraform-switcher_${_TF_SWITCH_VERSION}_linux_${PLATFORM}.tar.gz
 
 # CONSUL
-RUN wget "https://releases.hashicorp.com/consul/${_CONSUL_VERSION}/consul_${_CONSUL_VERSION}_linux_${PLATFORM}.zip" && \
+RUN wget -q "https://releases.hashicorp.com/consul/${_CONSUL_VERSION}/consul_${_CONSUL_VERSION}_linux_${PLATFORM}.zip" && \
     unzip -qq consul_${_CONSUL_VERSION}_linux_${PLATFORM}.zip && \
     mv consul /usr/local/bin && \
     rm consul_${_CONSUL_VERSION}_linux_${PLATFORM}.zip
 
 # PACKER
-RUN wget "https://releases.hashicorp.com/packer/${_PACKER_VERSION}/packer_${_PACKER_VERSION}_linux_${PLATFORM}.zip" && \
+RUN wget -q "https://releases.hashicorp.com/packer/${_PACKER_VERSION}/packer_${_PACKER_VERSION}_linux_${PLATFORM}.zip" && \
     unzip -qq packer_${_PACKER_VERSION}_linux_${PLATFORM}.zip && \
     mv packer /usr/local/bin && \
     rm packer_${_PACKER_VERSION}_linux_${PLATFORM}.zip
 
 # GOLANG
-RUN wget "https://golang.org/dl/go${_GO_VERSION}.linux-${PLATFORM}.tar.gz" && \
+RUN wget -q "https://golang.org/dl/go${_GO_VERSION}.linux-${PLATFORM}.tar.gz" && \
     tar -xzf go${_GO_VERSION}.linux-${PLATFORM}.tar.gz && \
     mv go /usr/local/bin && \
     rm go${_GO_VERSION}.linux-${PLATFORM}.tar.gz
@@ -85,7 +85,7 @@ RUN echo "deb https://packages.cloud.google.com/apt cloud-sdk main" | tee -a /et
     apt-get update && apt-get install google-cloud-cli
 
 # AWS CLI
-RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-${AWS_CLI_ARCH}.zip" -o "awscliv2.zip" && \
+RUN curl -s "https://awscli.amazonaws.com/awscli-exe-linux-${AWS_CLI_ARCH}.zip" -o "awscliv2.zip" && \
     unzip -qq awscliv2.zip && \
     ./aws/install
 
@@ -94,7 +94,7 @@ RUN curl https://storage.googleapis.com/csm-artifacts/asm/asmcli_1.12 > /usr/loc
     chmod +x /usr/local/bin/asmcli
 
 # EKSCTL CLI
-RUN curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_${PLATFORM}.tar.gz" | tar xz -C /tmp &&\
+RUN curl -s --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_${PLATFORM}.tar.gz" | tar xz -C /tmp &&\
     mv /tmp/eksctl /usr/local/bin
 
 # ISTIOCTL
@@ -102,7 +102,7 @@ RUN curl -L https://istio.io/downloadIstio | sh -
 
 # KPT
 RUN mkdir -p ~/bin &&\
-    curl -L https://github.com/GoogleContainerTools/kpt/releases/download/v1.0.0-beta.1/kpt_linux_amd64 --output ~/bin/kpt && chmod u+x ~/bin/kpt &&\
+    curl -sL https://github.com/GoogleContainerTools/kpt/releases/download/v1.0.0-beta.1/kpt_linux_amd64 --output ~/bin/kpt && chmod u+x ~/bin/kpt &&\
     export PATH=${HOME}/bin:${PATH}
 
 # AZURE CLI
