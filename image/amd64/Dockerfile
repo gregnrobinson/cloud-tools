@@ -1,4 +1,4 @@
-FROM debian:bookworm
+FROM debian:bookworm-slim
 COPY .devcontainer/config/.bashrc /root/.bashrc
 
 ARG PLATFORM=amd64
