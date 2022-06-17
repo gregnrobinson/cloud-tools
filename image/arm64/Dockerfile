@@ -14,6 +14,7 @@ ARG _PACKER_VERSION=1.7.8
 ARG _GO_VERSION=1.17.5
 ARG _YQ_VERSION=4.16.2
 ARG _TF_SWITCH_VERSION=0.13.1201
+ARG _ANSIBLE_VERSION=2.9.27
 
 WORKDIR /root
 
@@ -59,11 +60,10 @@ RUN apt-get update && \
 
 # INSTALL ANSIBLE
 RUN pip3 install --upgrade pip cffi && \
-    pip install ansible==${ANSIBLE_VERSION} && \
+    pip install ansible==${_ANSIBLE_VERSION} && \
     pip install mitogen ansible-lint jmespath && \
     pip install --upgrade pywinrm && \
     rm -rf /root/.cache/pip
-
 
 # KUBECTL / HELM
 RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/${PLATFORM}/kubectl" && \
