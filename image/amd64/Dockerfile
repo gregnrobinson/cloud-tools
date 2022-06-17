@@ -60,7 +60,7 @@ RUN apt-get update && \
 
 # INSTALL ANSIBLE
 RUN pip3 install --upgrade pip cffi && \
-    pip install ansible==${ANSIBLE_VERSION} && \
+    pip install ansible==${_ANSIBLE_VERSION} && \
     pip install mitogen ansible-lint jmespath && \
     pip install --upgrade pywinrm && \
     rm -rf /root/.cache/pip
