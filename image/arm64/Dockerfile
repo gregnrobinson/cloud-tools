@@ -92,7 +92,7 @@ RUN curl -s "https://awscli.amazonaws.com/awscli-exe-linux-${AWS_CLI_ARCH}.zip" 
     ./aws/install
 
 # INSTALL SESSION MANAGER PLUGIN
-RUN curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_${AWS_SESSION_MANAGER_ARCH}/session-manager-plugin.deb" -o session-manager-plugin.deb && \
+RUN curl -s "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_${AWS_SESSION_MANAGER_ARCH}/session-manager-plugin.deb" -o session-manager-plugin.deb && \
     dpkg -i session-manager-plugin.deb
 
 # ASM CLI
