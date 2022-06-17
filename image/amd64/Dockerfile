@@ -54,9 +54,8 @@ RUN apt-get update && \
       netcat \
       build-essential \
       iputils-ping && \
-    apt-get autoremove -y && \
-    apt-get clean && \
-    rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/* && \
+    apt-get clean
 
 # INSTALL ANSIBLE
 RUN pip3 install --upgrade pip cffi && \
