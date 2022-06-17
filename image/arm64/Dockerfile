@@ -20,7 +20,7 @@ WORKDIR /root
 
 # DEPENDENCIES
 RUN DEBIAN_FRONTEND=noninteractive apt update && \
-    apt install -y curl unzip python3-pip vim python3-boto3 libhdf5-dev libssl-dev libffi-dev figlet python3-dev vim nodejs git wget jq nmap ctop dhcping iperf sshfs &&\
+    apt install -y curl unzip python3-pip vim python3-boto3 libhdf5-dev libssl-dev libffi-dev figlet python3-dev vim nodejs git wget jq &&\
     rm -rf /var/lib/apt/lists/* && \
     apt-get clean
 
