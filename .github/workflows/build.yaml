@@ -6,11 +6,11 @@ env:
   WORKDIR: .
 
 on:
-  push:
-    branches:
-    - main
-    paths:
-    - 'Dockerfile'
+ # push:
+ #   branches:
+ #   - main
+ #   paths:
+ #   - 'Dockerfile'
   workflow_dispatch:
 
 jobs:
