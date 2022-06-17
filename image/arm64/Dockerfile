@@ -1,5 +1,5 @@
 FROM ubuntu:20.04
-COPY ./.devcontainer/config/.bashrc /root/.bashrc
+COPY ../../.devcontainer/config/.bashrc /root/.bashrc
 
 ARG PLATFORM=arm64
 
