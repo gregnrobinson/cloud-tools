@@ -51,31 +51,31 @@ RUN wget "https://github.com/mikefarah/yq/releases/download/v${_YQ_VERSION}/yq_l
 
 # VAULT
 RUN wget "https://releases.hashicorp.com/vault/${_VAULT_VERSION}/vault_${_VAULT_VERSION}_linux_${PLATFORM}.zip" && \
-    unzip vault_${_VAULT_VERSION}_linux_${PLATFORM}.zip && \
+    unzip -qq vault_${_VAULT_VERSION}_linux_${PLATFORM}.zip && \
     mv vault /usr/local/bin && \
     rm vault_${_VAULT_VERSION}_linux_${PLATFORM}.zip
 
 # TF_SWITCH
 RUN wget "https://github.com/warrensbox/terraform-switcher/releases/download/${_TF_SWITCH_VERSION}/terraform-switcher_${_TF_SWITCH_VERSION}_linux_${PLATFORM}.tar.gz" && \
-    tar -xvzf terraform-switcher_${_TF_SWITCH_VERSION}_linux_${PLATFORM}.tar.gz && \
+    tar -xzf terraform-switcher_${_TF_SWITCH_VERSION}_linux_${PLATFORM}.tar.gz && \
     mv tfswitch /usr/local/bin && \
     rm terraform-switcher_${_TF_SWITCH_VERSION}_linux_${PLATFORM}.tar.gz
 
 # CONSUL
 RUN wget "https://releases.hashicorp.com/consul/${_CONSUL_VERSION}/consul_${_CONSUL_VERSION}_linux_${PLATFORM}.zip" && \
-    unzip consul_${_CONSUL_VERSION}_linux_${PLATFORM}.zip && \
+    unzip -qq consul_${_CONSUL_VERSION}_linux_${PLATFORM}.zip && \
     mv consul /usr/local/bin && \
     rm consul_${_CONSUL_VERSION}_linux_${PLATFORM}.zip
 
 # PACKER
 RUN wget "https://releases.hashicorp.com/packer/${_PACKER_VERSION}/packer_${_PACKER_VERSION}_linux_${PLATFORM}.zip" && \
-    unzip packer_${_PACKER_VERSION}_linux_${PLATFORM}.zip && \
+    unzip -qq packer_${_PACKER_VERSION}_linux_${PLATFORM}.zip && \
     mv packer /usr/local/bin && \
     rm packer_${_PACKER_VERSION}_linux_${PLATFORM}.zip
 
 # GOLANG
 RUN wget "https://golang.org/dl/go${_GO_VERSION}.linux-${PLATFORM}.tar.gz" && \
-    tar -xvzf go${_GO_VERSION}.linux-${PLATFORM}.tar.gz && \
+    tar -xzf go${_GO_VERSION}.linux-${PLATFORM}.tar.gz && \
     mv go /usr/local/bin && \
     rm go${_GO_VERSION}.linux-${PLATFORM}.tar.gz
 
