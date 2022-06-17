@@ -53,9 +53,7 @@ RUN apt update && \
       sshfs \
       netcat \
       build-essential \
-      iputils-ping && \
-    rm -rf /var/lib/apt/lists/* && \
-    apt-get clean
+      iputils-ping
 
 # INSTALL ANSIBLE
 RUN pip3 install --upgrade pip cffi && \
