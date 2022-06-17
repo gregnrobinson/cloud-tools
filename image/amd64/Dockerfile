@@ -24,9 +24,10 @@ WORKDIR /root
 #    rm -rf /var/lib/apt/lists/* && \
 #    apt-get clean
 RUN DEBIAN_FRONTEND=noninteractive apt update && \
-    apt install -y curl unzip python3-pip vim python3-boto3 libhdf5-dev libssl-dev libffi-dev && \
+    apt install -y curl unzip python3-pip vim python3-boto3 libhdf5-dev libssl-dev libffi-dev figlet python3-dev unzip vim nodejs git curl wget jq nmap && \
     rm -rf /var/lib/apt/lists/* && \
     apt-get clean
+
 # INSTALL ANSIBLE
 RUN pip3 install --upgrade pip cffi && \
     pip install ansible==${_ANSIBLE_VERSION} && \
