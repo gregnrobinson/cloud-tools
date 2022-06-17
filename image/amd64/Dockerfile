@@ -1,18 +1,7 @@
-
-# ----------------------------------------
-#  MultiArch Container Build
-# ----------------------------------------
-
-# PULL BUILD IMAGE
-FROM --platform=$BUILDPLATFORM golang:alpine AS build
-ARG TARGETPLATFORM
-ARG BUILDPLATFORM
-RUN echo "${TARGETPLATFORM##*/}" > /target_arch
-
-# PULL BASE
 FROM ubuntu:20.04
-COPY --from=build /target_arch /target_arch
 COPY ./.devcontainer/config/.bashrc /root/.bashrc
+
+ARG PLATFORM=amd64
 
 # PACKAGE VERSIONS
 ARG DEBIAN_FRONTEND=noninteractive
@@ -63,8 +52,7 @@ RUN apt-get update && \
     rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/*
 
 # KUBECTL / HELM
-RUN ARCH=$(cat /target_arch) && \
-    curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/${ARCH}/kubectl" && \
+RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/${PLATFORM}/kubectl" && \
     install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl &&\
     rm -rf ./kubectl &&\
     curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
@@ -78,38 +66,38 @@ RUN git clone https://github.com/ahmetb/kubectx /usr/local/kubectx &&\
 RUN pip3 install virtualenv
 
 # YQ
-RUN wget "https://github.com/mikefarah/yq/releases/download/v${_YQ_VERSION}/yq_linux_$(cat /target_arch)" -O /usr/bin/yq &&\
+RUN wget "https://github.com/mikefarah/yq/releases/download/v${_YQ_VERSION}/yq_linux_${PLATFORM}" -O /usr/bin/yq &&\
     chmod +x /usr/bin/yq
 
 # VAULT
-RUN wget "https://releases.hashicorp.com/vault/${_VAULT_VERSION}/vault_${_VAULT_VERSION}_linux_$(cat /target_arch).zip" && \
-    unzip vault_${_VAULT_VERSION}_linux_$(cat /target_arch).zip && \
+RUN wget "https://releases.hashicorp.com/vault/${_VAULT_VERSION}/vault_${_VAULT_VERSION}_linux_${PLATFORM}.zip" && \
+    unzip vault_${_VAULT_VERSION}_linux_${PLATFORM}.zip && \
     mv vault /usr/local/bin && \
-    rm vault_${_VAULT_VERSION}_linux_$(cat /target_arch).zip
+    rm vault_${_VAULT_VERSION}_linux_${PLATFORM}.zip
 
 # TF_SWITCH
-RUN wget "https://github.com/warrensbox/terraform-switcher/releases/download/${_TF_SWITCH_VERSION}/terraform-switcher_${_TF_SWITCH_VERSION}_linux_$(cat /target_arch).tar.gz" && \
-    tar -xvzf terraform-switcher_${_TF_SWITCH_VERSION}_linux_$(cat /target_arch).tar.gz && \
+RUN wget "https://github.com/warrensbox/terraform-switcher/releases/download/${_TF_SWITCH_VERSION}/terraform-switcher_${_TF_SWITCH_VERSION}_linux_${PLATFORM}.tar.gz" && \
+    tar -xvzf terraform-switcher_${_TF_SWITCH_VERSION}_linux_${PLATFORM}.tar.gz && \
     mv tfswitch /usr/local/bin && \
-    rm terraform-switcher_${_TF_SWITCH_VERSION}_linux_$(cat /target_arch).tar.gz
+    rm terraform-switcher_${_TF_SWITCH_VERSION}_linux_${PLATFORM}.tar.gz
 
 # CONSUL
-RUN wget "https://releases.hashicorp.com/consul/${_CONSUL_VERSION}/consul_${_CONSUL_VERSION}_linux_$(cat /target_arch).zip" && \
-    unzip consul_${_CONSUL_VERSION}_linux_$(cat /target_arch).zip && \
+RUN wget "https://releases.hashicorp.com/consul/${_CONSUL_VERSION}/consul_${_CONSUL_VERSION}_linux_${PLATFORM}.zip" && \
+    unzip consul_${_CONSUL_VERSION}_linux_${PLATFORM}.zip && \
     mv consul /usr/local/bin && \
-    rm consul_${_CONSUL_VERSION}_linux_$(cat /target_arch).zip
+    rm consul_${_CONSUL_VERSION}_linux_${PLATFORM}.zip
 
 # PACKER
-RUN wget "https://releases.hashicorp.com/packer/${_PACKER_VERSION}/packer_${_PACKER_VERSION}_linux_$(cat /target_arch).zip" && \
-    unzip packer_${_PACKER_VERSION}_linux_$(cat /target_arch).zip && \
+RUN wget "https://releases.hashicorp.com/packer/${_PACKER_VERSION}/packer_${_PACKER_VERSION}_linux_${PLATFORM}.zip" && \
+    unzip packer_${_PACKER_VERSION}_linux_${PLATFORM}.zip && \
     mv packer /usr/local/bin && \
-    rm packer_${_PACKER_VERSION}_linux_$(cat /target_arch).zip
+    rm packer_${_PACKER_VERSION}_linux_${PLATFORM}.zip
 
 # GOLANG
-RUN wget "https://golang.org/dl/go${_GO_VERSION}.linux-$(cat /target_arch).tar.gz" && \
-    tar -xvzf go${_GO_VERSION}.linux-$(cat /target_arch).tar.gz && \
+RUN wget "https://golang.org/dl/go${_GO_VERSION}.linux-${PLATFORM}.tar.gz" && \
+    tar -xvzf go${_GO_VERSION}.linux-${PLATFORM}.tar.gz && \
     mv go /usr/local/bin && \
-    rm go${_GO_VERSION}.linux-$(cat /target_arch).tar.gz
+    rm go${_GO_VERSION}.linux-${PLATFORM}.tar.gz
 
 # GCP CLI
 RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-cli main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key --keyring /usr/share/keyrings/cloud.google.gpg  add - && apt-get update -y && apt-get install google-cloud-cli -y
@@ -122,7 +110,7 @@ RUN curl https://storage.googleapis.com/csm-artifacts/asm/asmcli_1.12 > /usr/loc
     chmod +x /usr/local/bin/asmcli
 
 # EKSCTL CLI
-RUN curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_$(cat /target_arch).tar.gz" | tar xz -C /tmp &&\
+RUN curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_${PLATFORM}.tar.gz" | tar xz -C /tmp &&\
     mv /tmp/eksctl /usr/local/bin
 
 # ISTIOCTL
