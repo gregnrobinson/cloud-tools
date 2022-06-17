@@ -9,7 +9,7 @@ on:
     branches:
     - main
     paths:
-    - './image/**'
+    - './image/'
     - '.github/workflows/docker-build-push.yml'
   workflow_dispatch:
 
