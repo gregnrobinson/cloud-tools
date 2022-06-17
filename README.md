@@ -8,8 +8,8 @@ All the packages listed are installed for each build based on the target archite
 
 *The Macbook M1 can run linux/amd64 platform containers using Docker.*
 
-- Run as AMD64: `docker run -it --platform gregnrobinson/cloud-tools:amd64 bash`
-- Run as ARM64: `docker run -it --platform gregnrobinson/cloud-tools:arm64 bash`
+- Run as AMD64: `docker run -it gregnrobinson/cloud-tools:amd64 bash`
+- Run as ARM64: `docker run -it gregnrobinson/cloud-tools:arm64 bash`
 
 ## Installed Packages
 
