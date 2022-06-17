@@ -37,12 +37,8 @@ jobs:
       with:
         images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
         tags: |
-          type=schedule
-          type=ref,event=branch
-          type=semver,pattern={{version}}
-          type=semver,pattern={{major}}.{{minor}}
-          type=semver,pattern={{major}}
           type=raw,value=${{ env.PLATFORM }}
+          type=raw,value=latest
           type=sha
     - name: Build and push Docker image
       uses: docker/build-push-action@v3
@@ -87,12 +83,8 @@ jobs:
       with:
         images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
         tags: |
-          type=schedule
-          type=ref,event=branch
-          type=semver,pattern={{version}}
-          type=semver,pattern={{major}}.{{minor}}
-          type=semver,pattern={{major}}
           type=raw,value=${{ env.PLATFORM }}
+          type=raw,value=latest
           type=sha
     - name: Build and push Docker image
       uses: docker/build-push-action@v3

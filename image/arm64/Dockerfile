@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM debian:bookworm-slim
 COPY .devcontainer/config/.bashrc /root/.bashrc
 
 ARG PLATFORM=arm64
