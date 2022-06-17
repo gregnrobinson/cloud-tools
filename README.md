@@ -1,6 +1,3 @@
-
-![Commits](https://img.shields.io/github/commits-since/gregnrobinson/cloud-tools/latest)
-
 ![pre-commit](https://img.shields.io/github/workflow/status/gregnrobinson/cloud-tools/pre-commit?label=pre-commit) ![Build](https://img.shields.io/github/workflow/status/gregnrobinson/cloud-tools/docker-build-push/main)  [![Codacy Badge](https://app.codacy.com/project/badge/Grade/825037ee15d748e19a3264317690ecbb)](https://www.codacy.com/gh/gregnrobinson/cloud-tools/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=gregnrobinson/cloud-tools&amp;utm_campaign=Badge_Grade)
 
 # Overview
@@ -11,8 +8,8 @@ All the packages listed are installed for each build based on the target archite
 
 *The Macbook M1 can run linux/amd64 platform containers using Docker.*
 
-- Run as AMD64: `docker run -it --platform linux/amd64 gregnrobinson/cloud-tools:latest bash`
-- Run as ARM64: `docker run -it --platform linux/arm64 gregnrobinson/cloud-tools:latest bash`
+- Run as AMD64: `docker run -it gregnrobinson/cloud-tools:amd64 bash`
+- Run as ARM64: `docker run -it gregnrobinson/cloud-tools:arm64 bash`
 
 ## Installed Packages
 
