@@ -3,6 +3,9 @@ COPY .devcontainer/config/.bashrc /root/.bashrc
 
 ARG PLATFORM=amd64
 
+# Options include x86_64 for amd64 or aarch64 for arm64
+ARG AWS_CLI_ARCH="x86_64"
+
 # PACKAGE VERSIONS
 ARG DEBIAN_FRONTEND=noninteractive
 ARG _VAULT_VERSION=1.9.2
@@ -19,6 +22,8 @@ RUN apt-get update && \
     apt-get install --no-install-recommends -y \
       git \
       libssl-dev \
+      libffi-dev \
+      libhdf5-dev \
       libmysqlclient-dev \
       curl \
       wget \
@@ -27,6 +32,7 @@ RUN apt-get update && \
       software-properties-common \
       python3-dev \
       python3-pip \
+      python3-boto3 \
       unzip \
       vim \
       nodejs \
@@ -50,6 +56,14 @@ RUN apt-get update && \
     apt-get autoremove -y && \
     apt-get clean && \
     rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/*
+
+# INSTALL ANSIBLE
+RUN pip3 install --upgrade pip cffi && \
+    pip install ansible==${ANSIBLE_VERSION} && \
+    pip install mitogen ansible-lint jmespath && \
+    pip install --upgrade pywinrm && \
+    rm -rf /root/.cache/pip
+
 
 # KUBECTL / HELM
 RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/${PLATFORM}/kubectl" && \
@@ -103,7 +117,9 @@ RUN wget "https://golang.org/dl/go${_GO_VERSION}.linux-${PLATFORM}.tar.gz" && \
 RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-cli main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key --keyring /usr/share/keyrings/cloud.google.gpg  add - && apt-get update -y && apt-get install google-cloud-cli -y
 
 # AWS CLI
-RUN pip3 install awscli==1.21.12
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-${AWS_CLI_ARCH}.zip" -o "awscliv2.zip" && \
+    unzip -qq awscliv2.zip && \
+    ./aws/install
 
 # ASM CLI
 RUN curl https://storage.googleapis.com/csm-artifacts/asm/asmcli_1.12 > /usr/local/bin/asmcli &&\
