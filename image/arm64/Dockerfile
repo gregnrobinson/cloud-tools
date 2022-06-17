@@ -56,10 +56,9 @@ RUN wget -q "https://releases.hashicorp.com/vault/${_VAULT_VERSION}/vault_${_VAU
     rm vault_${_VAULT_VERSION}_linux_${PLATFORM}.zip
 
 # TF_SWITCH
-RUN wget -q "https://github.com/warrensbox/terraform-switcher/releases/download/${_TF_SWITCH_VERSION}/terraform-switcher_${_TF_SWITCH_VERSION}_linux_${PLATFORM}.tar.gz" && \
-    tar -xzf terraform-switcher_${_TF_SWITCH_VERSION}_linux_${PLATFORM}.tar.gz && \
-    mv tfswitch /usr/local/bin && \
-    rm terraform-switcher_${_TF_SWITCH_VERSION}_linux_${PLATFORM}.tar.gz
+RUN wget -q https://raw.githubusercontent.com/warrensbox/terraform-switcher/release/install.sh && \
+    chmod 755 install.sh && \
+    ./install.sh -b /usr/local/bin
 
 # CONSUL
 RUN wget -q "https://releases.hashicorp.com/consul/${_CONSUL_VERSION}/consul_${_CONSUL_VERSION}_linux_${PLATFORM}.zip" && \
