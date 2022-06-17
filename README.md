@@ -94,6 +94,7 @@ ARG _TF_SWITCH_VERSION=0.13.1201
 From the root of the repository run the following commands:
 
 ```bash
-docker build --tag cloud-tools --build-arg "_VAULT_VERSION=1.7.0" .
+docker build --tag cloud-tools --build-arg "_VAULT_VERSION=1.7.0" ./image/arm64/
+docker build --tag cloud-tools --build-arg "_VAULT_VERSION=1.7.0" ./image/amd64/
 docker run -v $(pwd):/root -i -t cloud-tools
 ```
