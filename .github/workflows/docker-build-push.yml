@@ -9,7 +9,8 @@ on:
     branches:
     - main
     paths:
-    - './image/'
+    - './image/amd64/*'
+    - './image/arm64/*'
     - '.github/workflows/docker-build-push.yml'
   workflow_dispatch:
 
