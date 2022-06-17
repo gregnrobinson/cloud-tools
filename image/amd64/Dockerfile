@@ -24,7 +24,7 @@ WORKDIR /root
 #    rm -rf /var/lib/apt/lists/* && \
 #    apt-get clean
 RUN DEBIAN_FRONTEND=noninteractive apt update && \
-    apt install -y curl unzip python3-pip vim python3-boto3 libhdf5-dev libssl-dev libffi-dev figlet python3-dev unzip vim nodejs git curl wget jq nmap && \
+    apt install -y curl unzip python3-pip vim python3-boto3 libhdf5-dev libssl-dev libffi-dev figlet python3-dev vim nodejs git wget jq nmap wireguard-tools iproute2 iptables tcpdump ctop dhcping iperf openresolv openssh-server sshfs netcat &&\
     rm -rf /var/lib/apt/lists/* && \
     apt-get clean
 
@@ -34,7 +34,6 @@ RUN pip3 install --upgrade pip cffi && \
     pip install mitogen ansible-lint jmespath && \
     pip install --upgrade pywinrm && \
     rm -rf /root/.cache/pip
-
 
 # KUBECTL / HELM
 RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/${PLATFORM}/kubectl" && \
