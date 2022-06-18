@@ -13,7 +13,8 @@ on:
     - 'image/arm64/Dockerfile'
     - '.github/workflows/docker-build-push.yml'
   workflow_dispatch:
-
+  schedule:
+    - cron: '0 0 * * 0'
 jobs:
   linux_arm64:
     env:
