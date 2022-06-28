@@ -1,4 +1,4 @@
-![pre-commit](https://img.shields.io/github/workflow/status/gregnrobinson/cloud-tools/pre-commit?label=pre-commit) ![Build](https://img.shields.io/github/workflow/status/gregnrobinson/cloud-tools/docker-build-push/main)  [![Codacy Badge](https://app.codacy.com/project/badge/Grade/825037ee15d748e19a3264317690ecbb)](https://www.codacy.com/gh/gregnrobinson/cloud-tools/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=gregnrobinson/cloud-tools&amp;utm_campaign=Badge_Grade)
+![pre-commit](https://img.shields.io/github/workflow/status/gregnrobinson/cloud-tools/pre-commit?label=pre-commit) [![docker-build-push](https://github.com/gregnrobinson/cloud-tools/actions/workflows/docker-build-push.yml/badge.svg)](https://github.com/gregnrobinson/cloud-tools/actions/workflows/docker-build-push.yml)  [![Codacy Badge](https://app.codacy.com/project/badge/Grade/825037ee15d748e19a3264317690ecbb)](https://www.codacy.com/gh/gregnrobinson/cloud-tools/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=gregnrobinson/cloud-tools&amp;utm_campaign=Badge_Grade)
 
 # Overview
 
