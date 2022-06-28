@@ -15,6 +15,7 @@ All the packages listed are installed for each build based on the target archite
 
 - AWS SDK
 - Azure SDK
+- Ansible
 - GCP SDK
 - kubectl
 - kubectx
